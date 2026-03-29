@@ -59,12 +59,17 @@ Konsistent, weil:
 - [wordpress-connector-blueprint.md](/opt/electri-city-ops/docs/wordpress-connector-blueprint.md)
 - [change-blueprints-priority-1-5.md](/opt/electri-city-ops/docs/change-blueprints-priority-1-5.md)
 - [phase-4-execution-blueprint.md](/opt/electri-city-ops/docs/phase-4-execution-blueprint.md)
+- [wordpress-plugin-execution-strategy.md](/opt/electri-city-ops/docs/wordpress-plugin-execution-strategy.md)
+- [plugin-connector-priority-shift.md](/opt/electri-city-ops/docs/plugin-connector-priority-shift.md)
+- [plugin-pilot-candidate-1.md](/opt/electri-city-ops/docs/plugin-pilot-candidate-1.md)
+- [plugin-minimal-input-list.md](/opt/electri-city-ops/docs/plugin-minimal-input-list.md)
 
 Konsistent, weil:
 
 - keine Anwendung ohne Freigabe, Validierung und Rollback vorgesehen ist
 - Ziel-Connectoren klar getrennt sind
 - Risiken und Rueckwege bereits als Pflichtbestandteile formuliert sind
+- der Strategiewechsel den Hetzner-Stack nicht aus `observe_only` herauszieht, sondern nur den spaeteren primaeren Umsetzungspfad auf WordPress-Plugin verschiebt
 
 ### Pilotvorbereitung
 

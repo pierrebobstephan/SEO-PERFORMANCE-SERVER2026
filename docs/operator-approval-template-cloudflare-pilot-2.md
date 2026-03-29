@@ -3,6 +3,7 @@
 ## Status
 
 - aktueller Gate-Status: `approval_required`
+- Strategiestatus: `Cloudflare secondary path`
 - Zweck: reine Freigabe- und Inputsammlung
 - keine externe Wirkung
 

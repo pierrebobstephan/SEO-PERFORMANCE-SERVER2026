@@ -2,7 +2,7 @@
 
 ## Zielbereich
 
-Der spaetere WordPress-Connector ist fuer kontrollierte, klar begrenzte Inhalts-, Template- und Ausgabeoptimierungen vorgesehen, vor allem:
+Der spaetere WordPress-Connector ist ab jetzt der primaere spaetere Umsetzungspfad fuer kontrollierte, klar begrenzte Inhalts-, Template- und Ausgabeoptimierungen, vor allem:
 
 - Meta-Description-Pruefung und spaeteres Update
 - Title-Pruefung und spaeterer Template- oder SEO-Feld-Abgleich
@@ -15,6 +15,12 @@ Nicht Ziel dieses Connectors:
 - ungesteuerte Core-Manipulation
 - breitflaechige Plugin-Updates
 - unklare refaktorierende Theme-Eingriffe ohne Rollback
+
+## Strategische Einordnung
+
+- primaerer spaeterer Umsetzungspfad: `WordPress plugin on IONOS WordPress`
+- Rolle des Hetzner-Stacks: Observe-only, Learning, Validation und Planning
+- Rolle von Cloudflare: sekundaerer spaeterer Pfad fuer Header-, Kompressions- und Cache-Themen
 
 ## Moegliche Zielbereiche in Theme, Builder und Plugins
 
@@ -95,4 +101,3 @@ Nachbarsignale:
 - Aenderungen mit Core- oder Child-Theme-Abhaengigkeit
 - Plugin-Konfigurationen, die siteweit wirken
 - Builder-Aenderungen mit unklarem Scope oder hoher visueller Kopplung
-

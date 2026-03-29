@@ -4,6 +4,12 @@
 
 Cloudflare HTML-Kompression fuer die anonyme Homepage von `electri-c-ity-studios-24-7.com`
 
+## Strategy Status
+
+- Connector-Pfad: `Cloudflare secondary path`
+- Einordnung nach Strategiewechsel: nicht mehr primaerer Umsetzungspfad
+- Vorrang haben jetzt WordPress-Plugin-basierte Homepage- und Strukturmassnahmen
+
 ## Doctrine Precheck
 
 Bindende Referenzen:
@@ -131,4 +137,4 @@ Zeitfenster:
 
 ## Phase-5-Ergebnis
 
-Dieser Pilotkandidat ist als doctrine-konformer Blueprint vorbereitet, bleibt aber bis zu den fehlenden Freigaben und Inputs im Status `approval_required`.
+Dieser Pilotkandidat ist als doctrine-konformer Blueprint vorbereitet, bleibt aber als sekundaerer Cloudflare-Pfad bis zu den fehlenden Freigaben und Inputs im Status `approval_required`.

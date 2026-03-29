@@ -6,286 +6,285 @@ Stand der Auswertung:
 
 - Datenbasis ist der letzte validierte Live-Lauf `20260329T084612Z-b2bdf90b` vom `2026-03-29T08:46:13.949828+00:00`.
 - Die Domain `electri-c-ity-studios-24-7.com` antwortete mit `200`, Canonical und Final-URL stimmen ueberein, `lang="en"` ist vorhanden, Viewport ist vorhanden und `sitemap.xml` liefert `200`.
-- Die Homepage reagierte schnell genug fuer einen stabilen Grundzustand: `236.9 ms`.
-- Die drei domainbezogenen Messpunkte zeigen aber einen leichten Anstieg bei `response_ms` von `222.5` auf `225.5` auf `236.9`.
-- `html_bytes` ist ueber alle drei Domain-Messungen unveraendert bei `183759 bytes`.
-- Die groessten Hebel liegen derzeit nicht bei Fehlerbehebung, sondern bei kontrollierter Optimierung von Kompression, Cache-Strategie, HTML-Gewicht und On-Page-Struktur.
+- Die Homepage reagierte derzeit stabil mit `236.9 ms`, zeigt aber leichten Drift nach oben.
+- `html_bytes` liegt konstant bei `183759 bytes`.
+- `Content-Encoding` fehlt, `Cache-Control` ist `no-cache`, `H1 count` ist `2`, die Meta Description ist mit `40` Zeichen kurz.
 
-Wichtige Einordnung:
+Strategiewechsel:
 
-- Der aktuelle Automatiklauf zeigt `0` Findings. Das bedeutet nur, dass keine harten Schwellenwerte gerissen wurden.
-- Optimierungspotenzial ist trotzdem vorhanden, insbesondere bei `Content-Encoding`, `Cache-Control`, HTML-Gewicht, Meta-Description-Laenge und H1-Struktur.
-- Zwei aeltere `observe_only`-Laeufe ohne Ziel-Domain existieren in der Historie. Deren Learning-Notizen sind reine System-Baselines und nicht als domain-spezifische Inhaltsbewertung zu lesen.
+- Der Hetzner-Stack bleibt das doctrine-enforced Observe-, Learning-, Validation- und Planning-System.
+- Der primaere spaetere Umsetzungspfad fuer echte On-Page- und Strukturverbesserungen ist ab jetzt ein WordPress-Plugin auf IONOS WordPress.
+- Cloudflare bleibt fuer spaetere Header-, Cache- und Edge-Themen nur der sekundaere Pfad.
 
 ## Priorisierungslogik
 
-Die Reihenfolge unten gewichtet:
+Die Reihenfolge unten gewichtet jetzt:
 
-1. Wirkung auf SEO, Performance oder Cache-Effizienz
-2. Risiko einer spaeteren Umsetzung
-3. Umsetzbarkeit mit klarer Verantwortlichkeit
+1. Nutzen und Sicherheit einer spaeteren WordPress-Plugin-Umsetzung
+2. Klarheit des Scope innerhalb von Theme, Builder, SEO-Plugin oder Plugin-Hooks
+3. Messbarkeit im Hetzner-Monitoring
+4. Rollback-Faehigkeit
+5. Cloudflare nur dort, wo Plugin-seitig kein besserer primaerer Pfad existiert
 
 Explizite Umsetzungszonen:
 
-- `WordPress/Themes/Plugins only`: Prioritaet `3`, `4`, `5`, `6`, `10`
-- `Cloudflare`: Prioritaet `1`, `2`
-- `Observe-only system only`: Prioritaet `7`, `8`, `9`
+- `WordPress plugin primary path`: Prioritaet `1`, `2`, `3`, `4`, `6`, `7`
+- `Observe-only system only`: Prioritaet `5`, `8`, `9`
+- `Cloudflare secondary path`: Prioritaet `10`
 
-## Caching / Headers
+## WordPress-Plugin Primary Path
 
-### Prioritaet 1: HTTP-Kompression fuer HTML aktivieren
-
-Kategorie: `Caching/Headers`
-Priorisierung: `Wirkung hoch | Risiko niedrig | Umsetzbarkeit hoch`
-Umsetzungszone: `Cloudflare`
-
-Beobachtung:
-Im letzten Live-Lauf war `Content-Encoding` fuer die Homepage nicht vorhanden, obwohl `183759 bytes` HTML ausgeliefert wurden.
-
-Vermutete Ursache:
-HTTP-Kompression ist am Edge oder auf der Origin-Route fuer HTML nicht aktiv oder wird nicht bis zum Client durchgereicht.
-
-Wirkung:
-Unkomprimiertes HTML vergroessert Transferzeit, Bandbreite und Render-Start, besonders auf mobilen Netzen.
-
-Risiko:
-Niedrig, sofern nur textbasierte Antworten komprimiert werden und keine Sonderregeln entgegenstehen.
-
-Empfohlene Massnahme:
-Brotli oder mindestens Gzip fuer `text/html` am Edge aktivieren und sicherstellen, dass die Homepage-Antwort komprimiert ausgeliefert wird.
-
-Messkriterium fuer Erfolg:
-`Content-Encoding` ist bei der Homepage vorhanden und `response_ms` bzw. wahrgenommene Ladezeit verschlechtern sich nicht. Idealerweise sinkt die uebertragene HTML-Groesse deutlich gegenueber dem aktuellen Rohwert.
-
-### Prioritaet 2: Cache-Control der Homepage fuer anonyme Besucher neu bewerten
-
-Kategorie: `Caching/Headers`
-Priorisierung: `Wirkung hoch | Risiko mittel | Umsetzbarkeit mittel`
-Umsetzungszone: `Cloudflare`
-
-Beobachtung:
-Die Homepage liefert aktuell `Cache-Control: no-cache`.
-
-Vermutete Ursache:
-Die Seite wird derzeit defensiv als dynamisch behandelt oder es existiert keine saubere Trennung zwischen anonymem Frontend-Traffic und personalisierten Antworten.
-
-Wirkung:
-`no-cache` reduziert den Nutzen von Edge-Caching und erhoeht die Wahrscheinlichkeit unnoetiger Origin-Requests.
-
-Risiko:
-Mittel, weil falsches HTML-Caching bei personalisierten oder haeufig wechselnden Inhalten zu Stale-Content fuehren kann.
-
-Empfohlene Massnahme:
-Fuer anonyme Homepage-Aufrufe eine kontrollierte Cache-Strategie pruefen, z. B. kurze Edge-TTL, klare Bypass-Regeln fuer Logins/Cookies und saubere Trennung dynamischer Pfade.
-
-Messkriterium fuer Erfolg:
-`Cache-Control` ist fuer anonyme Requests explizit kontrolliert statt pauschal `no-cache`, und die `response_ms` bleiben stabil oder verbessern sich bei wiederholten Messungen.
-
-### Prioritaet 9: Header-Konsistenz ueber mehr Samples beobachten
-
-Kategorie: `Caching/Headers`
-Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
-Umsetzungszone: `Observe-only system only`
-
-Beobachtung:
-Die aktuelle Historie umfasst erst drei domainbezogene Samples. Kompression fehlt in allen Samples, waehrend `Cache-Control` aktuell nur als Einzelwert beobachtet wurde.
-
-Vermutete Ursache:
-Die Analyse ist noch jung und bildet Header-Stabilitaet bisher nur ueber einen kleinen Zeitraum ab.
-
-Wirkung:
-Ohne laengere Header-Historie steigt das Risiko, Optimierungen auf Zufallssamples oder fluechtige Zustaende zu stuetzen.
-
-Risiko:
-Niedrig, da dies rein beobachtend ist.
-
-Empfohlene Massnahme:
-Die read-only Messreihe fortfuehren und Header-Abweichungen fuer `Content-Encoding` und `Cache-Control` explizit ueber einen laengeren Zeitraum auswerten, bevor Cache-Regeln umgestellt werden.
-
-Messkriterium fuer Erfolg:
-Mindestens 20 vergleichbare Samples mit konsistenter Header-Historie liegen vor und erlauben belastbare Vorher/Nachher-Vergleiche.
-
-## Performance
-
-### Prioritaet 3: HTML-Gewicht der Homepage senken
-
-Kategorie: `Performance`
-Priorisierung: `Wirkung hoch | Risiko mittel | Umsetzbarkeit mittel`
-Umsetzungszone: `WordPress/Themes/Plugins only`
-
-Beobachtung:
-Die Homepage liefert konstant `183759 bytes` HTML ueber drei aufeinanderfolgende Domain-Samples.
-
-Vermutete Ursache:
-Theme- oder Plugin-Ausgabe ist umfangreich, moeglicherweise durch stark verschachteltes Markup, grosse Inline-Bloecke oder viele serverseitig gerenderte Module.
-
-Wirkung:
-Ein grosses HTML-Dokument verteuert Transfer, Parsing und DOM-Aufbau und macht die Seite empfindlicher gegen weitere Inhaltszunahme.
-
-Risiko:
-Mittel, weil Template-Aenderungen oder Plugin-Anpassungen leicht Seiteneffekte auf Layout oder Inhalte haben koennen.
-
-Empfohlene Massnahme:
-Homepage-Template und Plugin-Ausgabe analysieren und nicht essenzielles Markup, Inline-HTML, versteckte Module und redundante serverseitige Bloecke reduzieren.
-
-Messkriterium fuer Erfolg:
-`html_bytes` sinkt bei unveraenderter fachlicher Funktion deutlich unter den aktuellen Wert, und die Trendlinie in den Rollups zeigt fuer `html_bytes` eine Verbesserung.
-
-### Prioritaet 7: Leichten Response-Zeit-Anstieg verifizieren, bevor groessere Eingriffe priorisiert werden
-
-Kategorie: `Performance`
-Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
-Umsetzungszone: `Observe-only system only`
-
-Beobachtung:
-`response_ms` stieg in drei Messungen von `222.5` auf `225.5` auf `236.9`.
-
-Vermutete Ursache:
-Normale Schwankung ist moeglich; ebenso moeglich sind beginnende Origin-, Netzwerk- oder Cache-Effekte. Die Stichprobe ist noch klein.
-
-Wirkung:
-Bei frueher Erkennung einer echten Drift koennen spaetere groessere Regressionen vor aktiven Aenderungen identifiziert werden.
-
-Risiko:
-Niedrig, weil nur beobachtet und nicht eingegriffen wird.
-
-Empfohlene Massnahme:
-Die Response-Zeit weiter zyklisch messen und erst bei bestaetigter Drift ueber mehrere Zeitfenster hinweg hoehere Performance-Prioritaet auf Backend- oder CDN-Massnahmen legen.
-
-Messkriterium fuer Erfolg:
-Die 7d- und 30d-Rollups zeigen eine stabile oder sinkende `response_ms`-Kurve oder liefern genug Daten, um den Trend eindeutig als Rauschen zu klassifizieren.
-
-## SEO
-
-### Prioritaet 5: Meta Description ausbauen
+### Prioritaet 1: Meta Description gezielt ueber einen Plugin-Pfad verbessern
 
 Kategorie: `SEO`
 Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
-Umsetzungszone: `WordPress/Themes/Plugins only`
+Umsetzungszone: `WordPress plugin primary path`
 
 Beobachtung:
 Die aktuelle Meta Description lautet `Global Electro Music Online Radio 24 / 7` und hat nur `40` Zeichen.
 
 Vermutete Ursache:
-Die Description ist sehr knapp formuliert oder stammt aus einem Platzhalter bzw. einer sehr kurzen SEO-Feldpflege.
+Die Description ist sehr knapp formuliert oder stammt aus einer SEO-Plugin-, Theme- oder Builder-Quelle ohne saubere Snippet-Optimierung.
 
 Wirkung:
-Eine kurze Description verschenkt Snippet-Flaeche und kommuniziert Suchintention, Nutzen und Differenzierung nur eingeschraenkt.
+Snippet-Flaeche bleibt ungenutzt, Suchintention und Nutzenversprechen werden zu knapp transportiert.
 
 Risiko:
-Niedrig, sofern keine Keyword-Ueberladung eingefuehrt wird.
+Niedrig, wenn der Plugin-Pfad genau klaert, welche Quelle Title und Description steuert und doppelte Meta-Ausgabe verhindert.
 
 Empfohlene Massnahme:
-Eine laengere, klarere Homepage-Description formulieren, die Format, Nutzen und thematische Ausrichtung der Seite innerhalb eines natuerlichen Snippet-Rahmens beschreibt.
+Den WordPress-Plugin-Pfad so vorbereiten, dass die Homepage-Description ueber einen klaren, reversiblen Hook oder eine definierte Plugin-Integration angepasst werden kann.
 
 Messkriterium fuer Erfolg:
-Die Meta-Description liegt stabil in einem sinnvollen Bereich von etwa `140-160` Zeichen und bleibt inhaltlich konsistent mit der Homepage.
+`meta_description_length` bewegt sich stabil in einen sinnvollen Bereich von etwa `140-160` Zeichen und bleibt thematisch konsistent.
 
-### Prioritaet 6: Title-Formulierung auf Lesbarkeit und Suchintention feinjustieren
+### Prioritaet 2: H1-Konsolidierung plugin-seitig auf ein primaeres H1 vorbereiten
 
-Kategorie: `SEO`
-Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
-Umsetzungszone: `WordPress/Themes/Plugins only`
+Kategorie: `Struktur/Markup`
+Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit mittel`
+Umsetzungszone: `WordPress plugin primary path`
 
 Beobachtung:
-Der aktuelle Title lautet `Electri_C_ity Studios | 24/7 Online Radio & Crypto Art` und hat `54` Zeichen. Die Laenge ist gut, die Schreibweise mit Unterstrich ist auffaellig.
+Die Homepage liefert aktuell `H1 count: 2`.
 
 Vermutete Ursache:
-Branding oder Theme-/SEO-Plugin-Vorlage uebernimmt einen internen Namen direkt in den Title.
+Theme oder Builder erzeugen mehrere gleichrangige Headlines im Homepage-Template.
 
 Wirkung:
-Die ungewoehnliche Schreibweise kann die Lesbarkeit und Markenklarheit im Suchergebnis schwaechen, obwohl die Title-Laenge bereits sinnvoll ist.
+Die Hauptaussage der Seite wird semantisch weniger klar.
 
 Risiko:
-Niedrig, wenn die Kernbegriffe und Markenidentitaet erhalten bleiben.
+Niedrig bis mittel, weil eine saubere H1-Konsolidierung sichtbare Layout- oder Inhaltsbeziehungen beruehren kann.
 
 Empfohlene Massnahme:
-Die Title-Kopie sprachlich glaetten und auf Klicknutzen, Markenlesbarkeit und Hauptthema pruefen, ohne die aktuelle Title-Laenge stark zu vergroessern.
+Im Plugin-Pfad zuerst den genauen Heading-Ursprung lokalisieren und dann nur die Homepage auf eine klare primaere H1 begrenzen.
 
 Messkriterium fuer Erfolg:
-Title bleibt ungefaehr im aktuellen Laengenbereich, ist sprachlich klarer und nutzt keine internen oder unruhigen Trennzeichen ohne Branding-Grund.
+`h1_count` wird `1`, waehrend Title, Meta Description und sichtbare Sektionen fachlich intakt bleiben.
 
-### Prioritaet 8: Crawl-Abdeckung ueber die reine Sitemap-200 hinaus pruefen
+### Prioritaet 3: HTML-Gewicht und Markup-Ausgabe im Plugin-Pfad senken
+
+Kategorie: `Performance`
+Priorisierung: `Wirkung hoch | Risiko mittel | Umsetzbarkeit mittel`
+Umsetzungszone: `WordPress plugin primary path`
+
+Beobachtung:
+Die Homepage liefert konstant `183759 bytes` HTML ueber mehrere Samples.
+
+Vermutete Ursache:
+Theme-, Builder- oder Plugin-Ausgabe erzeugt umfangreiches, teilweise redundantes serverseitiges Markup.
+
+Wirkung:
+Transfer, Parsing und DOM-Aufbau werden unnoetig teuer.
+
+Risiko:
+Mittel, weil Struktur- oder Ausgabeaenderungen Layout, Editor oder dynamische Module beruehren koennen.
+
+Empfohlene Massnahme:
+Plugin-seitig zuerst nur klar abgrenzbare Wrappers, redundante Module oder serverseitige Ausgabewege identifizieren und stufenweise reduzieren.
+
+Messkriterium fuer Erfolg:
+`html_bytes` sinkt messbar und die Rollups zeigen einen verbesserten HTML-Trend ohne Layout-Regressionssignale.
+
+### Prioritaet 4: Strukturbezogene SEO-Verbesserungen plugin-seitig vorbereiten
+
+Kategorie: `SEO`
+Priorisierung: `Wirkung mittel | Risiko mittel | Umsetzbarkeit mittel`
+Umsetzungszone: `WordPress plugin primary path`
+
+Beobachtung:
+Die Kombination aus `2` H1, hoher HTML-Menge und knapper Description deutet auf strukturellen Optimierungsspielraum in Homepage-Markup und SEO-Signalen hin.
+
+Vermutete Ursache:
+Builder- oder Theme-Struktur ist mehr auf Layout als auf semantische Klarheit optimiert.
+
+Wirkung:
+Semantik, Snippet-Klarheit und Crawl-Verstaendlichkeit bleiben hinter dem moeglichen Niveau.
+
+Risiko:
+Mittel, wenn mehrere Quellen fuer SEO-Signale parallel aktiv sind.
+
+Empfohlene Massnahme:
+Plugin-seitig eine kleine, klar begrenzte Strukturverbesserungsschicht vorbereiten, etwa fuer Heading-Hierarchie, Meta-Signal-Klarheit oder homepage-nahe semantische Ausgabekontrolle.
+
+Messkriterium fuer Erfolg:
+H1, Description, Canonical, Robots und weitere strukturbezogene Signale bleiben konsistent und werden nachvollziehbar sauberer.
+
+### Prioritaet 6: Title-Formulierung plugin-seitig nur nach Quellenklaerung feinjustieren
+
+Kategorie: `SEO`
+Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit mittel`
+Umsetzungszone: `WordPress plugin primary path`
+
+Beobachtung:
+Der aktuelle Title lautet `Electri_C_ity Studios | 24/7 Online Radio & Crypto Art` und hat `54` Zeichen.
+
+Vermutete Ursache:
+Branding oder SEO-Plugin-Vorlage uebernimmt einen internen Namen direkt in den Title.
+
+Wirkung:
+Die ungewoehnliche Schreibweise kann die Lesbarkeit im Suchergebnis schwaechen.
+
+Risiko:
+Niedrig, solange die Quelle des Titles sauber geklaert und keine doppelte Title-Logik erzeugt wird.
+
+Empfohlene Massnahme:
+Die Title-Quelle im Plugin-Pfad erst identifizieren und dann nur mit klarer Rueckfallstrategie sprachlich glaetten.
+
+Messkriterium fuer Erfolg:
+Title bleibt in einem sinnvollen Laengenbereich und wirkt sprachlich klarer, ohne Markenkonflikte oder doppelte Ausgabe.
+
+### Prioritaet 7: Plugin-seitige Struktur-/Markup-Reduktion stufenweise statt grossflaechig planen
+
+Kategorie: `Struktur/Markup`
+Priorisierung: `Wirkung mittel | Risiko mittel | Umsetzbarkeit mittel`
+Umsetzungszone: `WordPress plugin primary path`
+
+Beobachtung:
+Die hohe HTML-Menge und doppelte H1 deuten auf ueberkomplexe Homepage-Ausgabe hin.
+
+Vermutete Ursache:
+Page-Builder, Theme-Komponenten oder Plugins erzeugen mehr Wrapper und Module als fuer die Kernbotschaft notwendig.
+
+Wirkung:
+DOM-Komplexitaet, Wartungsaufwand und Renderkosten steigen.
+
+Risiko:
+Mittel, weil Strukturaufraeumen leicht visuelle oder editorbezogene Seiteneffekte haben kann.
+
+Empfohlene Massnahme:
+Statt grosser Umbauten den Plugin-Pfad auf kleine, reversible Strukturreduktionen begrenzen.
+
+Messkriterium fuer Erfolg:
+HTML sinkt, Struktur bleibt konsistent und die Homepage behaelt ihre sichtbare Funktion.
+
+## Observe-only System Only
+
+### Prioritaet 5: Plugin-Pilot nur auf belastbarer Trendbasis freigeben
+
+Kategorie: `Observe-only`
+Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
+Umsetzungszone: `Observe-only system only`
+
+Beobachtung:
+Die aktuelle Historie ist noch klein, insbesondere fuer Response- und Header-Trends.
+
+Vermutete Ursache:
+Das Monitoring ist bewusst defensiv und noch im Aufbau.
+
+Wirkung:
+Mehr Samples verbessern Vorher/Nachher-Vergleiche fuer spaetere Plugin-Piloten.
+
+Risiko:
+Niedrig.
+
+Empfohlene Massnahme:
+Read-only Messreihen fuer `response_ms`, `html_bytes`, H1, Meta Description und weitere Struktursignale weiter verdichten.
+
+Messkriterium fuer Erfolg:
+1d-, 7d- und 30d-Vergleiche liefern belastbare Baselines fuer plugin-seitige Aenderungen.
+
+### Prioritaet 8: Sitemap- und Strukturabdeckung read-only ausbauen
 
 Kategorie: `SEO`
 Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
 Umsetzungszone: `Observe-only system only`
 
 Beobachtung:
-Die Sitemap antwortet mit `200`, aber die aktuelle read-only Analyse bestaetigt nur Erreichbarkeit, nicht Vollstaendigkeit oder URL-Qualitaet.
+Die Sitemap wird derzeit nur auf Erreichbarkeit geprueft.
 
 Vermutete Ursache:
-Das MVP prueft bislang bewusst nur sichere Basissignale und keine inhaltliche Sitemap-Abdeckung.
+Das sichere MVP deckt bisher nur Basissignale ab.
 
 Wirkung:
-Unentdeckte Luecken in Sitemap-Inhalten oder Template-Abdeckung koennen SEO-Potenzial begrenzen, ohne im Statuscode sichtbar zu werden.
+Bessere Sitemap- und Template-Sicht verbessert die spaetere Plugin-Priorisierung.
 
 Risiko:
-Niedrig, weil dies zunaechst nur die Beobachtung erweitert.
+Niedrig.
 
 Empfohlene Massnahme:
-Die read-only Analyse um sitemap-nahe Checks erweitern, z. B. Anzahl der URLs, letzte Aenderungen, Template-Stichproben und Konsistenz zwischen Homepage-Signalen und wichtigen Zielseiten.
+Read-only Sitemap-Coverage und strukturbezogene Stichproben weiter ausbauen.
 
 Messkriterium fuer Erfolg:
-Die Analyse liefert nicht nur `sitemap_status_code`, sondern belastbare Informationen zur URL-Abdeckung und Template-Konsistenz.
+Die Analyse liefert mehr als `sitemap_status_code`, etwa URL-Abdeckung und Template-Konsistenz.
 
-## Struktur / Markup
+### Prioritaet 9: Response- und Header-Trends weiter beobachten
 
-### Prioritaet 4: Homepage auf ein primaeres H1 reduzieren
-
-Kategorie: `Struktur/Markup`
+Kategorie: `Performance`
 Priorisierung: `Wirkung mittel | Risiko niedrig | Umsetzbarkeit hoch`
-Umsetzungszone: `WordPress/Themes/Plugins only`
+Umsetzungszone: `Observe-only system only`
 
 Beobachtung:
-Die Homepage liefert aktuell `H1 count: 2`.
+`response_ms` stieg leicht, `Content-Encoding` fehlt und `Cache-Control` ist defensiv.
 
 Vermutete Ursache:
-Das Theme oder ein Builder-Modul verwendet mehrere Headlines auf derselben semantischen Ebene.
+Kleine Stichprobe, moegliche Origin- oder Edge-Effekte.
 
 Wirkung:
-Mehrere H1-Elemente sind kein harter SEO-Fehler, erschweren aber semantische Priorisierung und koennen die Hauptaussage der Seite verwischen.
+Mehr Verlauf reduziert Fehlentscheidungen vor spaeteren Plugin- oder Cloudflare-Pfaden.
 
 Risiko:
-Niedrig, sofern nur Heading-Levels und nicht die sichtbaren Inhalte geaendert werden.
+Niedrig.
 
 Empfohlene Massnahme:
-Ein klares primaeres H1 fuer das Hauptthema der Homepage definieren und weitere grosse Ueberschriften auf H2/H3 abstuften, falls sie Sektionen beschreiben.
+Header- und Response-Historie weiter zyklisch sammeln und Trendqualitaet erhoehen.
 
 Messkriterium fuer Erfolg:
-Der naechste validierte Lauf zeigt `H1 count: 1`, waehrend Title, Meta Description und sichtbare Sektionen fachlich intakt bleiben.
+Die Trendbewertung fuer `response_ms` und `html_bytes` wird ueber 7d und 30d stabiler.
 
-### Prioritaet 10: Template-Markup und DOM-Komplexitaet bereinigen
+## Cloudflare Secondary Path
 
-Kategorie: `Struktur/Markup`
-Priorisierung: `Wirkung mittel | Risiko mittel | Umsetzbarkeit mittel`
-Umsetzungszone: `WordPress/Themes/Plugins only`
+### Prioritaet 10: Cloudflare nur nach Plugin-first-Pfad fuer Kompression und Cache neu bewerten
+
+Kategorie: `Caching/Headers`
+Priorisierung: `Wirkung hoch | Risiko niedrig bis mittel | Umsetzbarkeit spaeter`
+Umsetzungszone: `Cloudflare secondary path`
 
 Beobachtung:
-Die Kombination aus `183759 bytes` HTML und `2` H1-Elementen deutet auf ein homepage-lastiges Template mit Optimierungsspielraum in Struktur und Ausgabemenge hin.
+`Content-Encoding` fehlt und `Cache-Control` ist `no-cache`.
 
 Vermutete Ursache:
-Page-Builder, Theme-Komponenten oder Plugins erzeugen mehr Wrapper, Sektionen oder serverseitiges HTML als fuer die Kernbotschaft notwendig ist.
+Edge- oder Origin-Konfiguration nutzt Kompression und Caching derzeit nicht sichtbar fuer die Homepage.
 
 Wirkung:
-Ueberkomplexes Markup erschwert Wartung, kann Crawling-Signale verwaessern und treibt HTML-Gewicht und DOM-Komplexitaet nach oben.
+Cloudflare kann spaeter weiterhin relevante Header- und Cache-Gewinne liefern.
 
 Risiko:
-Mittel, weil Template-Aufraeumen leicht Design-, Responsiv- oder Editor-Nebeneffekte haben kann.
+Kompression ist eher niedrig, Cache-Regeln bleiben wegen Personalisierung und Stale-Content sensibler.
 
 Empfohlene Massnahme:
-Homepage-Markup systematisch aufraeumen: redundante Container, doppelte Inhaltsmodule, ungenutzte Builder-Sektionen und rein dekorative serverseitige HTML-Bloecke abbauen.
+Cloudflare-Pfade erst nach den primaeren WordPress-Plugin-Piloten und nach besserer Inputlage wieder aktiv priorisieren.
 
 Messkriterium fuer Erfolg:
-`html_bytes` sinkt, `H1 count` bleibt sauber bei `1`, und die Homepage behaelt ihre sichtbare Funktion und Kernbotschaft ohne Layout-Regressionssignale.
+Cloudflare-Massnahmen werden erst dann aufgewertet, wenn der Plugin-Pfad die On-Page-Struktur verbessert und die noetigen Freigaben vorliegen.
 
 ## Schlussfolgerung
 
-Die naechsten sinnvollsten Optimierungspfade sind derzeit:
+Die naechsten sinnvollsten Optimierungspfade sind jetzt:
 
-1. `Content-Encoding` und Cache-Strategie sauber klaeren.
-2. Homepage-HTML und semantische Struktur im WordPress-Stack ausduennen.
-3. Snippet-Qualitaet ueber Description und Title verbessern.
-4. Die noch kleine Trendbasis im Observe-only-System weiter verdichten, bevor groessere Folgemassnahmen priorisiert werden.
+1. WordPress-Plugin-Pfad fuer Meta Description, H1 und homepage-nahe Strukturverbesserung vorbereiten.
+2. Plugin-seitige HTML-/Markup-Reduktion nur stufenweise und mit enger Scope-Kontrolle planen.
+3. Das Observe-only-System als Baseline-, Lern- und Validierungsschicht weiter verdichten.
+4. Cloudflare fuer Kompression und Cache bewusst als spaeteren Sekundaerpfad halten.
 
 Dieser Bericht wendet nichts an. Er dient ausschliesslich als priorisierte Entscheidungsgrundlage fuer spaetere, explizit freigegebene Massnahmen.

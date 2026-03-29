@@ -1,84 +1,78 @@
 # Change Blueprints Priority 1-5
 
-## 1. Content-Encoding / Kompression
+## 1. Meta Description verbessern
 
 ### Ziel
 
-- textbasierte Homepage-Responses spaeter komprimiert ausliefern
+- Homepage-Description spaeter ueber einen WordPress-Plugin-Pfad inhaltlich und laengenbezogen verbessern
 
 ### Beobachtung
 
-- aktueller Live-Report zeigt kein `Content-Encoding`
-- HTML-Groesse liegt bei `183759 bytes`
+- aktuelle Description hat `40` Zeichen
 
 ### Vermutete Ursache
 
-- Edge- oder Origin-Kompression fuer HTML ist nicht aktiv oder nicht wirksam
+- SEO-Feld, Theme oder Plugin liefert eine zu knappe Description
 
 ### Spaeterer Ziel-Connector
 
-- `Cloudflare`
+- `WordPress plugin`
 
 ### Inputs
 
-- freigegebene Zone
-- erlaubte Regeltypen
-- Bestaetigung der betroffenen Pfade
+- freigegebener Homepage-Scope
+- Klarheit, welches SEO-Plugin oder welcher Theme-Pfad die Description steuert
+- inhaltliche Freigabe fuer die neue Description
 
 ### Risiken
 
-- unerwartete Edge-Interaktion
-- unvollstaendige Regelwirkung
+- doppelte oder widerspruechliche Snippet-Logik
 
 ### Validierung
 
-- `content_encoding` vorhanden
-- Statuscode bleibt stabil
-- `response_ms` verschlechtert sich nicht unnoetig
+- `meta_description_length` bewegt sich in einen sinnvollen Zielbereich
+- Description bleibt thematisch passend
+- Title, Robots und Canonical bleiben stabil
 
 ### Rollback
 
-- Kompressionsregel deaktivieren oder auf Vorzustand setzen
-- Sofort-Messung und 1d-Nachkontrolle
+- Rueckkehr zur vorherigen Description-Quelle oder zum dokumentierten Vorwert
 
-## 2. Cache-Strategie fuer anonyme Homepage
+## 2. H1-Konsolidierung
 
 ### Ziel
 
-- kontrolliertere Cache-Strategie fuer anonyme Homepage-Aufrufe
+- eine klare primaere H1 auf der Homepage
 
 ### Beobachtung
 
-- aktueller Live-Report zeigt `Cache-Control: no-cache`
+- aktueller Live-Report zeigt `H1 count: 2`
 
 ### Vermutete Ursache
 
-- die Homepage wird defensiv als dynamisch behandelt
+- Theme, Builder oder Plugin verwendet mehrere Headlines auf gleicher Ebene
 
 ### Spaeterer Ziel-Connector
 
-- `Cloudflare`
+- `WordPress plugin`
 
 ### Inputs
 
-- Cookie- und Session-Ausnahmen
-- freigegebene Pfaddefinition
-- Bestaetigung, dass nur anonyme oeffentliche Requests betroffen sind
+- lokalisierter Template-, Builder- oder Plugin-Bereich
+- Bestaetigung, welche Ueberschrift die primaere H1 sein soll
 
 ### Risiken
 
-- Stale-Content
-- Personalisierungsprobleme
+- semantische oder visuelle Verschiebung
 
 ### Validierung
 
-- Cache-Verhalten aendert sich wie geplant
-- Statuscode, HTML-Struktur und Response-Zeit bleiben stabil
+- `h1_count` wird `1`
+- keine ungewollte Aenderung an Title, Meta Description oder Layout
 
 ### Rollback
 
-- Cache-Regel entfernen oder Vorzustand wiederherstellen
-- sofortige Header- und HTML-Pruefung
+- Heading-Struktur auf Vorzustand setzen
 
 ## 3. HTML-Gewicht reduzieren
 
@@ -96,7 +90,7 @@
 
 ### Spaeterer Ziel-Connector
 
-- `WordPress`
+- `WordPress plugin`
 
 ### Inputs
 
@@ -118,81 +112,81 @@
 ### Rollback
 
 - Rueckkehr zum dokumentierten Vorzustand des betroffenen Zielbereichs
-- anschliessende HTML- und Signalkontrolle
 
-## 4. H1-Konsolidierung
-
-### Ziel
-
-- eine klare primaere H1 auf der Homepage
-
-### Beobachtung
-
-- aktueller Live-Report zeigt `H1 count: 2`
-
-### Vermutete Ursache
-
-- Theme oder Builder verwendet mehrere Headlines auf gleicher Ebene
-
-### Spaeterer Ziel-Connector
-
-- `WordPress`
-
-### Inputs
-
-- lokalisierter Template- oder Builder-Bereich
-- Bestaetigung, welche Ueberschrift die primaere H1 sein soll
-
-### Risiken
-
-- semantische oder visuelle Verschiebung
-
-### Validierung
-
-- `h1_count` wird `1`
-- keine ungewollte Aenderung an Title, Meta Description oder Layout
-
-### Rollback
-
-- Heading-Struktur auf Vorzustand setzen
-- Sofortcheck auf HTML-Signale
-
-## 5. Meta Description verbessern
+## 4. Strukturbezogene SEO-Verbesserungen
 
 ### Ziel
 
-- Homepage-Description spaeter inhaltlich und laengenbezogen verbessern
+- homepage-nahe Struktur-, Semantik- und Markup-Signale spaeter ueber einen Plugin-Pfad ordnen
 
 ### Beobachtung
 
-- aktuelle Description hat `40` Zeichen
+- Description, H1 und HTML-Menge zeigen gemeinsam Strukturpotenzial
 
 ### Vermutete Ursache
 
-- SEO-Feld ist zu knapp formuliert oder generisch belegt
+- Theme-, Builder- oder SEO-Plugin-Ausgabe ist eher layout- als signalorientiert aufgebaut
 
 ### Spaeterer Ziel-Connector
 
-- `WordPress`
+- `WordPress plugin`
 
 ### Inputs
 
-- freigegebener SEO-Zielbereich
-- Bestaetigung der inhaltlichen Richtung
-- Klaerung, ob Theme oder SEO-Plugin die Quelle ist
+- freigegebener Homepage-Scope
+- Klarheit ueber Theme, Builder und SEO-Plugin
+- definierte Strukturziele
 
 ### Risiken
 
-- doppelte oder widerspruechliche Snippet-Logik
-- schwache Inhaltsqualitaet trotz laengerem Feld
+- Mehrfachlogik fuer SEO-Signale
+- Nebeneffekte auf Template-Struktur
 
 ### Validierung
 
-- `meta_description_length` bewegt sich in sinnvollem Zielbereich
-- Description bleibt thematisch passend
-- Title, Robots und Canonical bleiben stabil
+- H1, Description, Title, Canonical und robots bleiben konsistent
+- keine neue doppelte SEO-Ausgabe
 
 ### Rollback
 
-- Rueckkehr zur vorherigen Description-Quelle oder zum dokumentierten Vorwert
-- anschliessende Snippet- und HTML-Pruefung
+- Rueckkehr zum dokumentierten Vorzustand der betroffenen Ausgabequelle
+
+## 5. Content-Encoding / Kompression
+
+### Ziel
+
+- textbasierte Homepage-Responses spaeter komprimiert ausliefern
+
+### Beobachtung
+
+- aktueller Live-Report zeigt kein `Content-Encoding`
+- HTML-Groesse liegt bei `183759 bytes`
+
+### Vermutete Ursache
+
+- Edge- oder Origin-Kompression fuer HTML ist nicht aktiv oder nicht wirksam
+
+### Spaeterer Ziel-Connector
+
+- `Cloudflare secondary path`
+
+### Inputs
+
+- freigegebene Zone
+- erlaubte Regeltypen
+- Bestaetigung der betroffenen Pfade
+
+### Risiken
+
+- unerwartete Edge-Interaktion
+- unvollstaendige Regelwirkung
+
+### Validierung
+
+- `content_encoding` vorhanden
+- Statuscode bleibt stabil
+- `response_ms` verschlechtert sich nicht unnoetig
+
+### Rollback
+
+- Kompressionsregel deaktivieren oder auf Vorzustand setzen

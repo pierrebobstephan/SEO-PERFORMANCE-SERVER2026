@@ -28,6 +28,8 @@ Dieses Dokument beschreibt die harten Freigabegrenzen vor jeder spaeteren realen
 - Phase 7 darf lokal validieren, aber keine reale Lizenz oder Kanalzuweisung ausrollen
 - Phase 8 darf lokal Plugin-Code vorbereiten, aber keine Live-Installation oder aktive Homepage-Ausgabe ausfuehren
 - Phase 9 darf lokale Vertragslogik modellieren, aber keine reale Control-Plane-Verbindung, Policy-Ausgabe oder Kundenanbindung herstellen
+- Phase 10 darf lokale Registries, Manifest-Preconditions und Backend-Zustaende modellieren, aber keine reale Lizenz-, Policy-, Manifest- oder Rollback-Ausgabe erzeugen
+- Phase 11 darf lokale Packaging-, Release-, Dry-Run- und Operator-Artefakte vorbereiten, aber keinen echten Download, Upload, Kunden-Rollout oder Release aktivieren
 
 ## Status
 

@@ -29,6 +29,8 @@ Dieses Dokument sammelt die minimalen offenen Inputs vor spaeterer realer Produk
 - Policy- und Rollback-Transportmodell
 - Update- und Distribution-Freigaben
 - Konfliktmatrix fuer Themes, Builder und SEO-Plugins
+- Domain-Entitlement- und Release-Freigabemodell
+- Operator-Four-Eyes- oder Freigabeverfahren fuer Lizenz, Release und Rollback
 
 ## Status
 

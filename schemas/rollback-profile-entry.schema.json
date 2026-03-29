@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/rollback-profile-entry.schema.json",
+  "title": "Rollback Profile Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "registry_id",
+    "profile",
+    "registry_state",
+    "created_at"
+  ],
+  "properties": {
+    "registry_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile": {
+      "$ref": "rollback-profile.schema.json"
+    },
+    "registry_state": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "blocked", "approval_required"]
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

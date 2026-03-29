@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/license-registry-entry.schema.json",
+  "title": "License Registry Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "registry_id",
+    "license",
+    "binding_state",
+    "source_role",
+    "created_at"
+  ],
+  "properties": {
+    "registry_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license": {
+      "$ref": "license-object.schema.json"
+    },
+    "binding_state": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "blocked", "approval_required"]
+    },
+    "source_role": {
+      "type": "string",
+      "enum": ["reference_site", "customer_site"]
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

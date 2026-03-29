@@ -91,6 +91,21 @@ Konsistent, weil:
 - [phases-7-8-9-implementation-summary.md](/opt/electri-city-ops/docs/phases-7-8-9-implementation-summary.md)
 - [open-inputs-before-live-productization.md](/opt/electri-city-ops/docs/open-inputs-before-live-productization.md)
 - [approval-boundaries-before-real-deployment.md](/opt/electri-city-ops/docs/approval-boundaries-before-real-deployment.md)
+- [control-plane-backend-core.md](/opt/electri-city-ops/docs/control-plane-backend-core.md)
+- [license-registry-model.md](/opt/electri-city-ops/docs/license-registry-model.md)
+- [policy-registry-model.md](/opt/electri-city-ops/docs/policy-registry-model.md)
+- [manifest-builder-model.md](/opt/electri-city-ops/docs/manifest-builder-model.md)
+- [rollback-profile-registry.md](/opt/electri-city-ops/docs/rollback-profile-registry.md)
+- [domain-onboarding-registry-model.md](/opt/electri-city-ops/docs/domain-onboarding-registry-model.md)
+- [backend-state-machine.md](/opt/electri-city-ops/docs/backend-state-machine.md)
+- [plugin-packaging-model.md](/opt/electri-city-ops/docs/plugin-packaging-model.md)
+- [release-artifact-model.md](/opt/electri-city-ops/docs/release-artifact-model.md)
+- [operator-release-runbook.md](/opt/electri-city-ops/docs/operator-release-runbook.md)
+- [operator-license-issuance-runbook.md](/opt/electri-city-ops/docs/operator-license-issuance-runbook.md)
+- [operator-customer-onboarding-runbook.md](/opt/electri-city-ops/docs/operator-customer-onboarding-runbook.md)
+- [dry-run-customer-rollout-model.md](/opt/electri-city-ops/docs/dry-run-customer-rollout-model.md)
+- [live-productization-gates.md](/opt/electri-city-ops/docs/live-productization-gates.md)
+- [domain-package-entitlement-model.md](/opt/electri-city-ops/docs/domain-package-entitlement-model.md)
 
 Konsistent, weil:
 
@@ -102,6 +117,8 @@ Konsistent, weil:
 - der Produktkern jetzt als lokale Spezifikationsschicht fuer Lizenzobjekt, Aktivierung, Bootstrap, Safe-Mode, Konflikterkennung, Manifest und Release-Kanaele vorliegt
 - das lokale Plugin-MVP jetzt technisch nur inert startet und ohne bestaetigte Lizenz-, Policy-, Konflikt-, Validation- und Rollback-Lage keine aktive Ausgabe erzeugt
 - der Control-Plane-Handshake jetzt lokal ueber domaingebundene Vertragsobjekte, Schemas und Fallback-Logik vorbereitet ist
+- der Backend-Core jetzt lokale Registries fuer Lizenz, Policy, Rollback und Onboarding mit klaren Preconditions modelliert
+- Packaging, Release-Artefakte, Entitlements und Operator-Runbooks jetzt nur als lokale Preview- und Dry-Run-Schicht vorliegen
 
 ### Pilotvorbereitung
 
@@ -153,6 +170,25 @@ Konsistent, weil:
 - `packages/wp-plugin/hetzner-seo-ops/admin/class-hso-admin-screen.php`
 - `tests/test_product_core.py`
 - `tests/test_contracts.py`
+- `config/backend-defaults.json`
+- `schemas/license-registry-entry.schema.json`
+- `schemas/policy-registry-entry.schema.json`
+- `schemas/manifest-build-request.schema.json`
+- `schemas/rollback-profile-entry.schema.json`
+- `schemas/domain-onboarding-entry.schema.json`
+- `schemas/plugin-package-metadata.schema.json`
+- `schemas/release-artifact.schema.json`
+- `schemas/domain-entitlement.schema.json`
+- `src/electri_city_ops/backend_core.py`
+- `src/electri_city_ops/registry.py`
+- `src/electri_city_ops/manifest_builder.py`
+- `src/electri_city_ops/rollback_registry.py`
+- `src/electri_city_ops/onboarding.py`
+- `tools/build_plugin_package.py`
+- `tools/build_release_artifacts.py`
+- `tools/dry_run_onboarding.py`
+- `tests/test_backend_core.py`
+- `tests/test_release_workflows.py`
 
 Konsistent, weil:
 
@@ -160,12 +196,15 @@ Konsistent, weil:
 - das Plugin-MVP standardmaessig `observe_only`, `safe_mode` oder `approval_required` bleibt
 - Rank Math koexistierend behandelt wird und keine abrupte Ablosung erzwungen wird
 - fehlende Vertragsobjekte oder unklare Source-Mapping-Lagen technisch auf sichere Fallbacks ziehen
+- Backend-Registry, Manifest-Build, Rollback-Lookup, Dry-Run-Onboarding und Live-Gates jetzt lokal testbar an klaren Preconditions haengen
+- Packaging- und Release-Tools nur lokale Preview-Artefakte vorbereiten und keine echte Auslieferung kennen
 
 Verifikationsstand:
 
 - Python-Tests fuer Produktkern und Vertragslogik laufen lokal gruen
+- Python-Tests fuer Backend-Core und Release-Workflows laufen lokal gruen
 - `validate-config` bleibt doctrine-konform in `observe_only` mit `allow_external_changes = false`
-- `compileall` fuer `src` laeuft lokal durch
+- `compileall` fuer `src` und `tools` laeuft lokal durch
 - PHP-Lint konnte mangels lokal installiertem `php` nicht ausgefuehrt werden
 
 ## Noch bestehende Luecken
@@ -230,6 +269,16 @@ Restluecke:
 
 - Signaturmodell, Transportabsicherung, Replay-Schutz und reale Secret-Verwaltung bleiben vor echter Produktisierung `approval_required`.
 
+### Backend-Core und Packaging sind lokal modelliert, aber noch nicht an echte Operator- oder Auslieferungsrealitaet gebunden
+
+Status:
+
+- Registries, Manifest-Builder, Entitlements, Dry-Run-Tools und Release-Preview-Artefakte sind lokal vorhanden.
+
+Restluecke:
+
+- echte Lizenz-Registry, reale Policy-Verteilung, reale Download-Freigabe, Upload-Pfade und Operator-Four-Eyes-Freigaben bleiben vor Produktisierung `approval_required`.
+
 ### Wissensaustausch ist architektonisch beschrieben, aber noch nicht maximal explizit pro Modulfluss
 
 Status:
@@ -273,6 +322,14 @@ Luecke:
 ### product_core und contracts
 
 - weil hier Lizenz-, Domain-, Kanal-, Policy- und Rollback-Bindung modelliert werden und jeder Fehler hier zu unklarer Mehrdomain- oder Mehrscope-Wirkung fuehren koennte
+
+### backend_core, registry, manifest_builder, rollback_registry und onboarding
+
+- weil hier die interne Produktautoritaet fuer Domain-Bindung, Policy-Verengung, Manifest-Preconditions, Rollback-Faehigkeit und Onboarding-Zustaende entsteht
+
+### Packaging-, Release- und Entitlement-Schicht
+
+- weil hier spaeter Download-Anspruch, Kanalbindung und Go-Live-Grenzen technisch vorbereitet werden und jede Aufweichung direkt zu unklarer Produktwirkung fuehren koennte
 
 ## Alignment-Fazit
 

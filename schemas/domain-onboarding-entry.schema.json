@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/domain-onboarding-entry.schema.json",
+  "title": "Domain Onboarding Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "onboarding_id",
+    "onboarding",
+    "state",
+    "created_at"
+  ],
+  "properties": {
+    "onboarding_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "onboarding": {
+      "$ref": "customer-domain-onboarding.schema.json"
+    },
+    "state": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "blocked", "approval_required"]
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

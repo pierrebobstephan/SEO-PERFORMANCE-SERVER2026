@@ -1,0 +1,24 @@
+{
+  "registry_states": [
+    "pending",
+    "confirmed",
+    "blocked",
+    "approval_required"
+  ],
+  "site_roles": [
+    "reference_site",
+    "customer_site"
+  ],
+  "default_release_channel": "pilot",
+  "default_policy_mode": "observe_only",
+  "required_live_gates": [
+    "license_registry_confirmed",
+    "policy_registry_confirmed",
+    "rollback_registry_confirmed",
+    "onboarding_confirmed",
+    "operator_approval_confirmed",
+    "validation_defined",
+    "rollback_defined",
+    "source_mapping_confirmed"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/domain-entitlement.schema.json",
+  "title": "Domain Entitlement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entitlement_id",
+    "license_id",
+    "bound_domain",
+    "release_channel",
+    "allowed_package_version",
+    "allowed_scopes",
+    "approval_state",
+    "issued_at"
+  ],
+  "properties": {
+    "entitlement_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bound_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "release_channel": {
+      "type": "string",
+      "enum": ["stable", "pilot", "rollback"]
+    },
+    "allowed_package_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_scopes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "approval_state": {
+      "type": "string",
+      "enum": ["approval_required", "confirmed", "blocked"]
+    },
+    "issued_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

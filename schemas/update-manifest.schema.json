@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/update-manifest.schema.json",
+  "title": "Update Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product_id",
+    "plugin_version",
+    "release_channel",
+    "license_id",
+    "bound_domain",
+    "package_url",
+    "package_checksum",
+    "policy_version",
+    "rollback_version",
+    "allowed_scopes",
+    "required_features",
+    "conflict_blocklist_version",
+    "min_plugin_version",
+    "issued_at"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plugin_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "release_channel": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "pilot",
+        "rollback"
+      ]
+    },
+    "license_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bound_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "package_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "package_checksum": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rollback_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_scopes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflict_blocklist_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "min_plugin_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issued_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

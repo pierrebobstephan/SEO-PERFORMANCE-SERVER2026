@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/domain-binding.schema.json",
+  "title": "Domain Binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bound_domain",
+    "allowed_subdomains",
+    "allowed_scopes",
+    "release_channel",
+    "policy_channel",
+    "rollback_profile_id"
+  ],
+  "properties": {
+    "bound_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_subdomains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_scopes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "release_channel": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "pilot",
+        "rollback"
+      ]
+    },
+    "policy_channel": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "pilot",
+        "rollback"
+      ]
+    },
+    "rollback_profile_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/customer-domain-onboarding.schema.json",
+  "title": "Customer Domain Onboarding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "customer_id",
+    "requested_domain",
+    "requested_channel",
+    "requested_scopes",
+    "site_role",
+    "cms_platform",
+    "operator_contact_status"
+  ],
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_channel": {
+      "type": "string",
+      "enum": ["stable", "pilot", "rollback"]
+    },
+    "requested_scopes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "site_role": {
+      "type": "string",
+      "enum": ["reference_site", "customer_site"]
+    },
+    "cms_platform": {
+      "type": "string",
+      "enum": ["wordpress"]
+    },
+    "operator_contact_status": {
+      "type": "string",
+      "enum": ["pending", "confirmed"]
+    }
+  }
+}

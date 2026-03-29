@@ -68,6 +68,29 @@ Konsistent, weil:
 - [plugin-distribution-and-update-model.md](/opt/electri-city-ops/docs/plugin-distribution-and-update-model.md)
 - [customer-site-optimization-model.md](/opt/electri-city-ops/docs/customer-site-optimization-model.md)
 - [reference-site-vs-customer-sites.md](/opt/electri-city-ops/docs/reference-site-vs-customer-sites.md)
+- [license-object-spec.md](/opt/electri-city-ops/docs/license-object-spec.md)
+- [plugin-activation-flow.md](/opt/electri-city-ops/docs/plugin-activation-flow.md)
+- [update-manifest-model.md](/opt/electri-city-ops/docs/update-manifest-model.md)
+- [plugin-bootstrap-architecture.md](/opt/electri-city-ops/docs/plugin-bootstrap-architecture.md)
+- [local-plugin-safe-mode-spec.md](/opt/electri-city-ops/docs/local-plugin-safe-mode-spec.md)
+- [plugin-conflict-detection-model.md](/opt/electri-city-ops/docs/plugin-conflict-detection-model.md)
+- [release-channel-model.md](/opt/electri-city-ops/docs/release-channel-model.md)
+- [plugin-mvp-implementation-plan.md](/opt/electri-city-ops/docs/plugin-mvp-implementation-plan.md)
+- [plugin-module-map.md](/opt/electri-city-ops/docs/plugin-module-map.md)
+- [plugin-admin-ui-model.md](/opt/electri-city-ops/docs/plugin-admin-ui-model.md)
+- [plugin-license-status-model.md](/opt/electri-city-ops/docs/plugin-license-status-model.md)
+- [plugin-homepage-meta-module-spec.md](/opt/electri-city-ops/docs/plugin-homepage-meta-module-spec.md)
+- [plugin-rank-math-coexistence-model.md](/opt/electri-city-ops/docs/plugin-rank-math-coexistence-model.md)
+- [control-plane-plugin-handshake.md](/opt/electri-city-ops/docs/control-plane-plugin-handshake.md)
+- [license-check-api-contract.md](/opt/electri-city-ops/docs/license-check-api-contract.md)
+- [plugin-policy-fetch-model.md](/opt/electri-city-ops/docs/plugin-policy-fetch-model.md)
+- [plugin-update-check-flow.md](/opt/electri-city-ops/docs/plugin-update-check-flow.md)
+- [domain-scoped-rollback-distribution.md](/opt/electri-city-ops/docs/domain-scoped-rollback-distribution.md)
+- [reference-site-pilot-vs-customer-rollout.md](/opt/electri-city-ops/docs/reference-site-pilot-vs-customer-rollout.md)
+- [customer-onboarding-minimal-flow.md](/opt/electri-city-ops/docs/customer-onboarding-minimal-flow.md)
+- [phases-7-8-9-implementation-summary.md](/opt/electri-city-ops/docs/phases-7-8-9-implementation-summary.md)
+- [open-inputs-before-live-productization.md](/opt/electri-city-ops/docs/open-inputs-before-live-productization.md)
+- [approval-boundaries-before-real-deployment.md](/opt/electri-city-ops/docs/approval-boundaries-before-real-deployment.md)
 
 Konsistent, weil:
 
@@ -76,6 +99,9 @@ Konsistent, weil:
 - Risiken und Rueckwege bereits als Pflichtbestandteile formuliert sind
 - der Strategiewechsel den Hetzner-Stack nicht aus `observe_only` herauszieht, sondern nur den spaeteren primaeren Umsetzungspfad auf WordPress-Plugin verschiebt
 - das Produktmodell jetzt explizit zwischen Referenzsystem, Kunden-Domains, Lizenzbindung und domaingebundener Wirkung trennt
+- der Produktkern jetzt als lokale Spezifikationsschicht fuer Lizenzobjekt, Aktivierung, Bootstrap, Safe-Mode, Konflikterkennung, Manifest und Release-Kanaele vorliegt
+- das lokale Plugin-MVP jetzt technisch nur inert startet und ohne bestaetigte Lizenz-, Policy-, Konflikt-, Validation- und Rollback-Lage keine aktive Ausgabe erzeugt
+- der Control-Plane-Handshake jetzt lokal ueber domaingebundene Vertragsobjekte, Schemas und Fallback-Logik vorbereitet ist
 
 ### Pilotvorbereitung
 
@@ -103,6 +129,44 @@ Konsistent, weil:
 - die Doktrin jetzt lokal ueber Policy-, Scope-, Blast-Radius-, Approval- und Rollback-Pruefungen technisch eingebunden ist
 - externe Wirkung weiterhin technisch gesperrt bleibt und nur als `approval_required`, `blueprint_ready` oder `observe_only` modelliert wird
 - Simulationsobjekte und Gate-Checks jetzt nicht nur dokumentiert, sondern lokal testbar spezifiziert sind
+
+### Lokale Produktkern-, Plugin- und Vertragsartefakte
+
+- `config/release-channels.json`
+- `schemas/domain-binding.schema.json`
+- `schemas/license-object.schema.json`
+- `schemas/update-manifest.schema.json`
+- `schemas/license-check-response.schema.json`
+- `schemas/plugin-policy-response.schema.json`
+- `schemas/rollback-profile.schema.json`
+- `schemas/customer-domain-onboarding.schema.json`
+- `src/electri_city_ops/product_core.py`
+- `src/electri_city_ops/contracts.py`
+- `packages/wp-plugin/hetzner-seo-ops/hetzner-seo-ops.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/class-hso-plugin.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/class-hso-license-check.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/class-hso-safe-mode.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/class-hso-conflict-detector.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/class-hso-rollback-registry.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/class-hso-validation-status.php`
+- `packages/wp-plugin/hetzner-seo-ops/includes/modules/class-hso-meta-description-module.php`
+- `packages/wp-plugin/hetzner-seo-ops/admin/class-hso-admin-screen.php`
+- `tests/test_product_core.py`
+- `tests/test_contracts.py`
+
+Konsistent, weil:
+
+- Domain-, Scope-, Kanal-, Policy- und Rollback-Bindung jetzt nicht nur beschrieben, sondern lokal validierbar modelliert sind
+- das Plugin-MVP standardmaessig `observe_only`, `safe_mode` oder `approval_required` bleibt
+- Rank Math koexistierend behandelt wird und keine abrupte Ablosung erzwungen wird
+- fehlende Vertragsobjekte oder unklare Source-Mapping-Lagen technisch auf sichere Fallbacks ziehen
+
+Verifikationsstand:
+
+- Python-Tests fuer Produktkern und Vertragslogik laufen lokal gruen
+- `validate-config` bleibt doctrine-konform in `observe_only` mit `allow_external_changes = false`
+- `compileall` fuer `src` laeuft lokal durch
+- PHP-Lint konnte mangels lokal installiertem `php` nicht ausgefuehrt werden
 
 ## Noch bestehende Luecken
 
@@ -146,6 +210,26 @@ Restluecke:
 
 - Eine spaetere Umsetzung muss dieselbe Durchsetzung noch direkt an reale Cloudflare-, WordPress- oder andere Connector-Laufzeiten koppeln, sobald solche Pfade ueberhaupt freigegeben werden.
 
+### Plugin-MVP ist lokal modelliert, aber noch nicht gegen echte WordPress-Laufzeitmatrix validiert
+
+Status:
+
+- Das Plugin-Skeleton ist lokal vorhanden und php-lintbar geplant.
+
+Restluecke:
+
+- echte WordPress-Integrations- und Kompatibilitaetstests gegen konkrete Themes, Builder und Rank-Math-Varianten sind bewusst noch nicht freigegeben.
+
+### Vertragsobjekte sind lokal formalisiert, aber noch nicht kryptographisch oder transportseitig abgesichert
+
+Status:
+
+- License-, Policy- und Rollback-Antworten sind lokal als Schemas und Python-Validatoren modelliert.
+
+Restluecke:
+
+- Signaturmodell, Transportabsicherung, Replay-Schutz und reale Secret-Verwaltung bleiben vor echter Produktisierung `approval_required`.
+
 ### Wissensaustausch ist architektonisch beschrieben, aber noch nicht maximal explizit pro Modulfluss
 
 Status:
@@ -181,6 +265,14 @@ Luecke:
 ### Cloudflare- und WordPress-Connectoren
 
 - weil diese spaeter die reale externe Wirkung erzeugen koennen und deshalb strikt an Workspace-Grenzen, Freigabe, Validation und Rollback gebunden bleiben muessen
+
+### plugin bootstrap, conflict detection und meta description module
+
+- weil hier im spaeteren Produkt die erste lokale Wirkung auf der Kunden-Domain entstehen koennte und deshalb Safe-Mode, Scope-Klarheit, Konfliktpruefung und Doppel-Ausgabe-Vermeidung strikt bleiben muessen
+
+### product_core und contracts
+
+- weil hier Lizenz-, Domain-, Kanal-, Policy- und Rollback-Bindung modelliert werden und jeder Fehler hier zu unklarer Mehrdomain- oder Mehrscope-Wirkung fuehren koennte
 
 ## Alignment-Fazit
 

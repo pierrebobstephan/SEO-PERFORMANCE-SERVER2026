@@ -1,0 +1,19 @@
+{
+  "channels": {
+    "stable": {
+      "requires_explicit_approval": true,
+      "allows_active_scoped": true,
+      "rollback_target": "rollback"
+    },
+    "pilot": {
+      "requires_explicit_approval": true,
+      "allows_active_scoped": true,
+      "rollback_target": "rollback"
+    },
+    "rollback": {
+      "requires_explicit_approval": true,
+      "allows_active_scoped": false,
+      "rollback_target": "rollback"
+    }
+  }
+}

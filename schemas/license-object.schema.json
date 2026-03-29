@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/license-object.schema.json",
+  "title": "License Object",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "license_id",
+    "customer_id",
+    "product_id",
+    "status",
+    "domain_binding",
+    "allowed_features",
+    "issued_at",
+    "non_expiring"
+  ],
+  "properties": {
+    "license_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "customer_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "inactive",
+        "observe_only",
+        "approval_required",
+        "pilot_ready",
+        "active_scoped",
+        "rollback_required",
+        "revoked"
+      ]
+    },
+    "domain_binding": {
+      "$ref": "domain-binding.schema.json"
+    },
+    "allowed_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "issued_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expires_at": {
+      "type": "string"
+    },
+    "non_expiring": {
+      "type": "boolean"
+    },
+    "signature": {
+      "type": "string"
+    }
+  }
+}

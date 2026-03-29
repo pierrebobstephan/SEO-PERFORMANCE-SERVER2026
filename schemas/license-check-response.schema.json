@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/license-check-response.schema.json",
+  "title": "License Check Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "response_status",
+    "signature_status",
+    "license",
+    "issued_at"
+  ],
+  "properties": {
+    "response_status": {
+      "type": "string",
+      "enum": ["ok"]
+    },
+    "signature_status": {
+      "type": "string",
+      "enum": ["trusted", "untrusted"]
+    },
+    "license": {
+      "$ref": "license-object.schema.json"
+    },
+    "issued_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

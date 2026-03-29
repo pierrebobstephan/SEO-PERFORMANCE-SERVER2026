@@ -81,6 +81,13 @@ Keine Lizenz darf automatisch globale Theme-, Builder- oder SEO-Eingriffe freisc
 - Domain faellt auf lokale Nicht-Anwendung zurueck
 - Rollback-Profil steuert, welche lokale Ruecknahme fuer die Domain gilt
 
+## Lokale technische Verankerung
+
+- `schemas/domain-binding.schema.json`
+- `schemas/license-object.schema.json`
+- `src/electri_city_ops/product_core.py`
+- `docs/license-object-spec.md`
+
 ## Status
 
 - Lizenzmodell: `blueprint_ready`

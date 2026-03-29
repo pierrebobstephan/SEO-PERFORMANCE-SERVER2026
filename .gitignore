@@ -1,0 +1,16 @@
+# local working dirs
+backups/
+incoming/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# local env / noise
+.venv/
+venv/
+*.log
+
+# mac / editors
+.DS_Store

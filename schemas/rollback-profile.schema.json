@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/rollback-profile.schema.json",
+  "title": "Rollback Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rollback_profile_id",
+    "bound_domain",
+    "release_channel",
+    "rollback_channel",
+    "rollback_steps",
+    "verification_checks",
+    "abort_triggers",
+    "issued_at"
+  ],
+  "properties": {
+    "rollback_profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bound_domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "release_channel": {
+      "type": "string",
+      "enum": ["stable", "pilot", "rollback"]
+    },
+    "rollback_channel": {
+      "type": "string",
+      "enum": ["stable", "pilot", "rollback"]
+    },
+    "rollback_steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "verification_checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "abort_triggers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "issued_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

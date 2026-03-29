@@ -63,6 +63,11 @@ Konsistent, weil:
 - [plugin-connector-priority-shift.md](/opt/electri-city-ops/docs/plugin-connector-priority-shift.md)
 - [plugin-pilot-candidate-1.md](/opt/electri-city-ops/docs/plugin-pilot-candidate-1.md)
 - [plugin-minimal-input-list.md](/opt/electri-city-ops/docs/plugin-minimal-input-list.md)
+- [product-platform-strategy.md](/opt/electri-city-ops/docs/product-platform-strategy.md)
+- [license-and-domain-binding-model.md](/opt/electri-city-ops/docs/license-and-domain-binding-model.md)
+- [plugin-distribution-and-update-model.md](/opt/electri-city-ops/docs/plugin-distribution-and-update-model.md)
+- [customer-site-optimization-model.md](/opt/electri-city-ops/docs/customer-site-optimization-model.md)
+- [reference-site-vs-customer-sites.md](/opt/electri-city-ops/docs/reference-site-vs-customer-sites.md)
 
 Konsistent, weil:
 
@@ -70,6 +75,7 @@ Konsistent, weil:
 - Ziel-Connectoren klar getrennt sind
 - Risiken und Rueckwege bereits als Pflichtbestandteile formuliert sind
 - der Strategiewechsel den Hetzner-Stack nicht aus `observe_only` herauszieht, sondern nur den spaeteren primaeren Umsetzungspfad auf WordPress-Plugin verschiebt
+- das Produktmodell jetzt explizit zwischen Referenzsystem, Kunden-Domains, Lizenzbindung und domaingebundener Wirkung trennt
 
 ### Pilotvorbereitung
 

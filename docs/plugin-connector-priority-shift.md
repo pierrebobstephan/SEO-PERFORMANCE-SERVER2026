@@ -2,7 +2,7 @@
 
 ## Ergebnis
 
-Der primaere spaetere Connector-Pfad verschiebt sich von Cloudflare zu einem WordPress-Plugin auf IONOS WordPress.
+Der primaere spaetere Connector-Pfad verschiebt sich von Cloudflare zu einem WordPress-Plugin auf IONOS WordPress. Dieser Plugin-Pfad ist zugleich als spaeter lizenzierbares Multi-Domain-Produktmodell zu lesen.
 
 ## Prueffragen
 
@@ -26,6 +26,7 @@ Der primaere spaetere Connector-Pfad verschiebt sich von Cloudflare zu einem Wor
 
 - primaerer Pfad: `WordPress plugin`
 - sekundaerer Pfad: `Cloudflare`
+- Produkt-Backend: `Hetzner control plane`
 
 ## Begruendung
 
@@ -38,3 +39,4 @@ Der primaere spaetere Connector-Pfad verschiebt sich von Cloudflare zu einem Wor
 - Plugin-Pilotdokumente werden vorrangig vorbereitet
 - bestehende Cloudflare-Pilotdokumente bleiben erhalten, aber als sekundaere Pfade
 - Priorisierungsdokumente lesen WordPress-Plugin nun als primaere Umsetzungszone
+- Produkt-, Lizenz-, Domain-Binding-, Update- und Kundenmodell werden domaingebunden spezifiziert

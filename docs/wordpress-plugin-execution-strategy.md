@@ -2,7 +2,7 @@
 
 ## Zweck
 
-Dieses Dokument definiert den Strategiewechsel: Der Hetzner-Stack bleibt das doctrine-enforced Observe-, Learning-, Validation- und Planning-System, waehrend ein spaeteres WordPress-Plugin auf IONOS WordPress der primaere Umsetzungspfad fuer echte SEO- und Performance-Optimierungen wird.
+Dieses Dokument definiert den Strategiewechsel: Der Hetzner-Stack bleibt das doctrine-enforced Observe-, Learning-, Validation- und Planning-System sowie spaeteres Produkt-Backend / Control Plane, waehrend ein spaeteres WordPress-Plugin auf IONOS WordPress der primaere Umsetzungspfad fuer echte SEO- und Performance-Optimierungen wird.
 
 ## Prueffragen
 
@@ -27,6 +27,8 @@ Dieses Dokument definiert den Strategiewechsel: Der Hetzner-Stack bleibt das doc
 - Validierungsdefinition
 - Rollback-Planung
 - Lern- und Reporting-Schicht
+- spaeteres Produkt-Backend / Control Plane fuer lizenzierte Domains
+- Policy-, Update- und Rollback-Distribution nur im freigegebenen, domaingebundenen Scope
 
 ### IONOS WordPress Plugin
 
@@ -35,6 +37,14 @@ Dieses Dokument definiert den Strategiewechsel: Der Hetzner-Stack bleibt das doc
 - Heading-Hierarchie
 - HTML- und Markup-Kontrolle
 - strukturbezogene SEO-Verbesserungen
+- lokale Ausfuehrung auf der jeweils lizenzierten WordPress-Domain
+
+## Produktmodell-Erweiterung
+
+- `electri-c-ity-studios-24-7.com` bleibt Referenz- und Testinstanz
+- spaetere Kunden-Websites sind eigene, getrennte Zielsysteme
+- jede echte Wirkung bleibt domain-, lizenz- und scopegebunden
+- das Hetzner-System wird nicht zum globalen Eingriffsserver, sondern zu einer doctrine-enforced Control Plane mit klarer Trennung je Lizenz und je Domain
 
 ## Warum der Plugin-Pfad jetzt primaer ist
 
@@ -68,3 +78,4 @@ Dieses Dokument definiert den Strategiewechsel: Der Hetzner-Stack bleibt das doc
 - Plugin-Pfad: `approval_required`
 - Cloudflare-Pfade: `approval_required`
 - Hetzner-Stack: `observe_only` fuer reale Wirkung, aktiv fuer Planung und Validierung
+- Multi-Domain-Produktmodell: `blueprint_ready`

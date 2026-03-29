@@ -1,0 +1,81 @@
+{
+  "policy_version": "1.0",
+  "canonical_docs": [
+    "AGENTS.md",
+    "docs/system-doctrine.md",
+    "docs/doctrine-alignment-report.md"
+  ],
+  "defaults": {
+    "fallback_gate": "observe_only",
+    "approval_gate": "approval_required"
+  },
+  "workspace": {
+    "root_only": true,
+    "forbid_outside_workspace": true,
+    "forbid_rocket_cloud_changes": true
+  },
+  "external_effects": {
+    "runtime_connector_activation": false,
+    "require_approval": true,
+    "blocked_targets": [
+      "rocket_cloud",
+      "systemd",
+      "cron",
+      "notification"
+    ]
+  },
+  "gates": {
+    "allowed_states": [
+      "observe_only",
+      "data_insufficient",
+      "blueprint_ready",
+      "approval_required",
+      "pilot_ready",
+      "blocked",
+      "rollback_required"
+    ]
+  },
+  "scopes": {
+    "forbidden_patterns": [
+      "..",
+      "*",
+      "global",
+      "sitewide",
+      "all-paths",
+      "rocket cloud",
+      "rocket-cloud"
+    ],
+    "require_explicit_external_scope": true
+  },
+  "blast_radius": {
+    "allowed_values": [
+      "none",
+      "minimal",
+      "narrow",
+      "contained",
+      "high",
+      "global"
+    ],
+    "blocked_values": [
+      "high",
+      "global"
+    ]
+  },
+  "simulation": {
+    "required_fields": [
+      "pilot_id",
+      "connector_type",
+      "target_scope",
+      "excluded_scope",
+      "baseline_window",
+      "primary_metrics",
+      "neighbor_signals",
+      "assumed_cause",
+      "expected_gain",
+      "abort_conditions",
+      "rollback_trigger",
+      "adapt_options",
+      "final_pre_apply_gate"
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://electri-city-ops.local/schemas/pilot-simulation.schema.json",
+  "title": "Pilot Simulation Object",
+  "type": "object",
+  "required": [
+    "pilot_id",
+    "connector_type",
+    "target_scope",
+    "excluded_scope",
+    "baseline_window",
+    "primary_metrics",
+    "neighbor_signals",
+    "assumed_cause",
+    "expected_gain",
+    "abort_conditions",
+    "rollback_trigger",
+    "adapt_options",
+    "final_pre_apply_gate"
+  ],
+  "properties": {
+    "pilot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "connector_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "excluded_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baseline_window": {
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "primary_metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "neighbor_signals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumed_cause": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected_gain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "abort_conditions": {
+      "type": "array",
+      "minItems": 1
+    },
+    "rollback_trigger": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adapt_options": {
+      "type": "array",
+      "minItems": 1
+    },
+    "final_pre_apply_gate": {
+      "type": "string",
+      "enum": [
+        "observe_only",
+        "blueprint_ready",
+        "approval_required",
+        "pilot_ready",
+        "blocked",
+        "rollback_required"
+      ]
+    }
+  }
+}

@@ -80,6 +80,19 @@ Konsistent, weil:
 - die bindenden Referenzen auf AGENTS, kanonische Langfassung und Alignment-Report explizit sind
 - `simulate` und `adapt` fuer Pilotvorbereitung jetzt als eigene Pflichtbestandteile dokumentiert sind
 
+### Technische Doctrine-Enforcement-Schicht
+
+- [doctrine-enforcement-plan.md](/opt/electri-city-ops/docs/doctrine-enforcement-plan.md)
+- [policy-schema.md](/opt/electri-city-ops/docs/policy-schema.md)
+- [runtime-guardrails.md](/opt/electri-city-ops/docs/runtime-guardrails.md)
+- [pilot-gate-check-spec.md](/opt/electri-city-ops/docs/pilot-gate-check-spec.md)
+
+Konsistent, weil:
+
+- die Doktrin jetzt lokal ueber Policy-, Scope-, Blast-Radius-, Approval- und Rollback-Pruefungen technisch eingebunden ist
+- externe Wirkung weiterhin technisch gesperrt bleibt und nur als `approval_required`, `blueprint_ready` oder `observe_only` modelliert wird
+- Simulationsobjekte und Gate-Checks jetzt nicht nur dokumentiert, sondern lokal testbar spezifiziert sind
+
 ## Noch bestehende Luecken
 
 ### Erweiterte Gate-Zustaende sind noch nicht vollstaendig in Spezifikationen gespiegelt
@@ -112,15 +125,15 @@ Luecke:
 
 - einige Phase-4- und Phase-5-Dokumente beschreiben diese Punkte inhaltlich, aber noch nicht als einheitliches Pflicht-Datenobjekt.
 
-### Modulbindung an die Doktrin muss spaeter technisch durchgesetzt werden
+### Modulbindung an die Doktrin ist lokal begonnen, aber fuer reale Connector-Laufzeiten noch nicht vollstaendig
 
 Status:
 
-- Die Dokumente beschreiben Guardrails und Gate-Logik bereits gut, aber eine spaetere technische Durchsetzung auf Modul- oder Connector-Ebene ist noch nicht implementiert.
+- Die Doktrin ist jetzt lokal in Policies, Schemas, Runtime-Checks und Tests verankert.
 
-Luecke:
+Restluecke:
 
-- Eine spaetere Umsetzung sollte die Doktrin nicht nur dokumentarisch, sondern auch in Policies, Config-Schemas und Laufzeit-Checks verankern.
+- Eine spaetere Umsetzung muss dieselbe Durchsetzung noch direkt an reale Cloudflare-, WordPress- oder andere Connector-Laufzeiten koppeln, sobald solche Pfade ueberhaupt freigegeben werden.
 
 ### Wissensaustausch ist architektonisch beschrieben, aber noch nicht maximal explizit pro Modulfluss
 
@@ -164,4 +177,4 @@ Die bestehende Dokumentlandschaft ist inhaltlich weitgehend mit der neuen Doktri
 
 Fuer spaetere technische Umsetzung bleibt die wichtigste Folgeaufgabe:
 
-- die nun dokumentierte Doktrin nicht nur in Blueprints, sondern spaeter auch in Policies, Gate-Pruefungen, Config-Validierung und Connector-Laufzeitgrenzen bindend durchzusetzen.
+- die nun lokal verankerte Doktrin spaeter mit denselben Guardrails an reale, ausdruecklich freigegebene Connector-Laufzeiten zu koppeln, ohne die Workspace- und Observe-only-Sicherheitsbasis aufzuweichen.

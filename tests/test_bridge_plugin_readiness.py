@@ -143,6 +143,10 @@ class BridgePluginReadinessTests(unittest.TestCase):
         with zipfile.ZipFile(self.workspace_root / metadata_payload["archive_path"]) as archive:
             names = set(archive.namelist())
             self.assertIn("hetzner-seo-ops/config/private-site-report.latest.json", names)
+            bundled_report = json.loads(archive.read("hetzner-seo-ops/config/private-site-report.latest.json"))
+            action_types = {item["action_type"] for item in bundled_report["automation_candidates"]}
+            self.assertIn("rank_math_homepage_meta_description_update", action_types)
+            self.assertIn("rank_math_meta_description_update", action_types)
 
     def test_bridge_runtime_code_uses_dynamic_blocker_and_readiness_state(self) -> None:
         plugin_php = (self.workspace_root / "packages/wp-plugin/hetzner-seo-ops/includes/class-hso-plugin.php").read_text(
@@ -208,12 +212,20 @@ class BridgePluginReadinessTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("RANK_MATH_META_DESCRIPTION_CONTRACT_ID", action_center_php)
         self.assertIn("ac-rank-math-meta-description-update-v1", action_center_php)
+        self.assertIn("RANK_MATH_HOMEPAGE_META_DESCRIPTION_CONTRACT_ID", action_center_php)
+        self.assertIn("ac-rank-math-homepage-meta-description-update-v1", action_center_php)
+        self.assertIn("rank_math_homepage_meta_description_update", action_center_php)
+        self.assertIn("rank_math_titles.homepage_description", action_center_php)
+        self.assertIn("rank-math-options-titles", action_center_php)
+        self.assertIn("homepage_description", action_center_php)
+        self.assertIn("rank_math_homepage_option_resolved", action_center_php)
         self.assertIn("automation_contract_id", action_center_php)
         self.assertIn("automation_contract_version", action_center_php)
         self.assertIn("automation_contract_state", action_center_php)
         self.assertIn("requires_admin_confirmation", action_center_php)
         self.assertIn("requires_before_state_capture", action_center_php)
         self.assertIn("requires_rollback", action_center_php)
+        self.assertIn("previous_exists", action_center_php)
         self.assertIn("report_path_candidates", action_center_php)
         self.assertIn("bundled_snapshot_path", action_center_php)
         self.assertIn("is_readable", action_center_php)

@@ -9,7 +9,12 @@ class HSO_Recommendation_Action_Center
     private const ACTION_JOURNAL_OPTION = 'hso_recommendation_action_journal';
     private const RANK_MATH_DESCRIPTION_META_KEY = 'rank_math_description';
     private const RANK_MATH_META_DESCRIPTION_CONTRACT_ID = 'ac-rank-math-meta-description-update-v1';
+    private const RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION = 'rank_math_homepage_meta_description_update';
+    private const RANK_MATH_HOMEPAGE_META_DESCRIPTION_FIELD = 'rank_math_titles.homepage_description';
+    private const RANK_MATH_HOMEPAGE_META_DESCRIPTION_CONTRACT_ID = 'ac-rank-math-homepage-meta-description-update-v1';
     private const RANK_MATH_META_DESCRIPTION_CONTRACT_VERSION = '1.0';
+    private const RANK_MATH_TITLES_OPTION = 'rank-math-options-titles';
+    private const RANK_MATH_HOMEPAGE_DESCRIPTION_KEY = 'homepage_description';
 
     private array $runtime_context;
     private array $bridge_profile;
@@ -39,6 +44,14 @@ class HSO_Recommendation_Action_Center
             array(
                 'before_state_key' => 'rank_math_description',
                 'rollback_notes' => 'Restore the previous Rank Math meta description value or remove the temporary value if it did not exist before.',
+                'validation_window' => 'immediate/1d',
+            )
+        );
+        $this->rollback_registry->register_entry(
+            'rank_math_homepage_meta_description_assisted_resolution',
+            array(
+                'before_state_key' => 'rank_math_titles.homepage_description',
+                'rollback_notes' => 'Restore the previous Rank Math homepage description option or remove the temporary option value if it did not exist before.',
                 'validation_window' => 'immediate/1d',
             )
         );
@@ -88,10 +101,19 @@ class HSO_Recommendation_Action_Center
         if (!$this->candidate_is_allowed($candidate)) {
             return array('ok' => false, 'message' => 'The current runtime does not allow this assisted-resolution candidate.');
         }
-        if (($candidate['action_type'] ?? '') !== 'rank_math_meta_description_update') {
+        $action_type = (string) ($candidate['action_type'] ?? '');
+        if ($action_type === self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION) {
+            return $this->apply_homepage_meta_description_candidate($candidate_id, $candidate);
+        }
+        if ($action_type !== 'rank_math_meta_description_update') {
             return array('ok' => false, 'message' => 'Only Rank Math meta-description updates are allowed in this action lane.');
         }
 
+        return $this->apply_post_meta_description_candidate($candidate_id, $candidate);
+    }
+
+    private function apply_post_meta_description_candidate(string $candidate_id, array $candidate): array
+    {
         $target_post_id = $this->resolve_target_post_id((string) ($candidate['target_url'] ?? ''));
         if ($target_post_id <= 0) {
             return array('ok' => false, 'message' => 'The target page could not be resolved to a WordPress page for assisted resolution.');
@@ -103,10 +125,13 @@ class HSO_Recommendation_Action_Center
         }
 
         $previous_value = (string) get_post_meta($target_post_id, self::RANK_MATH_DESCRIPTION_META_KEY, true);
+        $previous_exists = function_exists('metadata_exists')
+            ? (bool) metadata_exists('post', $target_post_id, self::RANK_MATH_DESCRIPTION_META_KEY)
+            : ($previous_value !== '');
         update_post_meta($target_post_id, self::RANK_MATH_DESCRIPTION_META_KEY, $proposed_value);
         $stored_value = (string) get_post_meta($target_post_id, self::RANK_MATH_DESCRIPTION_META_KEY, true);
         if ($stored_value !== $proposed_value) {
-            $this->restore_meta_description($target_post_id, $previous_value);
+            $this->restore_meta_description($target_post_id, $previous_value, $previous_exists);
             return array('ok' => false, 'message' => 'The proposed Rank Math meta description could not be validated after apply, so it was rolled back immediately.');
         }
 
@@ -116,9 +141,11 @@ class HSO_Recommendation_Action_Center
             'action_type' => 'rank_math_meta_description_update',
             'status' => 'applied',
             'applied_at' => gmdate('c'),
+            'target_storage' => 'post_meta',
             'target_post_id' => $target_post_id,
             'target_url' => (string) ($candidate['target_url'] ?? ''),
             'previous_value' => $previous_value,
+            'previous_exists' => $previous_exists,
             'proposed_value' => $proposed_value,
             'validation_state' => 'stored_value_matches_proposal',
             'rollback_ready' => true,
@@ -126,6 +153,57 @@ class HSO_Recommendation_Action_Center
         update_option(self::ACTION_JOURNAL_OPTION, $journal, false);
 
         return array('ok' => true, 'message' => 'The assisted Rank Math meta-description update was applied and a rollback snapshot was captured.');
+    }
+
+    private function apply_homepage_meta_description_candidate(string $candidate_id, array $candidate): array
+    {
+        if (!$this->target_is_home_url((string) ($candidate['target_url'] ?? ''))) {
+            return array('ok' => false, 'message' => 'The homepage assisted-resolution candidate no longer matches the current WordPress homepage.');
+        }
+
+        $proposed_value = trim((string) ($candidate['proposed_value'] ?? ''));
+        if ($proposed_value === '') {
+            return array('ok' => false, 'message' => 'The proposed value is empty, so nothing safe can be applied.');
+        }
+
+        $options = $this->load_rank_math_titles_option();
+        if ($options === null) {
+            return array('ok' => false, 'message' => 'The Rank Math titles option is not an array, so the homepage option cannot be changed safely.');
+        }
+
+        $previous_exists = array_key_exists(self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY, $options);
+        $previous_value = $previous_exists ? (string) $options[self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY] : '';
+        $options[self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY] = $proposed_value;
+        update_option(self::RANK_MATH_TITLES_OPTION, $options, false);
+
+        $stored_options = $this->load_rank_math_titles_option();
+        $stored_value = is_array($stored_options) && array_key_exists(self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY, $stored_options)
+            ? (string) $stored_options[self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY]
+            : '';
+        if ($stored_value !== $proposed_value) {
+            $this->restore_homepage_meta_description($previous_value, $previous_exists);
+            return array('ok' => false, 'message' => 'The proposed Rank Math homepage description could not be validated after apply, so it was rolled back immediately.');
+        }
+
+        $journal = $this->load_action_journal();
+        $journal[$candidate_id] = array(
+            'candidate_id' => $candidate_id,
+            'action_type' => self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION,
+            'status' => 'applied',
+            'applied_at' => gmdate('c'),
+            'target_storage' => 'rank_math_option',
+            'target_option' => self::RANK_MATH_TITLES_OPTION,
+            'target_option_key' => self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY,
+            'target_url' => (string) ($candidate['target_url'] ?? ''),
+            'previous_value' => $previous_value,
+            'previous_exists' => $previous_exists,
+            'proposed_value' => $proposed_value,
+            'validation_state' => 'stored_homepage_option_matches_proposal',
+            'rollback_ready' => true,
+        );
+        update_option(self::ACTION_JOURNAL_OPTION, $journal, false);
+
+        return array('ok' => true, 'message' => 'The assisted Rank Math homepage meta-description update was applied and a rollback snapshot was captured.');
     }
 
     public function rollback_candidate(string $candidate_id): array
@@ -136,18 +214,26 @@ class HSO_Recommendation_Action_Center
             return array('ok' => false, 'message' => 'No applied assisted-resolution entry is available to roll back.');
         }
 
+        if (($entry['action_type'] ?? '') === self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION) {
+            return $this->rollback_homepage_meta_description_candidate($candidate_id, $journal, $entry);
+        }
+
         $target_post_id = isset($entry['target_post_id']) ? (int) $entry['target_post_id'] : 0;
         if ($target_post_id <= 0) {
             return array('ok' => false, 'message' => 'The rollback target is missing or invalid.');
         }
 
         $previous_value = (string) ($entry['previous_value'] ?? '');
-        $this->restore_meta_description($target_post_id, $previous_value);
+        $previous_exists = !empty($entry['previous_exists']);
+        $this->restore_meta_description($target_post_id, $previous_value, $previous_exists);
         $stored_value = (string) get_post_meta($target_post_id, self::RANK_MATH_DESCRIPTION_META_KEY, true);
-        if ($previous_value !== '' && $stored_value !== $previous_value) {
+        $stored_exists = function_exists('metadata_exists')
+            ? (bool) metadata_exists('post', $target_post_id, self::RANK_MATH_DESCRIPTION_META_KEY)
+            : ($stored_value !== '');
+        if ($previous_exists && $stored_value !== $previous_value) {
             return array('ok' => false, 'message' => 'Rollback validation failed because the previous Rank Math value was not restored.');
         }
-        if ($previous_value === '' && $stored_value !== '') {
+        if (!$previous_exists && $stored_exists) {
             return array('ok' => false, 'message' => 'Rollback validation failed because the temporary Rank Math value still exists.');
         }
 
@@ -158,6 +244,34 @@ class HSO_Recommendation_Action_Center
         update_option(self::ACTION_JOURNAL_OPTION, $journal, false);
 
         return array('ok' => true, 'message' => 'The assisted Rank Math meta-description update was rolled back to the captured before-state.');
+    }
+
+    private function rollback_homepage_meta_description_candidate(string $candidate_id, array $journal, array $entry): array
+    {
+        $previous_value = (string) ($entry['previous_value'] ?? '');
+        $previous_exists = !empty($entry['previous_exists']);
+        $this->restore_homepage_meta_description($previous_value, $previous_exists);
+
+        $stored_options = $this->load_rank_math_titles_option();
+        if ($stored_options === null) {
+            return array('ok' => false, 'message' => 'Rollback validation failed because the Rank Math titles option is not readable as an array.');
+        }
+        $stored_exists = array_key_exists(self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY, $stored_options);
+        $stored_value = $stored_exists ? (string) $stored_options[self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY] : '';
+        if ($previous_exists && $stored_value !== $previous_value) {
+            return array('ok' => false, 'message' => 'Rollback validation failed because the previous Rank Math homepage description was not restored.');
+        }
+        if (!$previous_exists && $stored_exists) {
+            return array('ok' => false, 'message' => 'Rollback validation failed because the temporary Rank Math homepage description still exists.');
+        }
+
+        $journal[$candidate_id]['status'] = 'rolled_back';
+        $journal[$candidate_id]['rolled_back_at'] = gmdate('c');
+        $journal[$candidate_id]['rollback_ready'] = false;
+        $journal[$candidate_id]['validation_state'] = 'rolled_back_to_before_state';
+        update_option(self::ACTION_JOURNAL_OPTION, $journal, false);
+
+        return array('ok' => true, 'message' => 'The assisted Rank Math homepage meta-description update was rolled back to the captured before-state.');
     }
 
     private function build_status_note(array $report, array $candidates): string
@@ -201,12 +315,13 @@ class HSO_Recommendation_Action_Center
             $candidate['applied_at'] = isset($entry['applied_at']) ? (string) $entry['applied_at'] : '';
             $candidate['rolled_back_at'] = isset($entry['rolled_back_at']) ? (string) $entry['rolled_back_at'] : '';
             $candidate['rollback_ready'] = !empty($entry['rollback_ready']) && $status === 'applied';
-            $target_post_id = $this->resolve_target_post_id((string) ($candidate['target_url'] ?? ''));
-            $candidate['target_post_id'] = $target_post_id;
-            $candidate['target_resolution_state'] = $target_post_id > 0 ? 'wordpress_page_resolved' : 'not_resolved';
-            $candidate['target_resolution_note'] = $target_post_id > 0
-                ? 'Target URL resolves to a concrete WordPress page/post for Rank Math post-meta update.'
-                : 'Target URL does not currently resolve to a concrete WordPress page/post. If this is the homepage, configure a static front page or apply the snippet manually in Rank Math homepage settings.';
+            $target_resolution = $this->resolve_candidate_target($candidate);
+            $candidate['target_post_id'] = (int) ($target_resolution['post_id'] ?? 0);
+            $candidate['target_storage'] = (string) ($target_resolution['storage'] ?? '');
+            $candidate['target_option'] = (string) ($target_resolution['option'] ?? '');
+            $candidate['target_option_key'] = (string) ($target_resolution['option_key'] ?? '');
+            $candidate['target_resolution_state'] = (string) ($target_resolution['state'] ?? 'not_resolved');
+            $candidate['target_resolution_note'] = (string) ($target_resolution['note'] ?? 'Target URL does not currently resolve to an allowed assisted-resolution target.');
             $candidate['current_runtime_allowed'] = $this->candidate_is_allowed($candidate);
             $normalized[] = $candidate;
         }
@@ -215,7 +330,17 @@ class HSO_Recommendation_Action_Center
 
     private function candidate_is_allowed(array $candidate): bool
     {
-        if (($candidate['automation_contract_id'] ?? '') !== self::RANK_MATH_META_DESCRIPTION_CONTRACT_ID) {
+        $action_type = (string) ($candidate['action_type'] ?? '');
+        $expected_contract_id = self::RANK_MATH_META_DESCRIPTION_CONTRACT_ID;
+        $expected_target_field = self::RANK_MATH_DESCRIPTION_META_KEY;
+        if ($action_type === self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION) {
+            $expected_contract_id = self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_CONTRACT_ID;
+            $expected_target_field = self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_FIELD;
+        } elseif ($action_type !== 'rank_math_meta_description_update') {
+            return false;
+        }
+
+        if (($candidate['automation_contract_id'] ?? '') !== $expected_contract_id) {
             return false;
         }
         if (($candidate['automation_contract_version'] ?? '') !== self::RANK_MATH_META_DESCRIPTION_CONTRACT_VERSION) {
@@ -233,17 +358,26 @@ class HSO_Recommendation_Action_Center
         if (($candidate['rollback_state'] ?? '') !== 'ready_if_before_state_captured') {
             return false;
         }
-        if (($candidate['target_field'] ?? '') !== self::RANK_MATH_DESCRIPTION_META_KEY) {
-            return false;
-        }
-        if (($candidate['action_type'] ?? '') !== 'rank_math_meta_description_update') {
+        if (($candidate['target_field'] ?? '') !== $expected_target_field) {
             return false;
         }
         if (($candidate['execution_lane'] ?? '') !== 'admin_confirmed_assisted_resolution_only') {
             return false;
         }
-        if (($candidate['target_resolution_state'] ?? '') !== 'wordpress_page_resolved' || (int) ($candidate['target_post_id'] ?? 0) <= 0) {
-            return false;
+        if ($action_type === self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION) {
+            if (($candidate['target_resolution_state'] ?? '') !== 'rank_math_homepage_option_resolved') {
+                return false;
+            }
+            if (($candidate['target_option'] ?? '') !== self::RANK_MATH_TITLES_OPTION) {
+                return false;
+            }
+            if (($candidate['target_option_key'] ?? '') !== self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY) {
+                return false;
+            }
+        } else {
+            if (($candidate['target_resolution_state'] ?? '') !== 'wordpress_page_resolved' || (int) ($candidate['target_post_id'] ?? 0) <= 0) {
+                return false;
+            }
         }
         if (($this->runtime_context['optimization_state']['eligibility'] ?? 'blocked') !== 'recommend_only') {
             return false;
@@ -336,6 +470,44 @@ class HSO_Recommendation_Action_Center
         return is_array($value) ? $value : array();
     }
 
+    private function resolve_candidate_target(array $candidate): array
+    {
+        $action_type = (string) ($candidate['action_type'] ?? '');
+        $url = (string) ($candidate['target_url'] ?? '');
+        if ($action_type === self::RANK_MATH_HOMEPAGE_META_DESCRIPTION_ACTION) {
+            if ($this->target_is_home_url($url)) {
+                return array(
+                    'state' => 'rank_math_homepage_option_resolved',
+                    'storage' => 'rank_math_option',
+                    'option' => self::RANK_MATH_TITLES_OPTION,
+                    'option_key' => self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY,
+                    'post_id' => 0,
+                    'note' => 'Target URL matches the current WordPress homepage and will update the existing Rank Math homepage description option after admin confirmation.',
+                );
+            }
+            return array(
+                'state' => 'not_resolved',
+                'storage' => '',
+                'option' => '',
+                'option_key' => '',
+                'post_id' => 0,
+                'note' => 'Homepage option candidate does not match the current WordPress homepage URL.',
+            );
+        }
+
+        $target_post_id = $this->resolve_target_post_id($url);
+        return array(
+            'state' => $target_post_id > 0 ? 'wordpress_page_resolved' : 'not_resolved',
+            'storage' => $target_post_id > 0 ? 'post_meta' : '',
+            'option' => '',
+            'option_key' => '',
+            'post_id' => $target_post_id,
+            'note' => $target_post_id > 0
+                ? 'Target URL resolves to a concrete WordPress page/post for Rank Math post-meta update.'
+                : 'Target URL does not currently resolve to a concrete WordPress page/post. Homepage candidates must use the dedicated Rank Math homepage option contract.',
+        );
+    }
+
     private function resolve_target_post_id(string $url): int
     {
         $normalized_url = $this->normalize_url_for_compare($url);
@@ -386,6 +558,13 @@ class HSO_Recommendation_Action_Center
         return 0;
     }
 
+    private function target_is_home_url(string $url): bool
+    {
+        $normalized_url = $this->normalize_url_for_compare($url);
+        $home_url = function_exists('home_url') ? $this->normalize_url_for_compare((string) home_url('/')) : '';
+        return $normalized_url !== '' && $home_url !== '' && $normalized_url === $home_url;
+    }
+
     private function normalize_url_for_compare(string $url): string
     {
         $url = trim($url);
@@ -395,9 +574,32 @@ class HSO_Recommendation_Action_Center
         return rtrim($url, '/');
     }
 
-    private function restore_meta_description(int $post_id, string $previous_value): void
+    private function load_rank_math_titles_option(): ?array
     {
-        if ($previous_value === '') {
+        if (!function_exists('get_option')) {
+            return null;
+        }
+        $options = get_option(self::RANK_MATH_TITLES_OPTION, array());
+        return is_array($options) ? $options : null;
+    }
+
+    private function restore_homepage_meta_description(string $previous_value, bool $previous_exists): void
+    {
+        $options = $this->load_rank_math_titles_option();
+        if ($options === null) {
+            return;
+        }
+        if ($previous_exists) {
+            $options[self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY] = $previous_value;
+        } else {
+            unset($options[self::RANK_MATH_HOMEPAGE_DESCRIPTION_KEY]);
+        }
+        update_option(self::RANK_MATH_TITLES_OPTION, $options, false);
+    }
+
+    private function restore_meta_description(int $post_id, string $previous_value, bool $previous_exists): void
+    {
+        if (!$previous_exists) {
             delete_post_meta($post_id, self::RANK_MATH_DESCRIPTION_META_KEY);
             return;
         }

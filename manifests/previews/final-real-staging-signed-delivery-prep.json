@@ -30,11 +30,11 @@
       "delivery_grant_rule": "payment_confirmed_and_exact_domain_bound_and_license_issued_and_signed_and_operator_approved"
     },
     "digests": {
-      "package_sha256": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
-      "manifest_sha256": "22274c946adcfa7e69ed0395ad6b93e91cda547337408b94cb64c48a5b0ab3b7",
+      "package_sha256": "1086d2ca447b53b44274f18c73773bb830b9a6b2cc6ae78edb456ad98a0adee7",
+      "manifest_sha256": "d0cc27a933403d433b6abb0a10cae36a18838c4e45db7167aba9dbf5546b712f",
       "license_object_sha256": "d7d20371623952ec0ead39ab3702815d9b9382e880bed2ad7e783110aeef307d",
       "entitlement_sha256": "d3225834c476ab33dae901e0e38ff93ea3d7502af7c117b57b8f8028bfa212fc",
-      "install_pack_sha256": "10fa9a626011de85ddb0aad41aa4a6d45084e110e6554afe2e4e847d5547b2e0"
+      "install_pack_sha256": "3daeb70a23d71c26900666ed885539cb8af39dd8dd7245417f33123b277fe2a5"
     },
     "approval_required_reasons": [
       "real signing keys and signing service remain outside the workspace",

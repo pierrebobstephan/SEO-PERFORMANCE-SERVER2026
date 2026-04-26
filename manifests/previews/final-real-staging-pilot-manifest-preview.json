@@ -5,7 +5,7 @@
   "license_id": "lic-final-real-staging-pilot-001",
   "bound_domain": "wp.electri-c-ity-studios-24-7.com",
   "package_url": "local://site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
-  "package_checksum": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
+  "package_checksum": "1086d2ca447b53b44274f18c73773bb830b9a6b2cc6ae78edb456ad98a0adee7",
   "policy_version": "2026-03-30-final-real-staging-pilot",
   "rollback_version": "rb-final-real-staging-pilot-001",
   "allowed_scopes": [

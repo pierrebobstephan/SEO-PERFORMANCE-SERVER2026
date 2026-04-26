@@ -534,8 +534,6 @@ def _build_automation_candidates(
     if str(runtime.get("coexistence_mode", "")) != "rank_math_controlled_coexistence":
         return []
 
-    action_type = "rank_math_meta_description_update"
-    contract = get_automation_contract(automation_contracts, action_type)
     candidates: list[dict[str, Any]] = []
     for page in page_reports:
         finding_titles = {str(item.get("title", "")) for item in page.get("findings", [])}
@@ -549,11 +547,28 @@ def _build_automation_candidates(
         url = str(page.get("url", ""))
         target_domain = urlparse(url).hostname or ""
         label = str(page.get("label", url or "Page"))
+        page_type = str(page.get("page_type", "generic"))
+        is_homepage = page_type == "homepage"
+        action_type = (
+            "rank_math_homepage_meta_description_update"
+            if is_homepage
+            else "rank_math_meta_description_update"
+        )
+        contract = get_automation_contract(automation_contracts, action_type)
+        target_field = (
+            "rank_math_titles.homepage_description"
+            if is_homepage
+            else "rank_math_description"
+        )
         candidate = {
             "candidate_id": stable_fingerprint(url, action_type, proposed_value),
-            "label": f"{label}: Rank Math meta description update",
+            "label": (
+                f"{label}: Rank Math homepage meta description update"
+                if is_homepage
+                else f"{label}: Rank Math meta description update"
+            ),
             "page_label": label,
-            "page_type": str(page.get("page_type", "generic")),
+            "page_type": page_type,
             "action_type": action_type,
             "execution_lane": "admin_confirmed_assisted_resolution_only",
             "runtime_gate": str(runtime.get("optimization_gate", "")),
@@ -561,10 +576,14 @@ def _build_automation_candidates(
             "bound_domain": bound_domain,
             "target_domain": target_domain,
             "target_url": url,
-            "target_field": "rank_math_description",
+            "target_field": target_field,
             "approval_state": "admin_confirmation_required",
             "rollback_state": "ready_if_before_state_captured",
-            "proposal_reason": "The active SEO owner remains Rank Math, so the suite can safely assist by writing into the existing owner only after explicit admin approval.",
+            "proposal_reason": (
+                "The active SEO owner remains Rank Math, so the suite can safely assist by writing into the Rank Math homepage option only after explicit admin approval."
+                if is_homepage
+                else "The active SEO owner remains Rank Math, so the suite can safely assist by writing into the existing owner only after explicit admin approval."
+            ),
             "proposed_value": proposed_value,
             "proposed_length": len(proposed_value),
         }

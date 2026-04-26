@@ -54,6 +54,60 @@
         "no canonical override",
         "no public route exposure"
       ]
+    },
+    {
+      "contract_id": "ac-rank-math-homepage-meta-description-update-v1",
+      "action_type": "rank_math_homepage_meta_description_update",
+      "version": "1.0",
+      "enabled": true,
+      "risk_class": "R1",
+      "scope": "exact_domain_rank_math_homepage_option_only",
+      "allowed_execution_lane": "admin_confirmed_assisted_resolution_only",
+      "allowed_runtime_gates": [
+        "recommend_only"
+      ],
+      "allowed_target_fields": [
+        "rank_math_titles.homepage_description"
+      ],
+      "allowed_seo_owners": [
+        "seo-by-rank-math/rank-math.php"
+      ],
+      "requires_admin_confirmation": true,
+      "requires_before_state_capture": true,
+      "requires_rollback": true,
+      "preconditions": [
+        "domain_match_green",
+        "operator_inputs_complete",
+        "source_mapping_confirmed",
+        "rank_math_controlled_coexistence",
+        "report_candidate_exact_domain_bound",
+        "homepage_target_matches_current_home_url"
+      ],
+      "validation_checks": [
+        "target URL matches the licensed WordPress homepage",
+        "stored Rank Math homepage description option equals proposed value after apply",
+        "previous homepage option value is captured before write",
+        "no bridge-owned live output path is enabled by this action"
+      ],
+      "rollback_plan": [
+        "restore previous Rank Math homepage description option when present",
+        "delete temporary homepage description option when no previous value existed",
+        "mark local action journal as rolled_back after validation"
+      ],
+      "abort_criteria": [
+        "target URL is not the current WordPress homepage",
+        "runtime gate is not recommend_only",
+        "domain binding is not green",
+        "Rank Math is not the active SEO owner",
+        "post-write option validation does not match proposed value"
+      ],
+      "protected_holds": [
+        "no Rank Math deactivation",
+        "no bridge-owned live meta output",
+        "no global head rewrite",
+        "no canonical override",
+        "no public route exposure"
+      ]
     }
   ]
 }

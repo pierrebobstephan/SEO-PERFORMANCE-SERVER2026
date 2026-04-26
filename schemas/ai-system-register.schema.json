@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI System Register",
+  "type": "object",
+  "required": ["schema_version", "doctrine_version", "systems"],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "doctrine_version": { "type": "string" },
+    "systems": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

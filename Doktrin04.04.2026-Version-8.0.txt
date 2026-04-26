@@ -1,0 +1,733 @@
+SYSTEM-DOKTRIN 8.0
+Final Global AI Systems Governance, DevSecOps, Agentic Security, SEO/GEO & Performance Master Doctrine
+
+Dokumenttyp: Governance / Operations / Safety / Resilience / Ethics / AI Management / Agentic Security / SEO-GEO-Performance Doctrine
+Sprache: Deutsch (Master-Version, internationalisierbar)
+Status: Final Global AI Dev-Governance & Execution Standard
+Gültig ab: 2026-04-04
+Review-Zyklus: halbjährlich oder anlassbezogen bei Architektur-, Modell-, Agenten-, Bedrohungs-, Regulierungs-, Suchmaschinen- oder Lieferkettenänderung
+Dokumentenklasse: Strict Governance / Controlled Distribution / Audit-Ready
+
+Diese Version 8.0 übernimmt die normative Strenge aus 5.0, die operative Verdichtung aus 6.0 und die CI/CD- und Sprint-Überführung aus 7.0 und erweitert sie um eine vollständige AI-Management-, Daten-, Modell-, Agenten-, Provenance-, Lieferketten- und Post-Deployment-Governance. 5.0 bringt die harte Prioritätenordnung, Rollback-, Explainability-, Zero-Trust- und Ethikgrundlage; 6.0 verdichtet dies in umsetzbare Checklisten, Rollen und Akzeptanzkriterien; 7.0 überführt die Doktrin in pipelinefähige DevSecOps-Ausführung.
+
+Die zusätzlichen Schichten dieser Version orientieren sich an aktuellen, maßgeblichen Rahmenwerken für AI-Risikomanagement, AI-Management-Systeme, AI-System-Impact-Assessments, sichere GenAI-Entwicklung, Agenten- und LLM-Sicherheit, Software-Provenance und Content-Provenance: NIST AI RMF/Playbook, NIST SP 800-218A, ISO/IEC 42001, ISO/IEC 42005, OWASP Top 10 for LLM Applications 2025, SLSA, C2PA sowie dem EU AI Act inklusive GPAI Code of Practice.
+
+Executive Summary
+
+System-Doktrin 8.0 ist die oberste verbindliche Betriebsregel für zukünftige Software- und AI-Entwicklungen. Sie regelt nicht nur Code, Deployment und Betrieb, sondern den vollständigen Lebenszyklus von Daten, Modellen, Agenten, Policies, Prompts, Retrieval-Schichten, Tool-Ausführung, Monitoring, Audits, Beweisführung, Decommissioning und regulatorischer Anschlussfähigkeit.
+
+Sie priorisiert ausnahmslos Menschenwürde, Sicherheit, Wahrhaftigkeit, Systemintegrität, Begrenzung, Reversibilität, Erklärbarkeit, Nachweisbarkeit, Datenschutz, Fairness und verantwortbare Autonomie über Geschwindigkeit, Reichweite, Kostenreduktion, Bequemlichkeit oder aggressive Optimierung.
+
+Sie behandelt AI nicht als magische Funktion, sondern als kontrollpflichtiges, risikotragendes, lernfähiges System mit hartem Rahmen:
+Govern. Begrenzen. Verifizieren. Erklären. Simulieren. Anwenden. Validieren. Lernen. Dokumentieren. Überwachen. Rückführen.
+
+Oberste Leitformel
+
+So autonom wie sicher möglich.
+So defensiv wie betrieblich nötig.
+So begrenzt wie das Risiko es verlangt.
+So beobachtbar wie Vertrauen es fordert.
+So reversibel wie die Realität es erfordert.
+So erklärbar wie Menschen, Auditoren und Regulatoren es benötigen.
+So resilient wie Störungen, Angriffe und Marktveränderungen es verlangen.
+So ethisch wie Menschenwürde, Grundrechte und Gesellschaft es erwarten.
+So daten- und evidenzgebunden wie Wahrheit, Nachvollziehbarkeit und Provenance es verlangen.
+So agentisch wie Kontrolle, Tool-Grenzen und Audit-Ketten es erlauben.
+So generativ wie Belegbarkeit, Herkunft und Nicht-Täuschung es zulassen.
+So semantisch differenzierend wie globale Such-, Antwort- und Generatorsysteme es erfordern.
+
+1. Geltungsrahmen
+
+Diese Doktrin gilt für alle:
+
+Softwareprodukte, Dienste, Pipelines und Deployments
+AI-Systeme, Modelle, Fine-Tunes, Adapter und Foundation-Model-Abhängigkeiten
+Agenten, Multi-Agent-Orchestrierungen, Tool-Runner und Connectoren
+RAG-Systeme, Vektorindizes, Wissensquellen und Embedding-Pipelines
+Prompts, Systemprompts, Policy-Layer, Sicherheitsregeln und Memory-Schichten
+SEO-, GEO-, Performance-, Content-, Analytics- und Automatisierungssysteme
+internen und externen Write-Pfade
+lokalen, hybriden, Edge-, On-Prem- und Cloud-Ausführungsumgebungen
+Audit-, Compliance-, Safety-, Review- und Recovery-Prozesse
+
+Bei Konflikten mit lokalen Regeln, Projektzielen, Wachstumszielen, SEO-Zielen, Zeitdruck oder wirtschaftlicher Opportunität gilt immer diese Doktrin. Bei Konflikten mit Recht, Vertrag oder Regulierung gilt die strengere Regel.
+
+2. Absolute Prioritätenordnung
+
+Wenn Ziele kollidieren, gilt ausnahmslos folgende Reihenfolge:
+
+Menschenwürde, Grundrechte und körperliche Unversehrtheit
+Sicherheit, Missbrauchsvermeidung und Schutz vor realem Schaden
+Wahrhaftigkeit, Nicht-Täuschung und Integrität von Aussagen, Daten und Beweisen
+Systemintegrität, Vertrauensgrenzen und sichere Zustandskontrolle
+Containment, Blast-Radius-Begrenzung und sichere Degradation
+Menschliche Steuerung, Freigabehoheit und Übersteuerbarkeit
+Validierung, Verifikation und Reproduzierbarkeit
+Wiederherstellbarkeit, Rollback und Recovery-Fähigkeit
+Beobachtbarkeit, Auditierbarkeit und Erklärbarkeit
+Datenschutz, Datensouveränität und Zweckbindung
+Fairness, Nicht-Diskriminierung und gesellschaftliche Verhältnismäßigkeit
+Nachhaltigkeit, Ressourcenverantwortung und Kostenkontrolle
+Semantische Klarheit, Wissensraum-Kompatibilität und Zitierfähigkeit
+Adaptive Optimierung und lernfähige Verbesserung
+Performance, Sichtbarkeit und Wachstum
+Geschwindigkeit
+Bequemlichkeit
+
+Kein Rankinggewinn, kein Produktivitätsgewinn, kein Automationsgrad, keine Modellleistung und kein Umsatz rechtfertigt die Verletzung einer höheren Priorität.
+
+3. Nicht verhandelbare Axiome
+Sicherheit vor Tempo.
+Begrenzung vor Ambition.
+Beobachten vor Handeln.
+Kein Nachweis, keine Änderung.
+Fail closed, niemals fail open.
+Minimal-Power-Prinzip.
+Reversibilität ist Pflicht.
+Menschliche Freigabe bleibt oberste Instanz, wo Risiko oder externe Wirkung relevant sind.
+Lernen ist der Validierung untergeordnet.
+Grenzen sind real: Rollen-, Tenant-, Netzwerk-, Secret-, Daten-, Tool- und Rechtsgrenzen.
+Zero Trust ist Grundhaltung, nicht Zusatzoption.
+Explainable by default.
+Ethik ist Hard Constraint, nicht PR-Zusatz.
+Prädiktion dient Prävention, nicht Aggression.
+Autonomie ohne Budget, Guardrails und Not-Aus ist verboten.
+Provenance ist Pflicht, aber Provenance ersetzt keine Wahrheit.
+Generative Systeme dürfen nichts vortäuschen, was nicht belegt, geprüft oder klar als unsicher markiert ist.
+Agenten dürfen nur innerhalb explizit freigegebener Aktionsräume handeln.
+Kundensysteme und Livesysteme sind keine Experimentierflächen.
+Supply Chain ist Teil der Sicherheitsgrenze.
+4. AI-Management-System-Schicht
+
+Die Doktrin 8.0 schreibt ein formales AI-Management-System als organisatorische Schicht vor. Dieses System muss:
+
+Verantwortlichkeiten, Eskalationswege und Freigabekompetenzen definieren
+AI-Ziele, Risikoappetit, Risikotoleranzen und Kontrollziele dokumentieren
+interne Reviews, Kontrollnachweise, Korrekturmaßnahmen und Management-Entscheidungen protokollieren
+Auditfähigkeit, Versionshistorie und Geltungsbereiche nachweisbar halten
+kontinuierliche Verbesserung organisieren, ohne Schutzmechanismen zu schwächen
+
+Jedes relevante AI-System unterliegt damit nicht nur technischer, sondern organisatorischer Steuerung. Das entspricht der Richtung moderner AI-Management-Systeme und strukturiert AI-Governance als dauerhaftes Managementsystem, nicht nur als Einzelentscheidung.
+
+5. Pflichtinventar aller AI-Systeme
+
+Kein AI-System darf produktiv oder kundennah betrieben werden, ohne im AI-Systemregister geführt zu sein.
+
+Für jedes System sind mindestens zu dokumentieren:
+
+Systemname, Version, Owner, Validator, Operator, Auditor
+Zweck, Scope, Rechtsraum, betroffene Personen/Gruppen
+Risikoklasse und Kritikalität
+Datenklassen, Datenquellen, Löschbarkeit, Rechtsgrundlage
+Modelltyp, Anbieter, Version, Abhängigkeiten
+Prompt-/Policy-Layer
+Tool- und Connector-Rechte
+Write-Fähigkeiten und externe Wirkpfade
+Monitoring-Signale, Kill-Switch, Fallback, Rollback
+Sunset-, Decommissioning- und Archivregeln
+
+Ohne Registereintrag gilt: kein Deployment, kein Agentenbetrieb, kein externer Write.
+
+6. Risikoklassifizierung
+
+Jedes System wird vor Inbetriebnahme und nach jeder relevanten Änderung klassifiziert:
+
+R0 – Observe/Assist: keine externe Wirkung, kein autonomer Write
+R1 – Bounded Automation: eng begrenzte lokale Wirkung, klarer Rollback
+R2 – Controlled Externality: externe Wirkung mit engem Scope und aktiver Aufsicht
+R3 – High Trust Required: personen-, rechts-, sicherheits- oder reputationsrelevant
+R4 – Critical / Sovereign: hochkritische Entscheidungen, breite Auswirkungen oder systemische Risiken
+
+Je höher die Klasse, desto strenger:
+
+Freigabeanforderungen
+Explainability-Tiefe
+Eval-Tiefe
+Logging-Granularität
+Red-Team-Pflicht
+Not-Aus- und Recovery-Anforderungen
+Human-Oversight
+Deployment-Grenzen
+7. Verbindlicher Lebenszyklus
+
+Jedes System folgt dem vollständigen Zyklus:
+
+govern -> register -> classify -> assess -> design -> source-verify -> build -> simulate -> validate -> approve -> deploy -> monitor -> re-evaluate -> learn -> decommission -> archive/delete
+
+Es gibt keine produktive Abkürzung an folgenden Stellen:
+
+Register
+Risikoklassifizierung
+Impact Assessment
+Baseline
+Rollback
+Validierung
+Monitoring
+Dokumentation
+8. Pflicht-Impact-Assessment
+
+Vor erstmaliger Nutzung und vor jeder wesentlichen Änderung ist ein AI-System-Impact-Assessment zu erstellen.
+
+Es muss mindestens betrachten:
+
+Auswirkungen auf Individuen, Gruppen und Gesellschaft
+Fairness-, Diskriminierungs- und Exklusionsrisiken
+Manipulations- und Abhängigkeitsrisiken
+Datenschutz, Überwachung und Zweckentfremdung
+Reputations- und Marktfolgen
+Fehlanreize, Reward Hacking und Governance-Umgehung
+Umwelt- und Ressourcenwirkungen
+Missbrauch durch Dritte
+Nebenwirkungen durch Skalierung oder falschen Kontext
+Risiko bei Ausfall, Drift, Halluzination oder Tool-Missbrauch
+
+Diese Assessment-Pflicht folgt der heute etablierten Richtung, AI-Auswirkungen lebenszyklusweit strukturiert zu identifizieren, zu bewerten und zu dokumentieren.
+
+9. Daten-, Wissens- und Retrieval-Governance
+9.1 Datenklassen
+
+Alle Daten sind zu klassifizieren, mindestens als:
+
+öffentlich
+intern
+vertraulich
+personenbezogen
+sensibel/reguliert
+sicherheitskritisch
+trainingsgeeignet
+eval-geeignet
+retrieval-geeignet
+verboten
+9.2 Datenpflichten
+
+Es müssen dokumentiert sein:
+
+Herkunft
+Lizenz- und Nutzungsstatus
+Aktualität
+Zweckbindung
+Transformationshistorie
+Löschbarkeit
+Provenance
+Qualität
+Bias-Risiken
+Kontamination durch synthetische Daten
+Toxizitäts- und Manipulationsrisiken
+9.3 RAG-/Vektor-Governance
+
+Für Retrieval- und Embedding-Systeme gilt:
+
+nur freigegebene Quellen
+Trust-Klasse pro Quelle
+Provenance pro Chunk
+Scope-Isolation nach Tenant/Projekt/Rechtsraum
+Poisoning-Erkennung
+Freshness-Regeln
+Chunking- und Citation-Policy
+Quarantäne für unsichere Quellen
+kein unkontrollierter Cross-Source-Mix bei sensiblen Pfaden
+
+Agenten- und LLM-Sicherheitsleitlinien behandeln inzwischen ausdrücklich Prompt Injection, Datenoffenlegung, Vektor- und Embedding-Schwächen sowie Poisoning als zentrale GenAI-Risikofelder.
+
+10. Veracity-, Evidence- und Provenance-Layer
+
+Doktrin 8.0 ersetzt den naiven Wahrheitsanspruch durch ein kontrolliertes Evidenzmodell.
+
+Jeder relevante Output, Datensatz, Wissensbaustein oder Content-Block erhält – soweit technisch sinnvoll – folgende Felder:
+
+Source Provenance Class
+Evidence Confidence
+Freshness Status
+Human Review Status
+Synthetic Data Ratio
+Jurisdiction / Rights Status
+Operational Trust Class
+
+Regel:
+Provenance belegt Herkunft und Bearbeitung, nicht automatisch Wahrheit.
+Daher müssen Herkunft, Evidenz und Unsicherheit getrennt ausgewiesen werden.
+
+Für digitale Inhalte soll, wo technisch sinnvoll, maschinenlesbare Provenance eingesetzt werden. C2PA stellt dafür einen offenen Standard bereit, um Ursprung und Bearbeitung digitaler Inhalte nachvollziehbar zu machen.
+
+11. Modell-, Prompt-, Policy-, Memory- und Agenten-Governance
+
+Kein AI-System besteht nur aus einem Modell. Für 8.0 gelten daher getrennte Steuerungsebenen:
+
+Model Layer: Basismodell, Fine-Tune, Adapter, Version, Anbieter
+Policy Layer: Verbote, Pflichten, Grenzen, Freigaberegeln
+Prompt Layer: Systemprompt, Rollenprompt, Kontextprompt, Guard Prompt
+Memory Layer: persistente und temporäre Gedächtnisschichten
+Tool Layer: ausführbare Fähigkeiten
+Retrieval Layer: Wissens- und Datenzugriff
+Orchestration Layer: Handoffs, Supervisoren, Multi-Agent-Logik
+
+Für jede Ebene gilt:
+
+eindeutige Versionierung
+Freigabestatus
+Änderungsnachweis
+Tests
+Rollback
+Abschaltbarkeit
+Owner-Zuordnung
+Agenten-Grundgesetz
+
+Agenten dürfen niemals:
+
+ihre Tool-Rechte selbst erweitern
+ihre Sicherheitsregeln selbst deaktivieren
+ihre Prompts still umdefinieren
+Memory-Grenzen heimlich überschreiten
+neue externe Systeme ohne Freigabe aktivieren
+selbstständig den Geltungsbereich der Doktrin ändern
+12. Tool-, Connector- und Action-Gating
+
+Jedes Tool und jeder Connector ist einer Klasse zuzuordnen:
+
+Read
+Analyze
+Simulate
+Write
+Publish
+Execute
+Transact
+Infra-Change
+Identity/Secret/Permission
+
+Für jede Klasse werden fest definiert:
+
+erlaubte Parameter
+Verbotsparameter
+Maximalwirkungen
+Rate Limits
+Scope-Grenzen
+erforderliche Freigaben
+Dry-Run-Regeln
+Logging-Pflicht
+Post-Action-Validation
+Recovery-/Compensation-Pfad
+
+Excessive Agency ist verboten.
+Agenten dürfen nur die kleinste nötige Tool-Wirkung erhalten. Genau diese Gefahr wird in aktuellen OWASP-Leitlinien für LLM-/GenAI-Anwendungen ausdrücklich hervorgehoben.
+
+13. Explizite Systemzustände
+observe_only – nur lesen, messen, vergleichen, simulieren, dokumentieren
+safe_mode – nur eng begrenzte, lokal validierbare Aktionen
+controlled_apply – freigegebene Mutation mit Guardrails
+canary_mode – begrenzte Teilanwendung mit Echtzeitbeobachtung
+containment_mode – Isolation, Scope-Reduktion, kein Wachstumspfad
+rollback_mode – Rückführung auf letzte valide Baseline
+self_healing_active – nur vorbereitete Recovery-Pfade
+centaur_mode – Mensch und System entscheiden sequentiell koordiniert
+agent_supervised_mode – Agentenwirkung unter Supervisor- und Policy-Kontrolle
+emergency_freeze – sofortiger Stopp aller nicht essenziellen Änderungen
+
+Kein System darf sich stillschweigend in einen mächtigeren Zustand versetzen.
+
+14. Verbindlicher Aktionszyklus
+
+observe -> verify_source -> classify -> contextualize -> analyze -> assess_risk -> assess_impact -> check_tool_scope -> simulate -> explain -> approve_if_required -> micro_apply_if_safe -> validate -> red_team_if_relevant -> monitor -> learn_if_validated -> document
+
+Zusatzregeln:
+
+ohne Quellverifikation keine Weiterverarbeitung kritischer Inputs
+ohne Impact Assessment keine relevante menschen- oder rechtsnahe Wirkung
+ohne Tool-Scope-Prüfung keine Agentenaktion
+ohne dokumentierte Unsicherheit keine riskante Schlussfolgerung
+ohne Nachweis kein Lerntransfer in globale Policies
+15. Validierungs-, Evaluations- und Verifikationsregime
+
+Doktrin 8.0 unterscheidet strikt:
+
+Validation: Ist der beabsichtigte Effekt eingetreten?
+Verification: Wurden Regeln, Invarianten und Kontrolllogiken korrekt eingehalten?
+Evaluation: Wie gut verhält sich das System über Aufgaben, Kontexte und Risiken hinweg?
+Red Teaming: Wie leicht lässt sich das System missbrauchen, täuschen oder entgrenzen?
+Field Testing: Wie verhält es sich unter realen Bedingungen?
+Regression Testing: Wurde etwas verschlechtert?
+Pflichtfragen jeder Validierung
+Ziel erreicht?
+Scope eingehalten?
+Risiko gestiegen?
+Neue Angriffsfläche entstanden?
+Wahrhaftigkeit verschlechtert?
+Output sicher und korrekt formatiert?
+Tool-Grenzen eingehalten?
+Rollback möglich?
+Monitoring intakt?
+Erklärbarkeit intakt?
+Ethik/Datenschutz/Fairness verletzt?
+SEO/GEO/Performance verschlechtert?
+neue semantische Kollisionsrisiken entstanden?
+
+Für AI-Systeme reicht reine klassische Software-Validierung nicht aus; NIST SP 800-218A erweitert sichere Entwicklungspraktiken explizit um AI-modellspezifische Praktiken über den gesamten Lebenszyklus.
+
+16. Formale Verifikation – begrenzt, aber verpflichtend
+
+Formale Verifikation ist in 8.0 Pflicht für:
+
+Zustandsübergänge
+Freigabelogik
+Action-Gating
+Tool-Policies
+Sicherheitsinvarianten
+Rollback-Bedingungen
+Mutation-Locks
+Not-Aus-Logik
+
+Nicht behauptet wird, dass die gesamte probabilistische Modellintelligenz formal verifiziert werden kann.
+Deshalb gilt:
+
+Kontrolllogik formal verifizieren
+Modellverhalten empirisch evaluieren
+Agentenpfade adversarial testen
+kritische Pfade doppelt absichern
+17. Output Assurance
+
+Jeder relevante Output durchläuft – abhängig von Risikoklasse – folgende Kontrollen:
+
+Schema-Prüfung
+Typprüfung
+Policy-Prüfung
+Zitations- und Provenance-Prüfung
+Sicherheitsprüfung
+Format-Sanitization
+Actionability-Prüfung
+Harm-/Manipulationsprüfung
+Confidence-/Uncertainty-Markierung
+Human-Review-Trigger
+
+Verboten sind:
+
+als sicher dargestellte unsichere Aussagen
+erfundene Quellen
+versteckte Spekulation als Tatsache
+ungeprüfter Code für kritische Systeme
+unvalidierte Shell-/SQL-/API-Aktionen
+manipulative oder täuschende Formulierungen bei relevanter Wirkung
+
+OWASP behandelt unsichere Output-Verarbeitung und Prompt Injection als Kernrisiken moderner LLM-Anwendungen.
+
+18. Zero Trust, Identität, Secrets und Trust Boundaries
+niemals implizit vertrauen
+jede Session, jeder Write, jede Wiederaufnahme einer Entscheidung benötigt frische Trust-Prüfung
+Secrets sind Pflichtfakten, keine erratbaren Variablen
+kein Secret darf ungebunden an Scope, Zeit, Rolle und Zweck existieren
+kurzlebige Tokens sind bevorzugt
+Rechte werden minimiert, segmentiert und überprüfbar vergeben
+fehlende Secrets rechtfertigen keine Annahmen oder Workarounds
+19. Supply-Chain-, Build- und Provenance-Governance
+
+Jedes Produkt, Modellpaket, Agentenartefakt und Deployment-Artefakt muss – soweit technisch möglich – eine nachvollziehbare Herkunft aufweisen:
+
+Quellursprung
+Build-Prozess
+Inputs/Dependencies
+Signatur- oder Attestierungsstatus
+Veröffentlichungszeitpunkt
+freigebende Instanz
+
+Artefakte ohne hinreichende Provenance sind als erhöhtes Risiko zu behandeln oder zu blockieren. SLSA beschreibt steigende Vertrauensniveaus für Build-Provenance und Schutz gegen Manipulation von Build, Provenance und Artefakt.
+
+20. CI/CD- und Deployment-Gesetz
+
+Kein produktiver Pfad ohne:
+
+Baseline
+Tests
+Eval-Protokoll
+Rollback
+Freigabe
+Observability
+Change Record
+
+Pflichtmechanismen:
+
+Feature Flags
+Canary Deployments
+Shadow Simulation
+Rate Limits
+Abort Gates
+automatische Rückführung bei definierten Fehlern
+Unveränderbarkeits- oder Signaturnachweis, wo sinnvoll
+Mutation-Lock für kritische Pfade
+
+Dies führt die Umsetzungslogik aus 6.0 und 7.0 fort und härtet sie für AI-, Agenten- und Lieferkettenpfade.
+
+21. Human Oversight und Centaur-Prinzip 2.0
+
+Menschliche Aufsicht ist nicht bloß Freigabe, sondern ein strukturiertes Kontrollmodell.
+
+Pflichtfragen:
+
+Wer darf starten?
+Wer darf freigeben?
+Wer darf widersprechen?
+Wer darf abbrechen?
+Wer trägt Risiko?
+Wer bewertet Grenzfälle?
+Wer darf ausnahmsweise übersteuern?
+
+Centaur-Modus 2.0 bedeutet:
+
+Maschine analysiert und strukturiert
+Mensch bewertet Kontext, Risiko, Ethik und Ausnahmefälle
+Maschine simuliert Optionen
+Mensch entscheidet bei relevanter Unsicherheit oder Außenwirkung
+Maschine führt begrenzt aus
+Mensch prüft kritische Ergebnisse
+22. AI Literacy und Rollenkompetenz
+
+Jede Rolle benötigt nachweisbare Kompetenz im Umfang ihrer Eingriffsmacht:
+
+Owner: Governance, Zweckbindung, Risikoverständnis, Rechtsraum
+Validator: Eval, Red Teaming, Testdesign, Sicherheits- und Biasprüfung
+Operator: Deployment, Recovery, Monitoring, Incident-Pfade
+Auditor: Nachweise, Compliance-Mapping, Kontrollwirksamkeit
+Prompt/Policy Designer: Begrenzung, Tool-Sicherheit, Nicht-Täuschung
+Data Steward: Herkunft, Rechte, Qualität, Löschbarkeit, Kontamination
+Agent Supervisor: Tool-Boundaries, Handoff, Override, Kill-Switch
+
+Der EU AI Act verlangt für Provider und Deployers einen hinreichenden AI-Literacy-Stand ihrer Mitarbeitenden und sonstigen in ihrem Auftrag handelnden Personen.
+
+23. Ethik-, Datenschutz- und Menschenrechtsintegration
+
+Technische Machbarkeit legitimiert nichts.
+
+Pflichtdimensionen jeder relevanten Entscheidung:
+
+Menschenwürde
+Autonomie
+Nicht-Diskriminierung
+Fairness
+Verhältnismäßigkeit
+Transparenz
+Privatsphäre
+Datensouveränität
+Widerspruchs- und Korrekturmöglichkeiten
+Harm-Minimierung
+Schutz vor Manipulation
+Schutz vor De-Kontextualisierung
+
+Quantitative Ethik-Metriken sind nur Ergänzungen.
+Sie dürfen menschliche Abwägung nie ersetzen.
+
+24. SEO-, GEO-, Content- und Performance-Sonderregeln
+
+Die aus 5.0 stammenden SEO-/GEO-/Performance-Grundsätze bleiben voll gültig und werden erweitert.
+
+24.1 SEO/GEO
+keine semantisch redundante Massenausrollung
+internationale Inhalte nur mit marktspezifischem Mehrwert
+Anti-Collapse-Prüfung vor Multi-Market-Rollout
+Entity- und Provenance-Klarheit für generative Systeme
+keine Zitier- oder Autoritätssimulation ohne reale Grundlage
+24.2 Content
+Herkunft markieren, wenn technisch sinnvoll
+Review-Status trennen von bloßer Maschinenproduktion
+kein Human-Review-Claim ohne dokumentierten Review
+24.3 Performance
+keine Optimierung ohne Baseline
+keine Maßnahme, die Sichtbarkeits- oder UX-Risiken verdeckt verlagert
+Core-Web-Vitals, Ausfallsicherheit und Ressourcenverbrauch sind Governance-Signale
+24.4 GEO-Readiness
+strukturierte Klarheit
+Quellenbelegbarkeit
+Entitätsverankerung
+Parsing-Fähigkeit
+Zitierfähigkeit
+Nicht-Widersprüchlichkeit über Kanäle und Märkte hinweg
+25. Agentic Security
+
+Moderne AI-Risiken betreffen nicht nur Modelle, sondern agentische Ketten.
+
+Doktrin 8.0 verbietet insbesondere:
+
+indirekte Prompt Injection mit unkontrollierter Tool-Weitergabe
+Agent Hijacking
+Systemprompt-Leakage mit Rechtefolgen
+unkontrollierte Datenexfiltration
+Tool-Kaskaden ohne Handover-Kontrolle
+autonome Kommunikation in externen Kanälen ohne expliziten Scope
+selbst initiierte Policy-Neudefinition
+transaktionale oder publizierende Aktionen ohne Post-Action-Validation
+
+Aktuelle OWASP-Leitlinien für LLM-/GenAI-Anwendungen behandeln genau diese Klassen von Risiken als Top-Themen.
+
+26. Post-Deployment- und Post-Market-Monitoring
+
+Nach Deployment beginnt die eigentliche Verantwortung.
+
+Pflichtmetriken, risikoadäquat:
+
+Drift
+Halluzinationsrate in kritischen Pfaden
+Policy-Verletzungen
+Prompt-Injection-Versuche
+Tool-Missbrauch
+Retrieval-Poisoning-Indikatoren
+Output-Fehlformatierung
+Kosten-/Token-Explosion
+Bias-/Fairness-Drift
+Latenz und Verfügbarkeit
+SEO-/GEO-/Ranking-/CWV-Signale
+Support-, Harm- und Incident-Signale
+User-Widerspruchs- und Korrekturfälle
+
+Jede relevante Verschlechterung ist Governance-Signal, nicht bloß Betriebsrauschen.
+
+27. Incident-, Anomalie- und Immunisierungsregel
+
+Bei Incident oder starker Anomalie gilt strikt:
+
+Wirkung begrenzen
+Beweise sichern
+Blast Radius abschätzen
+betroffene Agenten, Tools oder Datenpfade isolieren
+Trust-Status neu bewerten
+Rollback oder Containment aktivieren
+Unsicherheit dokumentieren
+Wiederholungsursachen analysieren
+Immunisierungsmaßnahme entwerfen
+erst nach Validierung wieder freigeben
+
+Optimierung ist während eines Incidents grundsätzlich nachgeordnet.
+
+28. Rollback- und Recovery-Gesetz
+
+Jede relevante Mutation braucht mindestens eines:
+
+direkten Rollback
+kompensierenden Rollback
+sichere Quarantäne
+nicht-persistente Ausführung
+automatische Rückkehr zum Vorzustand
+Wiederherstellung einer validen Baseline
+
+Für Agenten- und Wissenssysteme erweitert sich das auf:
+
+Prompt-Rollback
+Policy-Rollback
+Tool-Bindings-Rollback
+Index-/Embedding-Rollback
+Memory-Reset
+Session-Kill
+Connector-Disable
+Modell-Fallback
+29. Verbotene Handlungen
+
+Strikt verboten sind:
+
+unvalidierte Live-Selbstmodifikation kritischer Logik
+autonome Erweiterung von Rechten, Scope oder Tooling
+Umgehung von Guardrails, Reviews oder Freigabeprozessen
+Schreiben in nicht freigegebene Fremdsysteme
+faktenhafte Darstellung unbelegter Aussagen
+künstliches Erfinden von Provenance oder Review-Status
+unsichtbare Mutation in Kunden- oder Produktionssystemen
+Reward Hacking
+verdeckte Überwachung
+diskriminierende oder manipulative Automatisierung
+Massenausbringung synthetischer Inhalte ohne Wahrhaftigkeits- und Qualitätskontrolle
+Training oder Nachschärfung mit unklaren oder unrechtmäßigen Daten
+RAG-/Index-Beschickung aus ungeprüften Quellen für kritische Pfade
+Social Scoring, autonome Waffenlogik oder tödliche Autonomie
+irreführende anthropomorphe Behauptungen über Fähigkeiten oder Prüfungstiefe
+30. Compliance-Mapping und externe Anschlussfähigkeit
+
+Jede Kontrollfamilie dieser Doktrin ist auf externe Rahmenwerke abbildbar zu halten. Mindestens zu pflegen ist eine Kontrollmatrix zu:
+
+NIST AI RMF
+NIST SP 800-218A
+ISO/IEC 42001
+ISO/IEC 42005
+OWASP LLM / GenAI Security
+SLSA
+C2PA
+EU AI Act
+GPAI Code of Practice
+
+Das dient nicht der Unterordnung unter externe Begriffe, sondern der auditfähigen Übersetzbarkeit der eigenen Governance in externe Prüf- und Vertrauensräume. Der EU AI Act ist bereits teilweise in Anwendung; AI-Literacy- sowie Verbotsregeln gelten seit Februar 2025, GPAI-Regeln seit August 2025, die volle allgemeine Anwendbarkeit liegt grundsätzlich bei August 2026.
+
+31. Pflichtartefakte
+
+Doktrin 8.0 verlangt folgende Mindestartefakte je relevantem System:
+
+AI-Systemregistereintrag
+Risikoklassifizierung
+Impact Assessment
+Daten- und Quellregister
+Modell-/Prompt-/Policy-Register
+Tool-/Connector-Matrix
+Before-State
+Eval- und Validation-Protokoll
+Red-Team-Protokoll, wo relevant
+Rollback-/Recovery-Plan
+Deployment-Freigabe
+Monitoring-Definition
+Incident- und Immunisierungsnachweise
+Decommissioning-/Archivierungsplan
+Compliance-Mapping
+Audit-Export
+
+Fehlt ein Pflichtartefakt, steigt die Mutationsschwelle drastisch oder der Vorgang ist zu blockieren.
+
+32. Erfolgsdefinition
+
+Eine Maßnahme ist nur dann erfolgreich, wenn sie:
+
+ihr Ziel erreicht
+im freigegebenen Scope bleibt
+Sicherheit, Wahrhaftigkeit und Integrität wahrt
+keine höhere Priorität verletzt
+rückrollbar oder sicher eingehegt bleibt
+keine unzulässige Nebenwirkung erzeugt
+nachvollziehbar erklärbar ist
+als belastbare Lerngrundlage taugt
+Monitoring intakt lässt
+Daten-, Tool- und Rechtsgrenzen einhält
+semantische Eindeutigkeit wahrt
+Provenance und Evidenz nicht verschlechtert
+ethisch und regulatorisch vertretbar bleibt
+
+Ein sichtbarer Effekt allein ist kein Erfolg.
+Erfolg ist ein messbarer, validierter, begrenzter, sicherer, wahrhaftiger, auditierbarer, rückführbarer, semantisch belastbarer und normativ zulässiger Zustand.
+
+33. Evolutionsmatrix V7.0 → V8.0
+
+Autonomie: von defensiv-begrenzter Automation zu policy-gebundener, auditierter Multi-Agent-Kollaboration
+Validierung: von reiner Freigabe- und Pipeline-Validierung zu kombiniertem Regime aus Verifikation, Evaluation, Red Teaming und Laufzeitkontrolle
+Infrastruktur: von CI/CD-Integration zu attestierten, segmentierten, selbstheilenden Execution Cells
+Ethik: von qualitativer Ethikpriorität zu qualitativer Ethik plus quantitativen Harm-, Drift- und Fairness-Indikatoren
+Provenance: von allgemeiner Wahrhaftigkeit zu explizitem Source-, Evidence- und Review-Status
+Governance: von Doktrinsteuerung zu formalem AI-Management-System
+Security: von klassischem Zero Trust zu Agentic Security und Action Gating
+Wissen: von Content-/SEO-Governance zu vollständiger Daten-, RAG- und Embedding-Governance
+Betrieb: von Post-Change-Validierung zu dauerhaftem Post-Market-Monitoring
+Compliance: von abstrakter Konformität zu expliziter Kontrollmatrix
+
+34. Horizon Scanning und Normwandel
+
+Mindestens quartalsweise sind zu prüfen:
+
+neue Modellklassen
+neue Agentenangriffe
+Änderungen bei NIST, ISO, OWASP, SLSA, C2PA
+neue regulatorische Leitlinien
+Suchmaschinen- und Antwortmaschinenänderungen
+neue Lieferketten- und Dependency-Risiken
+neue Missbrauchsmuster
+neue gesellschaftliche oder juristische Risikofelder
+
+Keine Doktrin bleibt statisch vertrauenswürdig, wenn ihre Umwelt dynamisch ist.
+
+35. Verdichtete Schlussformel
+
+Tief beobachten. Quellen verifizieren. Risiken klassifizieren. Wirkungen bewerten.
+Grenzen definieren. Daten und Provenance kontrollieren. Agenten strikt binden.
+Vorher simulieren. Formal prüfen, wo Kontrolle formalisierbar ist. Empirisch evaluieren, wo Verhalten probabilistisch ist.
+Nur eng begrenzt anwenden. Nach jeder Wirkung validieren. Laufend überwachen.
+Bei Abweichung sofort einhegen. Sauber rollbacken. Nur aus validierter Wahrheit lernen.
+Menschenrechte achten. Nicht täuschen. Nichts vorgaukeln. Grenzen niemals überschreiten.
+
+Wenn du willst, formatiere ich dir diese finale Doktrin 8.0 direkt als saubere PDF-Fassung mit Titelseite und professionellem Layout.

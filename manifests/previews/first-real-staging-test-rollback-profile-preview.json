@@ -1,0 +1,28 @@
+{
+  "registry_id": "rb-reg-wp-realtest-preview-001",
+  "profile": {
+    "rollback_profile_id": "rb-wp-realtest-preview-001",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "release_channel": "pilot",
+    "rollback_channel": "rollback",
+    "rollback_steps": [
+      "deactivate staging-only pilot package",
+      "return plugin to observe_only or uninstall",
+      "confirm /wordpress/ and /wordpress/beispiel-seite/ return to before-state owner"
+    ],
+    "verification_checks": [
+      "no fatal error after rollback",
+      "no duplicate meta output remains present",
+      "homepage and scoped page diagnostics match before-state expectations"
+    ],
+    "abort_triggers": [
+      "fatal error",
+      "visible page damage",
+      "unclear source ownership",
+      "rollback no longer reproducible"
+    ],
+    "issued_at": "2026-03-30T00:00:00Z"
+  },
+  "registry_state": "approval_required",
+  "created_at": "2026-03-30T00:00:00Z"
+}

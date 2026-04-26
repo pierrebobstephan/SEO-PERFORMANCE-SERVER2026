@@ -16,7 +16,11 @@
     "abort_conditions",
     "rollback_trigger",
     "adapt_options",
-    "final_pre_apply_gate"
+    "final_pre_apply_gate",
+    "risk_class",
+    "impact_assessment_ref",
+    "evidence_plan",
+    "aftercare_window"
   ],
   "properties": {
     "pilot_id": {
@@ -79,12 +83,35 @@
       "type": "string",
       "enum": [
         "observe_only",
+        "safe_mode",
         "blueprint_ready",
         "approval_required",
         "pilot_ready",
         "blocked",
         "rollback_required"
       ]
+    },
+    "risk_class": {
+      "type": "string",
+      "enum": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    },
+    "impact_assessment_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_plan": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aftercare_window": {
+      "type": "string",
+      "minLength": 1
     }
   }
 }

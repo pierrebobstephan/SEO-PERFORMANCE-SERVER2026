@@ -9,10 +9,11 @@ from electri_city_ops.models import ActionPlan, ValidationCheck
 
 
 DEFAULT_DOCTRINE_POLICY: dict[str, Any] = {
-    "policy_version": "1.0",
+    "policy_version": "8.0",
     "canonical_docs": [
         "AGENTS.md",
         "docs/system-doctrine.md",
+        "Doktrin04.04.2026-Version-8.0.txt",
         "docs/doctrine-alignment-report.md",
     ],
     "defaults": {
@@ -37,12 +38,51 @@ DEFAULT_DOCTRINE_POLICY: dict[str, Any] = {
     "gates": {
         "allowed_states": [
             "observe_only",
+            "safe_mode",
+            "controlled_apply",
+            "containment_mode",
+            "rollback_mode",
+            "self_healing_active",
+            "emergency_freeze",
+            "adaptive_resonance_mode",
+            "centaur_mode",
             "data_insufficient",
             "blueprint_ready",
             "approval_required",
             "pilot_ready",
+            "active_pilot",
+            "stable_applied",
+            "degraded_safe",
             "blocked",
             "rollback_required",
+        ],
+    },
+    "ai_management": {
+        "system_register_required": True,
+        "impact_assessment_required": True,
+        "provenance_required": True,
+        "supply_chain_verification_required": True,
+        "human_oversight_required_for_external_effects": True,
+        "risk_classes": ["R0", "R1", "R2", "R3", "R4"],
+    },
+    "lifecycle": {
+        "required_stages": [
+            "govern",
+            "register",
+            "classify",
+            "assess",
+            "design",
+            "source_verify",
+            "build",
+            "simulate",
+            "validate",
+            "approve",
+            "deploy",
+            "monitor",
+            "re_evaluate",
+            "learn",
+            "decommission",
+            "archive_delete",
         ],
     },
     "scopes": {
@@ -86,6 +126,10 @@ DEFAULT_DOCTRINE_POLICY: dict[str, Any] = {
             "rollback_trigger",
             "adapt_options",
             "final_pre_apply_gate",
+            "risk_class",
+            "impact_assessment_ref",
+            "evidence_plan",
+            "aftercare_window",
         ],
     },
 }
@@ -149,6 +193,8 @@ def validate_policy_schema(policy: dict[str, Any]) -> list[str]:
         "workspace",
         "external_effects",
         "gates",
+        "ai_management",
+        "lifecycle",
         "scopes",
         "blast_radius",
         "simulation",
@@ -191,6 +237,31 @@ def validate_policy_schema(policy: dict[str, Any]) -> list[str]:
         allowed_states = gates.get("allowed_states")
         if not isinstance(allowed_states, list) or not allowed_states:
             issues.append("policy gates.allowed_states must be a non-empty list")
+
+    ai_management = policy.get("ai_management", {})
+    if not isinstance(ai_management, dict):
+        issues.append("policy ai_management must be an object")
+    else:
+        for key in (
+            "system_register_required",
+            "impact_assessment_required",
+            "provenance_required",
+            "supply_chain_verification_required",
+            "human_oversight_required_for_external_effects",
+            "risk_classes",
+        ):
+            if key not in ai_management:
+                issues.append(f"policy ai_management.{key} must be set")
+        if not isinstance(ai_management.get("risk_classes"), list) or not ai_management.get("risk_classes"):
+            issues.append("policy ai_management.risk_classes must be a non-empty list")
+
+    lifecycle = policy.get("lifecycle", {})
+    if not isinstance(lifecycle, dict):
+        issues.append("policy lifecycle must be an object")
+    else:
+        required_stages = lifecycle.get("required_stages")
+        if not isinstance(required_stages, list) or not required_stages:
+            issues.append("policy lifecycle.required_stages must be a non-empty list")
 
     scopes = policy.get("scopes", {})
     if not isinstance(scopes, dict):
@@ -274,6 +345,32 @@ def validate_simulation_object(simulation: dict[str, Any], policy: dict[str, Any
     return issues
 
 
+def validate_ai_governance_spec(spec: dict[str, Any], policy: dict[str, Any]) -> list[str]:
+    issues: list[str] = []
+    ai_management = policy.get("ai_management", {})
+    risk_class = str(spec.get("risk_class", "")).strip()
+    allowed_risk_classes = {str(item).strip() for item in ai_management.get("risk_classes", [])}
+
+    if risk_class not in allowed_risk_classes:
+        issues.append("risk_class is missing or invalid")
+    if ai_management.get("system_register_required", True) and not spec.get("system_registered", False):
+        issues.append("AI system register entry is missing")
+    if ai_management.get("impact_assessment_required", True) and not spec.get("impact_assessment_complete", False):
+        issues.append("AI impact assessment is incomplete")
+    if ai_management.get("provenance_required", True) and not spec.get("provenance_ready", False):
+        issues.append("provenance readiness is incomplete")
+    if ai_management.get("supply_chain_verification_required", True) and not spec.get("supply_chain_verified", False):
+        issues.append("supply chain verification is incomplete")
+    if (
+        spec.get("external_effect", False)
+        and ai_management.get("human_oversight_required_for_external_effects", True)
+        and not spec.get("human_oversight_defined", False)
+    ):
+        issues.append("human oversight is not defined for external effect")
+
+    return issues
+
+
 def validate_approval_readiness(spec: dict[str, Any]) -> list[str]:
     issues: list[str] = []
     if not spec.get("requires_approval", False):
@@ -314,14 +411,16 @@ def evaluate_pilot_gate(spec: dict[str, Any], policy: dict[str, Any], workspace_
     rollback_issues = validate_rollback_readiness(spec)
     approval_issues = validate_approval_readiness(spec)
     simulation_issues = validate_simulation_object(simulation_object, policy) if simulation_required else []
+    ai_governance_issues = validate_ai_governance_spec(spec, policy)
 
     if not doctrine_conformant:
         reasons.append("step is not doctrine-conformant")
     reasons.extend(scope_issues)
     reasons.extend(blast_radius_issues)
     reasons.extend(rollback_issues)
+    reasons.extend(ai_governance_issues)
 
-    if not doctrine_conformant or scope_issues or blast_radius_issues or rollback_issues:
+    if not doctrine_conformant or scope_issues or blast_radius_issues or rollback_issues or ai_governance_issues:
         if approval_issues:
             reasons.extend(approval_issues)
         if simulation_issues:
@@ -371,6 +470,10 @@ def _runtime_action_spec(action: ActionPlan, mode: str) -> dict[str, Any]:
             "rollback_trigger": action.rollback,
             "adapt_options": ["observe_only", "blueprint_ready"],
             "final_pre_apply_gate": "observe_only" if mode == "observe_only" else "blueprint_ready",
+            "risk_class": "R0",
+            "impact_assessment_ref": "workspace_internal_low_risk_assessment",
+            "evidence_plan": "local validation checks plus cycle smoke and rollback evidence",
+            "aftercare_window": "current_cycle",
         }
 
     return {
@@ -389,6 +492,12 @@ def _runtime_action_spec(action: ActionPlan, mode: str) -> dict[str, Any]:
         "blast_radius": "minimal" if not external_effect else "contained",
         "doctrine_conformant": "rocket cloud" not in action.description.lower(),
         "prefer_observe_only": mode == "observe_only",
+        "risk_class": "R0" if not external_effect else "R2",
+        "system_registered": True,
+        "impact_assessment_complete": True,
+        "provenance_ready": True,
+        "supply_chain_verified": True,
+        "human_oversight_defined": True,
     }
 
 

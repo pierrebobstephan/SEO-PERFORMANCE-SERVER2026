@@ -2,62 +2,66 @@
 
 ## Zweck
 
-Dieses Dokument beschreibt die lokale technische Durchsetzung der bindenden Doktrin aus [AGENTS.md](/opt/electri-city-ops/AGENTS.md) und [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md).
-
-## Prueffragen fuer diese Phase
-
-1. Ist es doktrinkonform?
-   Ja. Die Enforcement-Schicht haengt nur lokale Policy-, Gate-, Guardrail- und Testlogik in den Stack ein.
-2. Bleibt es innerhalb des Workspace?
-   Ja. Alle Artefakte liegen in `/opt/electri-city-ops`.
-3. Hat es irgendeine externe Wirkung?
-   Nein. Es werden keine Connectoren, Scheduler, Notifications oder Fremdsysteme aktiviert.
-4. Braucht es Approval?
-   Nein fuer die lokale Enforcement-Schicht selbst. Spaetere externe Schritte bleiben `approval_required` oder `observe_only`.
-5. Ist ein Rollback oder Rueckweg beschrieben?
-   Ja. Rueckweg ist lokal ueber Git oder das Ruecknehmen der neuen Workspace-Artefakte moeglich.
+Dieses Dokument beschreibt die lokale technische Durchsetzung der bindenden Doktrin aus [AGENTS.md](/opt/electri-city-ops/AGENTS.md), [docs/system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md) und [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt).
 
 ## Zielbild
 
-Die Doktrin soll lokal wirksam sein, auch wenn keine externen Systeme beruehrt werden. Deshalb erzwingt der Stack jetzt:
+Die Doctrine-Enforcement-Schicht soll 8.0 nicht nur referenzieren, sondern lokal erzwingen:
 
-- eine bindende Policy-Datei in [doctrine-policy.json](/opt/electri-city-ops/config/doctrine-policy.json)
-- ein Policy-Schema in [doctrine-policy.schema.json](/opt/electri-city-ops/schemas/doctrine-policy.schema.json)
-- ein Simulationsobjekt-Schema in [pilot-simulation.schema.json](/opt/electri-city-ops/schemas/pilot-simulation.schema.json)
-- Runtime-Guardrails in [doctrine.py](/opt/electri-city-ops/src/electri_city_ops/doctrine.py)
-- technische Cycle-Validierungen fuer Policy, Workspace, externe Sperre und Notification-Sperre
+- bindende kanonische Quellenkette
+- formale Policy-Struktur
+- AI-Management-Grundpflichten
+- Lifecycle-Pflichten
+- Risikoklassen
+- Simulations- und Evidence-Pflichten
+- Approval-, Rollback- und Scope-Gates
 
 ## Lokale Enforcement-Bausteine
 
-### Policy-Schema
+### Policy
 
-- formale Pflichtfelder fuer bindende Regeln
-- kanonische Dokumentreferenzen
-- Scope-, Gate- und Blast-Radius-Regeln
-- Pflichtfelder fuer Simulationsobjekte
+- [config/doctrine-policy.json](/opt/electri-city-ops/config/doctrine-policy.json)
+- 8.0-Policy-Version
+- kanonische Quellenkette auf AGENTS, system-doctrine, 8.0-TXT und Alignment-Report
+- AI-Management-Block
+- Lifecycle-Block
+- erweiterte Gate- und Simulationsdefinition
+
+### Schemas
+
+- [schemas/doctrine-policy.schema.json](/opt/electri-city-ops/schemas/doctrine-policy.schema.json)
+- [schemas/pilot-simulation.schema.json](/opt/electri-city-ops/schemas/pilot-simulation.schema.json)
+- [schemas/ai-system-register.schema.json](/opt/electri-city-ops/schemas/ai-system-register.schema.json)
+- [schemas/ai-impact-assessments.schema.json](/opt/electri-city-ops/schemas/ai-impact-assessments.schema.json)
+- [schemas/provenance-evidence.schema.json](/opt/electri-city-ops/schemas/provenance-evidence.schema.json)
+- [schemas/supply-chain-evidence.schema.json](/opt/electri-city-ops/schemas/supply-chain-evidence.schema.json)
+
+Sie erzwingen jetzt zusaetzlich:
+
+- `ai_management`
+- `lifecycle`
+- `risk_class`
+- `impact_assessment_ref`
+- `evidence_plan`
+- `aftercare_window`
+- AI-Systemregister-Artefakte
+- Impact-Assessment-Artefakte
+- Provenance-Evidenz
+- Supply-Chain-Evidenz
 
 ### Runtime-Guardrails
 
-- laden die lokale Policy oder einen sicheren Builtin-Default
-- validieren die Policy-Struktur
-- sperren externe Wirkung technisch ueber Gate-Logik
-- stufen nicht freigegebene oder unklare Schritte auf `approval_required`, `blocked` oder `observe_only`
+- [src/electri_city_ops/doctrine.py](/opt/electri-city-ops/src/electri_city_ops/doctrine.py)
+- [src/electri_city_ops/ai_governance.py](/opt/electri-city-ops/src/electri_city_ops/ai_governance.py)
 
-### Pilot-Gate-Checks
+Die Guardrails blockieren oder verengen Schritte jetzt auch dann, wenn:
 
-- Doctrine-Compliance
-- Scope-Validation
-- Blast-Radius-Validation
-- Approval-Readiness
-- Rollback-Readiness
-- Simulation-Readiness
-
-### Testschicht
-
-- Policy-Schema-Validierung
-- Scope- und Blast-Radius-Pruefung
-- Gate-Entscheidungen fuer `approval_required` und `blocked`
-- Cycle-Smoke-Test mit Doctrine-Validierungen
+- kein AI-Systemregister vorliegt
+- kein Impact-Assessment vorliegt
+- Provenance-Bereitschaft fehlt
+- Supply-Chain-Verifikation fehlt
+- bei externer Wirkung Human Oversight unklar ist
+- die Risikoklasse fehlt oder ungueltig ist
 
 ## Statusgrenzen
 
@@ -65,21 +69,23 @@ Die Doktrin soll lokal wirksam sein, auch wenn keine externen Systeme beruehrt w
 
 - Policy-Laden
 - Policy-Schema-Check
-- Simulationsobjekt-Check
-- Approval-Readiness-Check
-- Rollback-Readiness-Check
 - Scope-Validation
 - Blast-Radius-Validation
+- Rollback-Readiness
+- Approval-Readiness
+- Simulations-Readiness
+- AI-Governance-Readiness
 - lokale Runtime-Validierungen im Cycle
 
-### Bleibt nur `blueprint_ready` oder `observe_only`
+### Bleibt weiter nur `approval_required`, `blueprint_ready` oder `observe_only`
 
-- jede spaetere Connector-Aktivierung
-- Cloudflare-, WordPress-, systemd-, cron- oder Notification-Anwendung
-- jede echte externe Pilotdurchfuehrung ohne Freigaben, Secrets, Scope-Definition, Validierung und Rollback
+- reale Connector-Aktivierung
+- reale Billing-/Webhook-/Delivery-Freigabe
+- externe Agentenwirkung
+- kundennaher produktiver Write
 
 ## Rueckweg
 
-- Policy-Datei, Schemas, Docs und Tests sind lokal versionierbar
-- Runtime-Enforcement kann durch Ruecknahme der betroffenen Dateien und Integration im Workspace entfernt werden
-- keine Ruecknahmeoperation beruehrt Betriebssystem, Rocket Cloud oder Fremdsysteme
+- Alle Enforcement-Aenderungen liegen innerhalb des Workspace.
+- Rueckweg ist lokal ueber Versionskontrolle und die Ruecknahme der betroffenen Policy-, Schema-, Code- und Doku-Dateien moeglich.
+- Keine Ruecknahmeoperation beruehrt Betriebssystem, Rocket Cloud oder Fremdsysteme.

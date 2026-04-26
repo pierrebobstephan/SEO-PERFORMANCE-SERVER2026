@@ -1,0 +1,63 @@
+{
+  "valid": true,
+  "issues": [],
+  "artifact": {
+    "artifact_id": "art-final-real-staging-pilot-001",
+    "plugin_slug": "hetzner-seo-ops",
+    "plugin_version": "0.1.0-real-staging1",
+    "release_channel": "pilot",
+    "package_metadata": {
+      "plugin_slug": "hetzner-seo-ops",
+      "plugin_version": "0.1.0-real-staging1",
+      "release_channel": "pilot",
+      "package_basename": "site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com",
+      "package_filename": "site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+      "package_sha256": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
+      "file_count": 14,
+      "build_mode": "local_preview_only",
+      "built_at": "2026-04-19T21:00:00Z"
+    },
+    "manifest": {
+      "product_id": "hso-plugin",
+      "plugin_version": "0.1.0-real-staging1",
+      "release_channel": "pilot",
+      "license_id": "lic-final-real-staging-pilot-001",
+      "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+      "package_url": "local://site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+      "package_checksum": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
+      "policy_version": "2026-03-30-final-real-staging-pilot",
+      "rollback_version": "rb-final-real-staging-pilot-001",
+      "allowed_scopes": [
+        "homepage_only",
+        "feature:meta_description",
+        "feature:head_diagnostics",
+        "feature:structure_visibility_diagnostics"
+      ],
+      "required_features": [
+        "meta_description",
+        "head_diagnostics",
+        "structure_visibility"
+      ],
+      "conflict_blocklist_version": "real-staging-pilot-v1",
+      "min_plugin_version": "0.1.0-real-staging1",
+      "issued_at": "2026-04-19T21:00:00Z"
+    },
+    "entitlement": {
+      "entitlement_id": "ent-final-real-staging-pilot-001",
+      "license_id": "lic-final-real-staging-pilot-001",
+      "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+      "release_channel": "pilot",
+      "allowed_package_version": "0.1.0-real-staging1",
+      "allowed_scopes": [
+        "homepage_only",
+        "feature:meta_description",
+        "feature:head_diagnostics",
+        "feature:structure_visibility_diagnostics"
+      ],
+      "approval_state": "approval_required",
+      "issued_at": "2026-04-19T21:00:00Z"
+    },
+    "build_mode": "local_preview_only",
+    "built_at": "2026-04-19T21:00:00Z"
+  }
+}

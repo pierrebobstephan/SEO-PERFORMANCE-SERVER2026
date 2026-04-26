@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "cutover_id": "external-cutover-final-real-staging-001",
+  "status": "operator_input_required",
+  "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+  "public_base_url": "https://site-optimizer.electri-c-ity-studios-24-7.com",
+  "protected_webhook_url": "https://site-optimizer.electri-c-ity-studios-24-7.com/protected/paypal/webhook",
+  "go_live_decision_state": "approval_required",
+  "items": [
+    {
+      "item_id": "paypal_business_client_id_env_ref",
+      "phase": "paypal_env_refs",
+      "state": "external_input_required",
+      "blocking": true,
+      "owner": "billing_operator",
+      "description": "Inject PAYPAL_BUSINESS_CLIENT_ID into the protected server runtime outside the repository.",
+      "required_evidence": [
+        "protected runtime environment file updated outside the repository",
+        "env ref resolves non-empty on the protected server"
+      ],
+      "source_ref": "config/paypal-business.json",
+      "rollback_reference": "remove the env ref and keep the PayPal webhook receiver inactive"
+    },
+    {
+      "item_id": "paypal_business_client_secret_env_ref",
+      "phase": "paypal_env_refs",
+      "state": "external_input_required",
+      "blocking": true,
+      "owner": "billing_operator",
+      "description": "Inject PAYPAL_BUSINESS_CLIENT_SECRET into the protected server runtime outside the repository.",
+      "required_evidence": [
+        "protected runtime environment file updated outside the repository",
+        "env ref resolves non-empty on the protected server"
+      ],
+      "source_ref": "config/paypal-business.json",
+      "rollback_reference": "remove the env ref and keep the PayPal webhook receiver inactive"
+    },
+    {
+      "item_id": "paypal_business_webhook_id_env_ref",
+      "phase": "paypal_env_refs",
+      "state": "external_input_required",
+      "blocking": true,
+      "owner": "billing_operator",
+      "description": "Inject PAYPAL_BUSINESS_WEBHOOK_ID into the protected server runtime outside the repository.",
+      "required_evidence": [
+        "protected runtime environment file updated outside the repository",
+        "env ref resolves non-empty on the protected server"
+      ],
+      "source_ref": "config/paypal-business.json",
+      "rollback_reference": "remove the env ref and keep the PayPal webhook receiver inactive"
+    },
+    {
+      "item_id": "protected_webhook_local_self_test",
+      "phase": "protected_webhook_runtime",
+      "state": "local_proof_complete",
+      "blocking": false,
+      "owner": "server_managed_bridge",
+      "description": "Local synthetic signature and replay self-test passes inside the workspace.",
+      "required_evidence": [
+        "first synthetic delivery returns HTTP 202 with verified signature state",
+        "second synthetic delivery returns HTTP 409 with replay_suspected state"
+      ],
+      "source_ref": "manifests/previews/final-real-staging-paypal-webhook-prep.json",
+      "rollback_reference": "keep the runtime in local proof-only mode and do not activate the external receiver"
+    },
+    {
+      "item_id": "protected_webhook_target_delivery_verification",
+      "phase": "protected_webhook_runtime",
+      "state": "external_verification_required",
+      "blocking": true,
+      "owner": "platform_operator",
+      "description": "Deliver a real PayPal staging webhook into the protected receiver and capture server-side evidence.",
+      "required_evidence": [
+        "real staging delivery reaches /protected/paypal/webhook on the protected server",
+        "signature verification succeeds with the real PAYPAL_BUSINESS_WEBHOOK_ID",
+        "evidence log entry is captured on the target server"
+      ],
+      "source_ref": "docs/paypal-webhook-verification-flow.md",
+      "rollback_reference": "deactivate webhook delivery and clear the staging receiver approval before retrying"
+    },
+    {
+      "item_id": "protected_webhook_activation_approval",
+      "phase": "protected_webhook_runtime",
+      "state": "approval_required",
+      "blocking": true,
+      "owner": "operator_release_authority",
+      "description": "Record the explicit approval that activates the protected PayPal webhook receiver for real billing events.",
+      "required_evidence": [
+        "named approver recorded outside the repository",
+        "activation window and rollback owner recorded"
+      ],
+      "source_ref": "docs/protected-paypal-webhook-runtime-plan.md",
+      "rollback_reference": "remove activation approval and disable the protected webhook route before live billing resumes"
+    },
+    {
+      "item_id": "signing_key_reference_bound",
+      "phase": "signing_and_delivery",
+      "state": "external_input_required",
+      "blocking": true,
+      "owner": "release_operator",
+      "description": "Bind a real signing key or signing service reference behind local_server_signing_key.",
+      "required_evidence": [
+        "signing reference exists outside the repository",
+        "signing test passes on a non-public protected artifact"
+      ],
+      "source_ref": "docs/secret-and-certificate-handling-plan.md",
+      "rollback_reference": "disconnect the signing reference and keep delivery inactive"
+    },
+    {
+      "item_id": "protected_delivery_target_verified",
+      "phase": "signing_and_delivery",
+      "state": "external_verification_required",
+      "blocking": true,
+      "owner": "release_operator",
+      "description": "Verify the protected delivery infrastructure target and grant rule in the target environment.",
+      "required_evidence": [
+        "protected delivery target is reachable only through the approved protected lane",
+        "delivery grant rule is documented and reversible"
+      ],
+      "source_ref": "docs/plugin-distribution-and-update-model.md",
+      "rollback_reference": "disable protected delivery and fall back to no customer release"
+    },
+    {
+      "item_id": "support_escalation_confirmed",
+      "phase": "human_ownership",
+      "state": "approval_required",
+      "blocking": true,
+      "owner": "support_owner",
+      "description": "Confirm the final support and escalation path behind the published support email.",
+      "required_evidence": [
+        "named escalation owner recorded",
+        "response and handoff path documented"
+      ],
+      "source_ref": "docs/external-inputs-required-for-real-cutover.md",
+      "rollback_reference": "hold customer release until support ownership is re-confirmed"
+    },
+    {
+      "item_id": "billing_invoice_owner_confirmed",
+      "phase": "human_ownership",
+      "state": "approval_required",
+      "blocking": true,
+      "owner": "billing_owner",
+      "description": "Confirm who owns billing and invoice handling when automated reconciliation remains inconclusive.",
+      "required_evidence": [
+        "named billing owner recorded",
+        "invoice exception path documented"
+      ],
+      "source_ref": "docs/external-inputs-required-for-real-cutover.md",
+      "rollback_reference": "pause payment-backed release decisions until the billing owner is re-confirmed"
+    },
+    {
+      "item_id": "customer_release_authority_confirmed",
+      "phase": "final_go_no_go",
+      "state": "approval_required",
+      "blocking": true,
+      "owner": "operator_release_authority",
+      "description": "Confirm the named authority for the final protected customer release decision.",
+      "required_evidence": [
+        "named release approver recorded",
+        "go/no-go decision path documented"
+      ],
+      "source_ref": "docs/operator-release-decision-runbook.md",
+      "rollback_reference": "keep customer release in approval_required state"
+    },
+    {
+      "item_id": "rollback_window_confirmed",
+      "phase": "final_go_no_go",
+      "state": "approval_required",
+      "blocking": true,
+      "owner": "rollback_owner",
+      "description": "Confirm the rollback window, rollback owner and restore path for the real cutover.",
+      "required_evidence": [
+        "rollback owner recorded",
+        "rollback window and restore path documented"
+      ],
+      "source_ref": "docs/global-sales-go-live-gates.md",
+      "rollback_reference": "do not start the external cutover until the rollback window is re-established"
+    }
+  ],
+  "abort_criteria": [
+    "any required PayPal env ref remains missing after the protected server deployment step",
+    "real staging signature verification fails against the protected receiver",
+    "replay protection does not block duplicate delivery on the protected server",
+    "signing or protected delivery ownership remains unconfirmed",
+    "support, billing or release authority remains unconfirmed"
+  ],
+  "rollback_ready_signals": [
+    "protected delivery remains disabled until explicit release approval is recorded",
+    "webhook activation can be reverted without exposing any public route",
+    "previous package or policy remains callable through the rollback channel",
+    "support receives the cutover record and escalation target before release"
+  ],
+  "next_smallest_safe_step": "inject PayPal env refs and verify the protected webhook receiver in the real staging server context"
+}

@@ -59,7 +59,7 @@ class HSO_Meta_Description_Module
             return false;
         }
 
-        if (!empty($this->conflict_state['source_mapping_unclear']) || !empty($this->conflict_state['rank_math_active'])) {
+        if (!empty($this->conflict_state['source_mapping_unclear']) || !empty($this->conflict_state['external_seo_owner_active'])) {
             return false;
         }
 

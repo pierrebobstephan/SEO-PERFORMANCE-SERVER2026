@@ -2,7 +2,7 @@
 
 ## Zweck
 
-Dieses Dokument spezifiziert das technische Lizenzobjekt fuer das spaetere Multi-Domain-WordPress-Produkt.
+Dieses Dokument spezifiziert das technische Lizenzobjekt fuer das kontrolliert produktionsreife WordPress-Produkt.
 
 ## Prueffragen
 
@@ -19,22 +19,24 @@ Dieses Dokument spezifiziert das technische Lizenzobjekt fuer das spaetere Multi
 
 ## Kernfelder
 
-Ein spaeteres Lizenzobjekt sollte mindestens enthalten:
+Ein kontrolliert freigabefaehiges Lizenzobjekt muss mindestens enthalten:
 
 - `license_id`
 - `customer_id`
 - `product_id`
-- `bound_domain`
-- `allowed_subdomains`
-- `allowed_scopes`
+- `domain_binding.bound_domain`
+- `domain_binding.allowed_subdomains`
+- `domain_binding.allowed_scopes`
+- `domain_binding.release_channel`
+- `domain_binding.policy_channel`
+- `domain_binding.rollback_profile_id`
 - `allowed_features`
-- `release_channel`
-- `policy_channel`
-- `rollback_profile_id`
 - `status`
 - `issued_at`
 - `expires_at` oder `non_expiring`
-- `signature` oder andere Integritaetsmetadaten
+- `integrity.signature`
+- `integrity.signature_state`
+- `integrity.signing_key_reference`
 
 ## Statuswerte
 
@@ -50,6 +52,9 @@ Ein spaeteres Lizenzobjekt sollte mindestens enthalten:
 
 - eine Lizenz bindet genau eine Hauptdomain
 - zusaetzliche Subdomains nur, wenn explizit in `allowed_subdomains` dokumentiert
+- jede erlaubte Subdomain muss ein expliziter Nachfahre der `bound_domain` sein
+- `allowed_subdomains` darf die `bound_domain` nicht wiederholen
+- `allowed_subdomains` darf keine Duplikate enthalten
 - keine unbestimmten Wildcard-Freigaben
 - keine automatische Uebertragung auf andere Kundenprojekte
 
@@ -70,12 +75,13 @@ Nicht zulaessig als Default:
 
 ## Integritaet und Vertrauenskette
 
-Die Lizenz muss spaeter pruefbar sein auf:
+Die Lizenz muss pruefbar sein auf:
 
 - Domain-Uebereinstimmung
 - Kanal-Uebereinstimmung
 - Scope-Uebereinstimmung
 - Integritaet des Lizenzobjekts
+- Signaturstatus und Signing-Key-Referenz
 
 ## Rueckweg
 
@@ -93,5 +99,5 @@ Diese Spezifikation ist jetzt lokal an folgende Artefakte gebunden:
 
 ## Status
 
-- Lizenzobjekt-Spezifikation: `blueprint_ready`
+- Lizenzobjekt-Spezifikation: `implemented_locally`
 - produktive Nutzung: `approval_required`

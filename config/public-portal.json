@@ -1,0 +1,59 @@
+{
+  "bind_host": "127.0.0.1",
+  "port": 8781,
+  "selected_subdomain": "site-optimizer.electri-c-ity-studios-24-7.com",
+  "alternative_subdomains": [
+    "wp-optimizer.electri-c-ity-studios-24-7.com",
+    "seo-performance-suite.electri-c-ity-studios-24-7.com"
+  ],
+  "canonical_base_url": "https://site-optimizer.electri-c-ity-studios-24-7.com",
+  "product_name": "Electri City Site Optimizer",
+  "download_gate_state": "approval_required",
+  "translation": {
+    "enabled": true,
+    "provider": "google_cloud_translation_basic_v2",
+    "default_language": "en",
+    "supported_languages": [
+      "en",
+      "de",
+      "fr",
+      "es",
+      "it",
+      "pt",
+      "nl"
+    ],
+    "api_key_env": "GOOGLE_TRANSLATE_API_KEY",
+    "env_load_point": "deploy/systemd/public-portal.env",
+    "activation_state": "operator_input_required"
+  },
+  "public_routes": [
+    "/",
+    "/explore",
+    "/features",
+    "/security",
+    "/plugin",
+    "/licensing",
+    "/buy",
+    "/agencies",
+    "/publishers",
+    "/docs",
+    "/support",
+    "/downloads",
+    "/legal",
+    "/privacy",
+    "/terms",
+    "/refund",
+    "/contact"
+  ],
+  "protected_route_prefixes": [
+    "/operator",
+    "/admin",
+    "/control-plane",
+    "/console",
+    "/api/operator",
+    "/api/license",
+    "/api/customer",
+    "/customer",
+    "/downloads/private"
+  ]
+}

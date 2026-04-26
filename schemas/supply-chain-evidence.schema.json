@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Supply Chain Evidence",
+  "type": "object",
+  "required": ["schema_version", "doctrine_version", "entries"],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "doctrine_version": { "type": "string" },
+    "entries": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

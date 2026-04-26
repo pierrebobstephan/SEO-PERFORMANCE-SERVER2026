@@ -70,6 +70,49 @@ class CycleSmokeTests(unittest.TestCase):
             self.assertTrue((root / "var" / "reports" / "rollups" / "1d.json").exists())
             self.assertTrue((root / "var" / "state" / "ops.sqlite3").exists())
 
+    def test_cycle_blocks_workspace_bootstrap_when_self_healing_is_disabled(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_dir = root / "config"
+            config_dir.mkdir(parents=True)
+            config_path = config_dir / "settings.toml"
+            config_path.write_text(
+                CONFIG_TEMPLATE.replace(
+                    "allow_workspace_self_healing = true",
+                    "allow_workspace_self_healing = false",
+                ),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(RuntimeError, "workspace self-healing is disabled"):
+                run_cycle(config_path, root)
+
+            self.assertFalse((root / "var").exists())
+
+    def test_cycle_runs_with_precreated_layout_when_self_healing_is_disabled(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config_dir = root / "config"
+            config_dir.mkdir(parents=True)
+            config_path = config_dir / "settings.toml"
+            config_path.write_text(
+                CONFIG_TEMPLATE.replace(
+                    "allow_workspace_self_healing = true",
+                    "allow_workspace_self_healing = false",
+                ),
+                encoding="utf-8",
+            )
+
+            (root / "var" / "state" / "json").mkdir(parents=True)
+            (root / "var" / "reports" / "rollups").mkdir(parents=True)
+            (root / "var" / "logs").mkdir(parents=True)
+
+            result = run_cycle(config_path, root)
+
+            self.assertEqual(result.status, "validated")
+            self.assertTrue((root / "var" / "reports" / "latest.json").exists())
+            self.assertTrue((root / "var" / "state" / "ops.sqlite3").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

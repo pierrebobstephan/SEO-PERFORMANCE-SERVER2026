@@ -1,0 +1,23 @@
+{
+  "valid": true,
+  "issues": [],
+  "renewal_prep": {
+    "renewal_id": "renewal-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "payment_method": "paypal_business",
+    "current_subscription_status": "staging_only_pilot",
+    "renewal_state": "operator_review_required",
+    "renewal_window_state": "not_open",
+    "renewal_delivery_state": "approval_required",
+    "invoice_confirmation_required": true,
+    "release_decision_path": "manifests/previews/final-real-staging-protected-customer-release-decision.json",
+    "approval_required_reasons": [
+      "real renewal billing and invoice confirmation remain external to the workspace",
+      "renewal delivery stays protected and operator-gated",
+      "no automatic entitlement extension is enabled in the staging-only path"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

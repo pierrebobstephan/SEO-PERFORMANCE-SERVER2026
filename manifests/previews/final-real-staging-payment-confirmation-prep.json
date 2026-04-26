@@ -1,0 +1,27 @@
+{
+  "valid": true,
+  "issues": [],
+  "payment_confirmation_prep": {
+    "payment_confirmation_id": "payment-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "order_id": "order-final-real-staging-pilot-001",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "payment_method": "paypal_business",
+    "payment_processor_label": "PayPal Business",
+    "payment_confirmation_state": "approval_required",
+    "invoice_state": "approval_required",
+    "invoice_reference": "operator_input_required",
+    "invoice_policy_note": "Invoices are issued for completed orders.",
+    "customer_contact_state": "email_support_active",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "payer_identity_state": "operator_input_required",
+    "release_authorization_precondition": "payment_and_invoice_confirmation_required",
+    "approval_required_reasons": [
+      "real PayPal Business confirmation is not performed inside the workspace",
+      "invoice issuance remains operator-gated and external to the local preview path",
+      "payer identity and order confirmation still require operator review"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

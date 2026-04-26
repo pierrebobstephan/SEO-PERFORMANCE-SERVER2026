@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "report_id": "electri-city-root-private-recommend-only",
+  "bound_domain": "electri-c-ity-studios-24-7.com",
+  "runtime_guardrail_snapshot": {
+    "plugin_mode": "safe_mode",
+    "optimization_gate": "recommend_only",
+    "coexistence_mode": "rank_math_controlled_coexistence",
+    "active_seo_plugin": "seo-by-rank-math/rank-math.php",
+    "source_mapping_confirmed": true,
+    "operator_inputs_complete": true
+  },
+  "pages": [
+    {
+      "label": "Homepage",
+      "page_type": "homepage",
+      "url": "https://electri-c-ity-studios-24-7.com/"
+    },
+    {
+      "label": "About Us",
+      "page_type": "about",
+      "url": "https://electri-c-ity-studios-24-7.com/about-us/"
+    },
+    {
+      "label": "Impressum",
+      "page_type": "legal",
+      "url": "https://electri-c-ity-studios-24-7.com/impressum/"
+    },
+    {
+      "label": "Privacy Policy",
+      "page_type": "legal",
+      "url": "https://electri-c-ity-studios-24-7.com/privacy-policy/"
+    }
+  ],
+  "output": {
+    "json_path": "var/reports/private-site/electri-city-root-recommend-only.latest.json",
+    "markdown_path": "var/reports/private-site/electri-city-root-recommend-only.latest.md"
+  },
+  "email_delivery": {
+    "enabled": true,
+    "recipient": "pierre.stephan1@outlook.com",
+    "subject_prefix": "[Site Optimizer Private Report]",
+    "smtp_profile": "ionos_starttls_submission",
+    "smtp_host": "smtp.ionos.de",
+    "smtp_port": 587,
+    "starttls": true,
+    "env_load_point": "deploy/systemd/private-site-report.env",
+    "sender_env": "SMTP_FROM",
+    "smtp_username_env": "SMTP_USER",
+    "smtp_password_env": "SMTP_PASSWORD",
+    "activation_state": "operator_input_required"
+  }
+}

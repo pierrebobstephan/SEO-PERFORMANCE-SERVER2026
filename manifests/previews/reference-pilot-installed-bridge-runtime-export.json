@@ -1,0 +1,80 @@
+{
+  "runtime_context": {
+    "plugin_version": "0.1.0-real-staging1",
+    "current_domain": "wp.electri-c-ity-studios-24-7.com",
+    "path_base": "/wordpress/",
+    "mode": "safe_mode",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "domain_match": true,
+    "source_mapping_confirmed": true,
+    "operator_inputs_complete": true,
+    "url_normalization_clean": true,
+    "baseline_captured": true,
+    "open_blockers": [],
+    "next_smallest_safe_step": "stay in staging, validate the reversible homepage meta preparation path, and keep rollback ready",
+    "license_domain_scope_panel": {
+      "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+      "current_domain": "wp.electri-c-ity-studios-24-7.com",
+      "domain_match": "green"
+    },
+    "installation_health_signals": {
+      "blocking_conflicts": "green",
+      "optimization_gate": "reversible_change_ready"
+    },
+    "operator_input_state": {
+      "fields": {
+        "backup_confirmation": "confirmed",
+        "restore_confirmation": "confirmed",
+        "rollback_owner": "server_managed_bridge",
+        "validation_owner": "server_managed_bridge"
+      },
+      "missing_fields": [],
+      "complete": true
+    },
+    "source_mapping_state": {
+      "homepage_meta_description_single": true,
+      "head_meta_output_single": true,
+      "double_output_detected": false,
+      "double_output_verification": "not_detected",
+      "operator_confirmation": true,
+      "blocking_requirements": [],
+      "confirmed": true
+    },
+    "reference_pilot_runtime_snapshot": {
+      "schema_version": 1,
+      "source": "installed_bridge_runtime_snapshot",
+      "status": "captured_from_installed_bridge",
+      "captured_at": "2026-04-03T00:00:00Z",
+      "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+      "current_domain": "wp.electri-c-ity-studios-24-7.com",
+      "path_base": "/wordpress/",
+      "domain_match": true,
+      "url_normalization_clean": true,
+      "baseline_captured": true,
+      "blocking_conflicts": "green",
+      "mode": "safe_mode",
+      "optimization_gate": "reversible_change_ready",
+      "operator_inputs_complete": true,
+      "source_mapping_confirmed": true,
+      "open_blockers": [],
+      "next_smallest_safe_step": "stay in staging, validate the reversible homepage meta preparation path, and keep rollback ready",
+      "notes": [
+        "Captured from the installed Site Optimizer Bridge runtime.",
+        "Reference pilot closeout inputs are recorded in the installed bridge runtime."
+      ]
+    }
+  },
+  "validation_snapshot": {
+    "baseline_status": {
+      "captured": true,
+      "url_normalization_clean": true
+    },
+    "operator_inputs": {
+      "complete": true
+    },
+    "source_mapping": {
+      "confirmed": true
+    },
+    "open_blockers": []
+  }
+}

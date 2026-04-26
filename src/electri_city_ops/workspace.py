@@ -38,15 +38,45 @@ class WorkspaceGuard:
         json_state_dir: Path,
         reports_dir: Path,
         logs_dir: Path,
+        *,
+        allow_create_dirs: bool = True,
     ) -> tuple[WorkspacePaths, list[ActionPlan]]:
         actions: list[ActionPlan] = []
-        directories = [
-            json_state_dir.parent,
-            json_state_dir,
-            reports_dir,
-            reports_dir / "rollups",
-            logs_dir,
-        ]
+        directories = list(
+            dict.fromkeys(
+                [
+                    database.parent,
+                    json_state_dir.parent,
+                    json_state_dir,
+                    reports_dir,
+                    reports_dir / "rollups",
+                    logs_dir,
+                ]
+            )
+        )
+        if not allow_create_dirs:
+            missing = [
+                directory.relative_to(self.root).as_posix()
+                for directory in directories
+                if not self.resolve_inside(directory).exists()
+            ]
+            if missing:
+                raise RuntimeError(
+                    "workspace self-healing is disabled; required directories are missing: "
+                    + ", ".join(sorted(missing))
+                )
+            return (
+                WorkspacePaths(
+                    root=self.root,
+                    database=database,
+                    json_state_dir=json_state_dir,
+                    reports_dir=reports_dir,
+                    rollups_dir=reports_dir / "rollups",
+                    logs_dir=logs_dir,
+                ),
+                actions,
+            )
+
         for directory in directories:
             if not directory.exists():
                 self.ensure_directory(directory)
@@ -67,8 +97,6 @@ class WorkspaceGuard:
                 )
             else:
                 self.ensure_directory(directory)
-        if not database.parent.exists():
-            self.ensure_directory(database.parent)
         return (
             WorkspacePaths(
                 root=self.root,
@@ -80,4 +108,3 @@ class WorkspaceGuard:
             ),
             actions,
         )
-

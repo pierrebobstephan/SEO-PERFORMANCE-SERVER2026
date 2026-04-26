@@ -1,0 +1,17 @@
+[Unit]
+Description=Electri City Public Product Portal
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rocket
+WorkingDirectory=/opt/electri-city-ops
+EnvironmentFile=-/opt/electri-city-ops/deploy/systemd/public-portal.env
+Environment=PYTHONPATH=/opt/electri-city-ops/src
+ExecStart=/usr/bin/python3 /opt/electri-city-ops/tools/run_public_portal.py --host 127.0.0.1 --port 8781
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

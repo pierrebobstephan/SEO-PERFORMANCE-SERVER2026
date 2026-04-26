@@ -23,12 +23,16 @@ Dieses Dokument beschreibt die kontrollierte Koexistenz zwischen dem eigenen Plu
 - keine abrupte Deaktivierung
 - keine erzwungene Doppel-Ausgabe
 - eigenes Plugin bleibt inaktiv, solange die Source-Ownership unklar ist
+- bestaetigte Single-Source-Ownership unter Rank Math hebt den Zustand auf `recommend_only`, nicht auf sofortige Live-Uebernahme
+- reversible oder aktive Live-Ausgabe bleibt gesperrt, solange ein externer SEO-Owner die Ausgabe kontrolliert
 
 ## Konfliktlogik
 
-- ein aktives SEO-Plugin signalisiert mindestens `source_mapping_unclear`
+- mehrere aktive SEO-Plugins signalisieren `source_mapping_unclear`
+- genau ein aktives SEO-Plugin kann als kontrollierter Koexistenzfall modelliert werden
 - mehrere aktive SEO-Plugins sind `safe_mode`
 - Rank Math plus unklare Homepage-Description-Quelle verhindern aktive Plugin-Ausgabe
+- Rank Math plus bestaetigte Single-Source-Ownership erlauben bounded Diagnostics und `recommend_only`, aber keine Live-Uebernahme durch die Bridge
 
 ## Migrationslogik
 
@@ -42,4 +46,5 @@ Dieses Dokument beschreibt die kontrollierte Koexistenz zwischen dem eigenen Plu
 ## Status
 
 - Koexistenzmodell: `blueprint_ready`
+- kontrollierte Koexistenz: `recommend_only` nach gruenen Ownership-Signalen
 - reale Ablosung: `approval_required`

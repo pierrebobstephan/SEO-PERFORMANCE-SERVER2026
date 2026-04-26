@@ -71,6 +71,28 @@ Dieses Dokument listet die aktuell fehlenden Secrets, Freigaben und Zustimmungen
 - Analytics-Zugang
 - weiterfuehrende CDN- oder Cache-Diagnosedaten
 
+## Zusaetzlich fehlend fuer globalen Verkaufs- und Fulfillment-Cutover
+
+### Secrets oder Referenzen
+
+- reale `PAYPAL_BUSINESS_CLIENT_ID`-Referenz im Zielbetrieb
+- reale `PAYPAL_BUSINESS_CLIENT_SECRET`-Referenz im Zielbetrieb
+- reale `PAYPAL_BUSINESS_WEBHOOK_ID`-Referenz im Zielbetrieb
+- produktionsreife Signing-Key- oder Signing-Service-Referenz
+
+### Freigaben
+
+- Freigabe fuer echten PayPal-Business-Zahlungsabgleich
+- Freigabe fuer echten Rechnungsfluss
+- Freigabe fuer geschuetzte Delivery ausserhalb des Workspace
+
+### Verantwortlichkeiten
+
+- verbindliche Support-Eskalation
+- verbindliche Billing-/Invoice-Verantwortung
+- verbindliche Operator-Freigabe fuer Customer Release
+- verbindliche serverseitige Validation- und Rollback-Verantwortung im Realbetrieb
+
 ## Gate-Folgen
 
 ### Cloudflare-bezogene Change-Blueprints
@@ -87,7 +109,7 @@ Dieses Dokument listet die aktuell fehlenden Secrets, Freigaben und Zustimmungen
 
 ## Doktrinische Auswirkung
 
-Nach [AGENTS.md](/opt/electri-city-ops/AGENTS.md) und [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md) darf das Fehlen dieser Secrets und Freigaben niemals durch implizite Annahmen, Workarounds oder ausgedehnte Rechte kompensiert werden.
+Nach [AGENTS.md](/opt/electri-city-ops/AGENTS.md), [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md) und der integrierten 8.0-Quellfassung darf das Fehlen dieser Secrets und Freigaben niemals durch implizite Annahmen, Workarounds oder ausgedehnte Rechte kompensiert werden.
 
 Folge:
 

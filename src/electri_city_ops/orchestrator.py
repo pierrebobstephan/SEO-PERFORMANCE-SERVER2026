@@ -66,6 +66,7 @@ def run_cycle(config_path: str | Path, workspace_root: str | Path | None = None)
         json_state_dir=config.json_state_dir,
         reports_dir=config.reports_dir,
         logs_dir=config.logs_dir,
+        allow_create_dirs=config.allow_workspace_self_healing,
     )
 
     logger = configure_logging(workspace_paths.logs_dir)

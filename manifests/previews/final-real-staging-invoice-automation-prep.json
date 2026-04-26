@@ -1,0 +1,33 @@
+{
+  "config_valid": true,
+  "config_issues": [],
+  "valid": true,
+  "issues": [],
+  "invoice_automation_prep": {
+    "automation_id": "invoice-auto-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "payment_method": "paypal_business",
+    "selected_plan": "Guardian Core Monthly",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "create_draft_state": "ready_when_server_credentials_present",
+    "send_invoice_state": "ready_when_server_credentials_present",
+    "reconcile_payment_state": "webhook_and_operator_confirmation_required",
+    "server_validation_state": "server_managed_bridge",
+    "server_rollback_state": "server_managed_bridge",
+    "invoice_currency": "EUR",
+    "invoice_note": "Invoices are issued for completed orders.",
+    "checkout_record_path": "manifests/previews/final-real-staging-checkout-record-prep.json",
+    "approval_required_reasons": [
+      "invoice draft, send and reconciliation stay protected until credentials and webhook verification are present",
+      "server-managed validation and rollback remain mandatory before any buyer-facing release is allowed",
+      "no public invoice portal, no public checkout and no customer login are exposed in this path"
+    ],
+    "built_at": "2026-04-01T00:00:00Z"
+  },
+  "input_refs": {
+    "paypal_config": "config/paypal-business.json",
+    "checkout_record": "manifests/previews/final-real-staging-checkout-record-prep.json",
+    "install_pack": "manifests/previews/final-real-staging-protected-customer-install-pack.json"
+  }
+}

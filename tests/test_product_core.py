@@ -32,7 +32,11 @@ def _sample_license() -> dict[str, object]:
         "allowed_features": ["meta_description"],
         "issued_at": "2026-03-29T00:00:00Z",
         "non_expiring": True,
-        "signature": "signed",
+        "integrity": {
+            "signature": "signed",
+            "signature_state": "trusted",
+            "signing_key_reference": "test-key",
+        },
     }
 
 
@@ -62,6 +66,20 @@ class ProductCoreTests(unittest.TestCase):
     def test_license_object_is_valid_for_sample(self) -> None:
         channels = load_release_channels(Path(".")).channels
         self.assertEqual(validate_license_object(_sample_license(), channels), [])
+
+    def test_license_object_rejects_non_descendant_allowed_subdomain(self) -> None:
+        channels = load_release_channels(Path(".")).channels
+        license_object = _sample_license()
+        license_object["domain_binding"]["allowed_subdomains"] = ["other.test"]
+        issues = validate_license_object(license_object, channels)
+        self.assertTrue(any("explicit descendant" in item for item in issues))
+
+    def test_license_object_requires_integrity_or_signature(self) -> None:
+        channels = load_release_channels(Path(".")).channels
+        license_object = _sample_license()
+        license_object.pop("integrity", None)
+        issues = validate_license_object(license_object, channels)
+        self.assertIn("license object requires integrity or signature", issues)
 
     def test_build_domain_runtime_profile_returns_expected_values(self) -> None:
         channels = load_release_channels(Path(".")).channels
@@ -138,6 +156,48 @@ class ProductCoreTests(unittest.TestCase):
             scope_confirmed=True,
         )
         self.assertEqual(decision.mode, "safe_mode")
+
+    def test_plugin_mode_uses_safe_mode_when_signature_is_untrusted(self) -> None:
+        channels = load_release_channels(Path(".")).channels
+        license_object = _sample_license()
+        license_object["status"] = "active_scoped"
+        license_object["integrity"]["signature_state"] = "operator_signing_required"
+        decision = evaluate_local_plugin_mode(
+            license_object,
+            "example.com",
+            channels,
+            known_conflicts=False,
+            source_mapping_confirmed=True,
+            scope_confirmed=True,
+        )
+        self.assertEqual(decision.mode, "safe_mode")
+
+    def test_plugin_mode_requires_policy_and_rollback_before_active_scoped(self) -> None:
+        channels = load_release_channels(Path(".")).channels
+        license_object = _sample_license()
+        license_object["status"] = "active_scoped"
+        license_object["domain_binding"]["policy_channel"] = "rollback"
+        decision = evaluate_local_plugin_mode(
+            license_object,
+            "example.com",
+            channels,
+            known_conflicts=False,
+            source_mapping_confirmed=True,
+            scope_confirmed=True,
+        )
+        self.assertEqual(decision.mode, "approval_required")
+
+        license_object["domain_binding"]["policy_channel"] = "pilot"
+        license_object["domain_binding"]["rollback_profile_id"] = ""
+        decision = evaluate_local_plugin_mode(
+            license_object,
+            "example.com",
+            channels,
+            known_conflicts=False,
+            source_mapping_confirmed=True,
+            scope_confirmed=True,
+        )
+        self.assertEqual(decision.mode, "approval_required")
 
     def test_plugin_mode_respects_non_active_release_channel(self) -> None:
         channels = load_release_channels(Path(".")).channels

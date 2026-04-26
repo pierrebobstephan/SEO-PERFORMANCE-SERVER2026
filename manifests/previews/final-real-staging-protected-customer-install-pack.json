@@ -1,0 +1,78 @@
+{
+  "valid": true,
+  "issues": [],
+  "install_pack": {
+    "pack_id": "cust-install-pack-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "delivery_channel": "protected_local_only",
+    "public_delivery": false,
+    "customer_login": false,
+    "license_api_exposed": false,
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "package": {
+      "archive_path": "dist/staging-only/site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+      "package_filename": "site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+      "plugin_version": "0.1.0-real-staging1",
+      "package_sha256": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
+      "release_channel": "pilot"
+    },
+    "artifacts": {
+      "license_object_path": "manifests/previews/final-real-staging-pilot-license-object-preview.json",
+      "manifest_path": "manifests/previews/final-real-staging-pilot-manifest-preview.json",
+      "entitlement_path": "manifests/previews/final-real-staging-pilot-entitlement-preview.json",
+      "rollback_profile_path": "manifests/previews/final-real-staging-pilot-rollback-profile-preview.json",
+      "validation_checklist_path": "manifests/previews/final-real-staging-pilot-validation-checklist-preview.json",
+      "install_runbook_path": "docs/real-install-runbook.md",
+      "safe_mode_runbook_path": "docs/real-safe-mode-test-runbook.md"
+    },
+    "customer_visibility": {
+      "license_id": "lic-final-real-staging-pilot-001",
+      "subscription_status": "staging_only_pilot",
+      "renewal_state": "operator_review_required",
+      "renewal_window_state": "not_open",
+      "failed_payment_recovery_state": "not_needed",
+      "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+      "domain_scope_summary": "One exact licensed staging domain bound to wp.electri-c-ity-studios-24-7.com for the protected pilot.",
+      "documentation_access": "included_local_docs",
+      "licensed_download_access": "protected_local_bundle_only",
+      "license_integrity_state": "operator_signing_required",
+      "support_state": "email_support_active",
+      "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+      "activation_state": "approval_required",
+      "customer_visibility_note": "This installation keeps scope, health, delivery and cutover signals buyer-readable inside protected admin without exposing public delivery, login or customer execution routes.",
+      "subscription_lifecycle_note": "Renewal, grace handling and failed-payment recovery remain operator- and server-governed so the recovery model stays explainable and rollback-aware."
+    },
+    "protected_fulfillment": {
+      "install_pack_state": "local_preview_ready",
+      "manifest_state": "local_preview_ready",
+      "rollback_state": "local_preview_ready",
+      "signing_target": "local_server_signing_key",
+      "delivery_target": "protected_signed_download_on_hetzner",
+      "delivery_grant_rule": "payment_confirmed_and_exact_domain_bound_and_license_issued_and_signed_and_operator_approved",
+      "customer_release_decision_state": "approval_required",
+      "renewal_delivery_state": "approval_required",
+      "failed_payment_recovery_delivery_state": "approval_required",
+      "expected_home_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/",
+      "expected_scoped_page_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/beispiel-seite/"
+    },
+    "approval_required_reasons": [
+      "real customer fulfillment remains protected and operator-gated",
+      "public delivery, login, and open license API remain disabled",
+      "staging-only install path still requires validation, rollback, and support ownership"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  },
+  "input_refs": {
+    "bridge_config": "packages/wp-plugin/hetzner-seo-ops/config/bridge-config.json",
+    "package_metadata": "manifests/previews/final-real-staging-pilot-package-metadata.json",
+    "license_object": "manifests/previews/final-real-staging-pilot-license-object-preview.json",
+    "manifest": "manifests/previews/final-real-staging-pilot-manifest-preview.json",
+    "entitlement": "manifests/previews/final-real-staging-pilot-entitlement-preview.json",
+    "rollback_profile": "manifests/previews/final-real-staging-pilot-rollback-profile-preview.json",
+    "validation_checklist": "manifests/previews/final-real-staging-pilot-validation-checklist-preview.json"
+  },
+  "license_object_status": "approval_required",
+  "entitlement_approval_state": "approval_required",
+  "rollback_registry_state": "approval_required",
+  "validation_status": "approval_required"
+}

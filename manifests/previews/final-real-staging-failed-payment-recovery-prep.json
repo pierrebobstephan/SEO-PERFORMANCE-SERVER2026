@@ -1,0 +1,29 @@
+{
+  "valid": true,
+  "issues": [],
+  "failed_payment_recovery_prep": {
+    "recovery_id": "recovery-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "payment_method": "paypal_business",
+    "recovery_state": "not_needed",
+    "grace_window_state": "not_started",
+    "customer_release_impact": "hold_future_delivery_only",
+    "immediate_site_effect": "none",
+    "release_decision_state": "approval_required",
+    "invoice_confirmation_state": "approval_required",
+    "approval_required_reasons": [
+      "failed-payment recovery must not trigger site changes, login changes or public delivery",
+      "grace handling, retry logic and release suspension remain external operator processes",
+      "no automated cancellation or rollback is executed from the workspace"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  },
+  "input_refs": {
+    "install_pack": "manifests/previews/final-real-staging-protected-customer-install-pack.json",
+    "checkout_record": "manifests/previews/final-real-staging-checkout-record-prep.json",
+    "payment_confirmation": "manifests/previews/final-real-staging-payment-confirmation-prep.json",
+    "invoice_confirmation": "manifests/previews/final-real-staging-invoice-confirmation-prep.json",
+    "release_decision": "manifests/previews/final-real-staging-protected-customer-release-decision.json"
+  }
+}

@@ -2,36 +2,23 @@
 
 ## Zweck
 
-Dieses Dokument beschreibt die bindende Policy-Struktur fuer die lokale Doctrine-Enforcement-Schicht.
-
-## Prueffragen
-
-1. Ist es doktrinkonform?
-   Ja. Die Policy bildet die Guardrails aus [AGENTS.md](/opt/electri-city-ops/AGENTS.md) und [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md) technisch ab.
-2. Bleibt es innerhalb des Workspace?
-   Ja. Policy-Datei und Schema liegen lokal in `config/` und `schemas/`.
-3. Hat es irgendeine externe Wirkung?
-   Nein.
-4. Braucht es Approval?
-   Nein. Es ist eine interne Schutzschicht.
-5. Ist ein Rollback oder Rueckweg beschrieben?
-   Ja. Rueckweg ist die lokale Ruecknahme dieser Policy-Artefakte.
+Dieses Dokument beschreibt die bindende 8.0-Policy-Struktur fuer die lokale Doctrine-Enforcement-Schicht.
 
 ## Aktive Dateien
 
-- [doctrine-policy.json](/opt/electri-city-ops/config/doctrine-policy.json)
-- [doctrine-policy.schema.json](/opt/electri-city-ops/schemas/doctrine-policy.schema.json)
-- [pilot-simulation.schema.json](/opt/electri-city-ops/schemas/pilot-simulation.schema.json)
+- [config/doctrine-policy.json](/opt/electri-city-ops/config/doctrine-policy.json)
+- [schemas/doctrine-policy.schema.json](/opt/electri-city-ops/schemas/doctrine-policy.schema.json)
+- [schemas/pilot-simulation.schema.json](/opt/electri-city-ops/schemas/pilot-simulation.schema.json)
 
-## Policy-Felder
+## Pflichtfelder der 8.0-Policy
 
 ### `policy_version`
 
-- Versionskennung der lokalen Guardrail-Policy
+- Versionskennung der lokalen 8.0-Guardrail-Policy
 
 ### `canonical_docs`
 
-- bindende Referenzen auf `AGENTS.md`, `docs/system-doctrine.md` und `docs/doctrine-alignment-report.md`
+- bindende Referenzen auf `AGENTS.md`, `docs/system-doctrine.md`, `Doktrin04.04.2026-Version-8.0.txt` und `docs/doctrine-alignment-report.md`
 
 ### `defaults`
 
@@ -53,6 +40,21 @@ Dieses Dokument beschreibt die bindende Policy-Struktur fuer die lokale Doctrine
 ### `gates`
 
 - erlaubte Gate-Zustaende fuer lokale Guardrail-Entscheidungen
+- einschliesslich `safe_mode`, `controlled_apply`, `containment_mode`, `rollback_mode` und weiterer 8.0-Zustaende
+
+### `ai_management`
+
+- `system_register_required`
+- `impact_assessment_required`
+- `provenance_required`
+- `supply_chain_verification_required`
+- `human_oversight_required_for_external_effects`
+- `risk_classes`
+
+### `lifecycle`
+
+- `required_stages`
+- bildet den verbindlichen 8.0-Lebenszyklus von `govern` bis `archive_delete` ab
 
 ### `scopes`
 
@@ -66,22 +68,14 @@ Dieses Dokument beschreibt die bindende Policy-Struktur fuer die lokale Doctrine
 
 ### `simulation`
 
-- Pflichtfelder fuer Simulationsobjekte vor spaeteren Piloten
+- Pflichtfelder fuer Simulationsobjekte vor spaeteren Piloten oder externer Wirkung
+- einschliesslich `risk_class`, `impact_assessment_ref`, `evidence_plan` und `aftercare_window`
 
 ## Lokale Wirkung
 
-Die Policy sperrt keine Dokumentation und keine lokale Analyse. Sie steuert nur:
+Die Policy steuert:
 
 - wie lokale Gate-Entscheidungen berechnet werden
 - wann externe Schritte technisch auf `approval_required` oder `blocked` fallen
-- wann Scope- oder Blast-Radius-Angaben unzulaessig sind
-
-## Nicht freigegebene Bereiche
-
-Die Policy ist bewusst so definiert, dass alle echten externen Massnahmen ohne weitere Inputs und Freigaben nur in:
-
-- `observe_only`
-- `blueprint_ready`
-- `approval_required`
-
-enden duerfen.
+- wann AI-Register-, Impact-, Provenance-, Supply-Chain- oder Human-Oversight-Luecken einen Schritt sperren
+- welche kanonische Quellenkette fuer die Doktrin bindend gilt

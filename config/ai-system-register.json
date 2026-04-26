@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "doctrine_version": "8.0",
+  "systems": [
+    {
+      "system_id": "suite_runtime_core",
+      "system_name": "Electri City Ops Suite Runtime",
+      "version": "0.1.0",
+      "owner": "pierre.stephan1@electri-c-ity-studios.com",
+      "validator": "server_managed_bridge",
+      "operator": "server_managed_bridge",
+      "auditor": "approval_required",
+      "purpose": "Workspace-local orchestration, validation, guarded build flows and productization evidence.",
+      "scope": "workspace_local_only",
+      "jurisdiction": "DE/EU",
+      "risk_class": "R0",
+      "customer_near": false,
+      "external_effects_possible": false,
+      "impact_assessment_ref": "ia-suite-runtime-core-v1",
+      "fallback_state": "observe_only",
+      "kill_switch": "stop_local_processes_and_do_not_emit_external_writes",
+      "rollback_path": "restore_local_artifacts_and_rebuild_from_workspace_sources",
+      "data_classes": [
+        "internal",
+        "vertraulich",
+        "retrieval-geeignet"
+      ],
+      "monitor_signals": [
+        "python_validation",
+        "schema_checks",
+        "unit_tests"
+      ],
+      "external_write_paths": [],
+      "layer_governance": {
+        "model": "repo-governed local reasoning only",
+        "policy": "doctrine-8.0-enforced",
+        "prompt": "repo-controlled operator instructions",
+        "memory": "workspace-state-only",
+        "tool": "workspace-bounded tooling",
+        "agent": "single-agent bounded execution"
+      }
+    },
+    {
+      "system_id": "wordpress_bridge_plugin",
+      "system_name": "Site Optimizer Bridge Plugin",
+      "version": "0.1.0-real-staging1",
+      "owner": "pierre.stephan1@electri-c-ity-studios.com",
+      "validator": "server_managed_bridge",
+      "operator": "server_managed_bridge",
+      "auditor": "approval_required",
+      "purpose": "Domain-bound WordPress runtime guardrails, baseline capture and reversible optimization gating.",
+      "scope": "domain-bound_wordpress_staging_only",
+      "jurisdiction": "DE/EU",
+      "risk_class": "R1",
+      "customer_near": true,
+      "external_effects_possible": true,
+      "impact_assessment_ref": "ia-wordpress-bridge-plugin-v1",
+      "fallback_state": "observe_only",
+      "kill_switch": "safe_mode_or_observe_only_and_no_unapproved_write",
+      "rollback_path": "domain-bound rollback profile with server-managed validation",
+      "data_classes": [
+        "intern",
+        "vertraulich",
+        "retrieval-geeignet"
+      ],
+      "monitor_signals": [
+        "baseline_snapshot",
+        "conflict_picture",
+        "optimization_gate"
+      ],
+      "external_write_paths": [
+        "bounded_wordpress_runtime_when_active_scoped"
+      ],
+      "layer_governance": {
+        "model": "not_model_bound_runtime",
+        "policy": "bridge_policy_channel_and_doctrine_8.0",
+        "prompt": "n/a",
+        "memory": "wordpress_option_state_only",
+        "tool": "bounded_wordpress_hooks_only",
+        "agent": "guarded_plugin_runtime"
+      }
+    },
+    {
+      "system_id": "public_portal_surface",
+      "system_name": "Site Optimizer Public Portal",
+      "version": "0.1.0",
+      "owner": "pierre.stephan1@electri-c-ity-studios.com",
+      "validator": "server_managed_bridge",
+      "operator": "server_managed_bridge",
+      "auditor": "approval_required",
+      "purpose": "Public marketing, legal and buyer-information surface without public delivery, login or billing execution.",
+      "scope": "public_read_only_information_surface",
+      "jurisdiction": "DE/EU",
+      "risk_class": "R1",
+      "customer_near": true,
+      "external_effects_possible": false,
+      "impact_assessment_ref": "ia-public-portal-surface-v1",
+      "fallback_state": "observe_only",
+      "kill_switch": "serve_local_static_safe_surface_only",
+      "rollback_path": "revert_public_portal_templates_and_local_config",
+      "data_classes": [
+        "oeffentlich",
+        "intern"
+      ],
+      "monitor_signals": [
+        "route_protection",
+        "legal_surface_sync",
+        "buyer_copy_consistency"
+      ],
+      "external_write_paths": [],
+      "layer_governance": {
+        "model": "content-and-template-driven",
+        "policy": "public-surface-guardrails",
+        "prompt": "n/a",
+        "memory": "none",
+        "tool": "local_http_surface_only",
+        "agent": "no_customer_execution"
+      }
+    },
+    {
+      "system_id": "protected_paypal_webhook_receiver",
+      "system_name": "Protected PayPal Webhook Receiver",
+      "version": "0.1.0",
+      "owner": "pierre.stephan1@electri-c-ity-studios.com",
+      "validator": "server_managed_bridge",
+      "operator": "server_managed_bridge",
+      "auditor": "approval_required",
+      "purpose": "Protected billing-event intake with signature verification, replay protection and operator-governed routing.",
+      "scope": "protected_paypal_billing_events_only",
+      "jurisdiction": "DE/EU",
+      "risk_class": "R2",
+      "customer_near": true,
+      "external_effects_possible": true,
+      "impact_assessment_ref": "ia-protected-paypal-webhook-receiver-v1",
+      "fallback_state": "approval_required",
+      "kill_switch": "reject_event_and_hold_release_when_signature_or_scope_is_unclear",
+      "rollback_path": "disable_receiver_activation_and fall back to operator review only",
+      "data_classes": [
+        "intern",
+        "vertraulich",
+        "sicherheitskritisch"
+      ],
+      "monitor_signals": [
+        "verification_state",
+        "replay_state",
+        "routing_state"
+      ],
+      "external_write_paths": [
+        "protected_operator_server_governed_routing_only"
+      ],
+      "layer_governance": {
+        "model": "no_generative_model_in_receiver",
+        "policy": "paypal_webhook_scope_and_signature_policy",
+        "prompt": "n/a",
+        "memory": "nonce_registry_and_evidence_log_only",
+        "tool": "protected_runtime_http_handler",
+        "agent": "server_governed_event_router"
+      }
+    },
+    {
+      "system_id": "protected_fulfillment_chain",
+      "system_name": "Protected Customer Fulfillment Chain",
+      "version": "0.1.0",
+      "owner": "pierre.stephan1@electri-c-ity-studios.com",
+      "validator": "server_managed_bridge",
+      "operator": "server_managed_bridge",
+      "auditor": "approval_required",
+      "purpose": "Protected issuance, signed delivery prep, release decisions and customer visibility without public delivery.",
+      "scope": "protected_domain_bound_release_chain",
+      "jurisdiction": "DE/EU",
+      "risk_class": "R2",
+      "customer_near": true,
+      "external_effects_possible": true,
+      "impact_assessment_ref": "ia-protected-fulfillment-chain-v1",
+      "fallback_state": "approval_required",
+      "kill_switch": "hold_delivery_grant_and_keep_customer_release_protected",
+      "rollback_path": "revoke_release_decision_and return to protected operator review",
+      "data_classes": [
+        "intern",
+        "vertraulich",
+        "personenbezogen"
+      ],
+      "monitor_signals": [
+        "payment_confirmation_state",
+        "invoice_confirmation_state",
+        "delivery_grant_state"
+      ],
+      "external_write_paths": [
+        "protected_signed_download_on_hetzner_after_approval"
+      ],
+      "layer_governance": {
+        "model": "fulfillment-policy-driven",
+        "policy": "protected_release_grant_and_domain_binding_policy",
+        "prompt": "n/a",
+        "memory": "local_preview_and_manifest_state_only",
+        "tool": "build_and_release_toolchain",
+        "agent": "operator_governed_release_flow"
+      }
+    }
+  ]
+}

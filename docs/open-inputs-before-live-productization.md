@@ -2,36 +2,46 @@
 
 ## Zweck
 
-Dieses Dokument sammelt die minimalen offenen Inputs vor spaeterer realer Produktisierung.
+Dieses Dokument sammelt nur die Inputs, die fuer den echten Referenzpilot und den spaeteren externen Cutover noch verbindlich fehlen.
 
-## Noch offene Inputs
+## Noch offene externe Inputs
 
-- bestaetigte Betreiber- und Rollenfreigaben pro Ziel-Domain
-- klare Bound-Domain-Definition pro Lizenz
-- erlaubte Minimal-Scopes pro Domain
-- bestaetigtes Theme und Builder je Ziel-Domain
-- bestaetigtes aktives SEO-Plugin je Ziel-Domain
-- eindeutiges Mapping der aktuellen Homepage-Meta-Quelle
-- Verantwortliche fuer Validation und Rollback
-- spaetere Secret- und Zugangsdatenform der Control Plane
-- rechtlicher und operativer Rahmen fuer Plugin-Distribution und Update-Signaturen
+- Referenzpilot-Freigabe fuer genau eine echte Ziel-Domain
+- belastbarer Runtime-Snapshot der installierten Bridge auf dem Referenzsystem
+- reale PayPal-Env-Refs im Zielkontext:
+  - `PAYPAL_BUSINESS_CLIENT_ID`
+  - `PAYPAL_BUSINESS_CLIENT_SECRET`
+  - `PAYPAL_BUSINESS_WEBHOOK_ID`
+- Aktivierungsfreigabe fuer den geschuetzten Webhook-Pfad
+- Signing-Key- oder Signing-Service-Freigabe
+- Delivery-Ziel und Delivery-Handover ausserhalb des Workspace
 
-## Vor erstem Referenz-Pilot besonders noetig
+## Noch offene betriebliche Inputs
 
-- bestaetigte Bound-Domain
-- bestaetigter Homepage-Scope
-- eindeutiges Mapping der aktuellen Homepage-Meta-Quelle
-- benannte Validation- und Rollback-Verantwortung
+- finaler Support- und Eskalationsprozess
+- Incident- und Rollback-Owner fuer echte Kundenfaelle
+- Freigabeprozess fuer Payment-Confirmation, Invoice-Confirmation und Release Decision
+- Nachbeobachtungsfenster und Metrikverantwortung fuer Referenzpilot und erste Live-Freigabe
 
-## Vor Multi-Domain-Produktisierung zusaetzlich noetig
+## Noch offene Pilot-Inputs
 
-- Lizenz- und Signaturmodell
-- Policy- und Rollback-Transportmodell
-- Update- und Distribution-Freigaben
-- Konfliktmatrix fuer Themes, Builder und SEO-Plugins
-- Domain-Entitlement- und Release-Freigabemodell
-- Operator-Four-Eyes- oder Freigabeverfahren fuer Lizenz, Release und Rollback
+- bestaetigte Before-State-Evidenz des Referenzsystems
+- bestaetigte Primary Metrics
+- bestaetigte Neighbor Signals
+- bestaetigte Abort-Kriterien
+- bestaetigte Rollback-Kriterien
+- bestaetigte Post-Observation-Dauer
+
+## Bereits lokal vorbereitet
+
+- exact-domain Lizenzmodell
+- protected customer fulfillment path
+- signed delivery prep
+- protected PayPal webhook runtime
+- billing, invoice, release decision, renewal und failed-payment Modellierung
+- buyer- und operator-readable status surfaces
 
 ## Status
 
 - offene Inputs: `operator input required`
+- externer Cutover: `approval_required`

@@ -1,0 +1,13 @@
+[Unit]
+Description=Electri City Ops private recommend-only site report
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/electri-city-ops
+EnvironmentFile=/opt/electri-city-ops/deploy/systemd/private-site-report.env
+ExecStart=/usr/bin/env PYTHONPATH=src /usr/bin/python3 /opt/electri-city-ops/tools/build_private_site_recommend_only_report.py --config config/private-site-recommend-only-report.json --settings config/settings.toml --send-email
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,29 @@
+{
+  "status": "approval_required",
+  "bound_test_host": "wp.electri-c-ity-studios-24-7.com",
+  "public_wordpress_base_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/",
+  "scoped_test_page_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/beispiel-seite/",
+  "checks": [
+    "plugin installs without fatal error",
+    "plugin activates in safe_mode or observe_only",
+    "no visible page damage on /wordpress/",
+    "no visible page damage on /wordpress/beispiel-seite/",
+    "no duplicate head or meta output",
+    "theme, builder and SEO plugin conflicts remain observable",
+    "rollback path stays intact"
+  ],
+  "success_requires": [
+    "validierbare diagnostics",
+    "no fatal errors",
+    "no visible page damage",
+    "no unresolved coexistence conflict"
+  ],
+  "stop_conditions": [
+    "fatal error",
+    "visible page damage",
+    "domain mismatch",
+    "scope mismatch",
+    "unclear ownership",
+    "rollback path broken"
+  ]
+}

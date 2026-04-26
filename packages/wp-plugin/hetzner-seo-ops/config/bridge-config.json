@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "bridge_profile": "real_staging_pilot_v1",
+  "bridge_label": "Site Optimizer Bridge",
+  "staging_only": true,
+  "suite_connection_mode": "packaged_preview_only",
+  "suite_connection_readiness": "packaged_preview_ready",
+  "license_id": "lic-final-real-staging-pilot-001",
+  "customer_id": "cust-real-staging-preview-001",
+  "product_id": "hso-plugin",
+  "status": "approval_required",
+  "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+  "allowed_subdomains": [],
+  "path_base": "/wordpress/",
+  "expected_home_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/",
+  "expected_scoped_page_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/beispiel-seite/",
+  "release_channel": "pilot",
+  "policy_channel": "pilot",
+  "rollback_profile_id": "rb-final-real-staging-pilot-001",
+  "allowed_features": [
+    "meta_description",
+    "head_diagnostics",
+    "structure_visibility"
+  ],
+  "issued_at": "2026-03-30T00:00:00Z",
+  "non_expiring": true,
+  "expires_at": "",
+  "integrity": {
+    "signature": "source not yet confirmed",
+    "signature_state": "operator_signing_required",
+    "signing_key_reference": "local_server_signing_key"
+  },
+  "doctrine": {
+    "policy_version": "8.0",
+    "ai_system_id": "wordpress_bridge_plugin",
+    "risk_class": "R1",
+    "impact_assessment_ref": "ia-wordpress-bridge-plugin-v1",
+    "provenance_state": "packaged_preview_attested",
+    "supply_chain_state": "local_signed_delivery_prep",
+    "human_oversight_state": "server_and_operator_governed",
+    "fallback_rule": "observe_only_safe_mode_or_approval_required_until_green"
+  },
+  "default_mode": "safe_mode",
+  "fallback_mode": "observe_only",
+  "allowed_scopes": [
+    "homepage_only",
+    "feature:meta_description",
+    "feature:head_diagnostics",
+    "feature:structure_visibility_diagnostics"
+  ],
+  "required_features": [
+    "meta_description",
+    "head_diagnostics",
+    "structure_visibility"
+  ],
+  "scope_confirmed": true,
+  "source_mapping_confirmed": false,
+  "operator_inputs_complete": false,
+  "operator_inputs": {
+    "wordpress_version": "",
+    "active_theme": "",
+    "active_builder": "",
+    "active_seo_plugin": "",
+    "plugin_inventory": [],
+    "backup_confirmation": "",
+    "restore_confirmation": "",
+    "rollback_owner": "server_managed_bridge",
+    "validation_owner": "server_managed_bridge"
+  },
+  "source_mapping": {
+    "homepage_meta_description_single": false,
+    "head_meta_output_single": false,
+    "double_output_detected": false,
+    "double_output_verification": "not_detected",
+    "operator_confirmation": false,
+    "notes": [
+      "homepage meta description ownership is not yet confirmed",
+      "no validated single-source head/meta mapping has been recorded"
+    ]
+  },
+  "customer_visibility": {
+    "surface_mode": "protected_admin_only",
+    "subscription_status": "staging_only_pilot",
+    "renewal_state": "operator_review_required",
+    "renewal_window_state": "not_open",
+    "failed_payment_recovery_state": "not_needed",
+    "domain_scope_summary": "One exact licensed staging domain bound to wp.electri-c-ity-studios-24-7.com for the protected pilot.",
+    "documentation_access": "included_local_docs",
+    "licensed_download_access": "protected_local_bundle_only",
+    "license_integrity_state": "operator_signing_required",
+    "support_state": "email_support_active",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "activation_state": "approval_required",
+    "customer_visibility_note": "This installation keeps scope, health, delivery and cutover signals buyer-readable inside protected admin without exposing public delivery, login or customer execution routes.",
+    "subscription_lifecycle_note": "Renewal, grace handling and failed-payment recovery remain operator- and server-governed so the recovery model stays explainable and rollback-aware."
+  },
+  "protected_fulfillment": {
+    "delivery_channel": "protected_local_only",
+    "public_delivery": false,
+    "customer_login": false,
+    "license_api_exposed": false,
+    "install_pack_state": "local_preview_ready",
+    "manifest_state": "local_preview_ready",
+    "rollback_state": "local_preview_ready",
+    "signature_prep_state": "operator_signing_required",
+    "signing_key_reference": "local_server_signing_key",
+    "signing_target": "local_server_signing_key",
+    "replay_protection_state": "local_policy_defined",
+    "replay_nonce_strategy": "domain_bound_issued_at_expires_at_window",
+    "delivery_grant_state": "approval_required",
+    "delivery_target": "protected_signed_download_on_hetzner",
+    "delivery_grant_rule": "payment_confirmed_and_exact_domain_bound_and_license_issued_and_signed_and_operator_approved",
+    "customer_release_decision_state": "approval_required",
+    "renewal_delivery_state": "approval_required",
+    "failed_payment_recovery_delivery_state": "approval_required"
+  },
+  "local_report_ingest": {
+    "enabled": false,
+    "path": "",
+    "bundled_snapshot_path": "",
+    "report_id": ""
+  },
+  "optimization_stage": "stage1_readiness_only",
+  "optimization_readiness": "approval_required",
+  "current_blockers": [],
+  "stop_conditions": [
+    "fatal error",
+    "visible page damage",
+    "domain mismatch",
+    "scope mismatch",
+    "unclear ownership",
+    "rollback path broken"
+  ]
+}

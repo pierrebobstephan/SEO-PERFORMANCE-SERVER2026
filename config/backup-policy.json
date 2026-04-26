@@ -1,0 +1,97 @@
+{
+  "policy_version": 1,
+  "mode": "local_preview_only",
+  "snapshot_provider": "hetzner_snapshot_manual_or_api_later",
+  "workspace_root": "/opt/electri-city-ops",
+  "backup_sets": [
+    {
+      "name": "application_code",
+      "required": true,
+      "paths": [
+        "src",
+        "packages",
+        "schemas",
+        "tools"
+      ]
+    },
+    {
+      "name": "configuration",
+      "required": true,
+      "paths": [
+        "config/settings.toml",
+        "config/doctrine-policy.json",
+        "config/public-portal.json",
+        "config/public-portal-operator.json",
+        "config/public-portal-legal.json",
+        "config/release-channels.json",
+        "config/backend-defaults.json"
+      ]
+    },
+    {
+      "name": "database_and_state",
+      "required": true,
+      "paths": [
+        "var/state/ops.sqlite3",
+        "var/state/json"
+      ]
+    },
+    {
+      "name": "reports_and_logs",
+      "required": true,
+      "paths": [
+        "var/reports",
+        "var/logs"
+      ]
+    },
+    {
+      "name": "portal_and_deploy_artifacts",
+      "required": true,
+      "paths": [
+        "deploy/nginx",
+        "deploy/systemd",
+        "deploy/healthchecks",
+        "deploy/cron"
+      ]
+    },
+    {
+      "name": "release_and_manifest_preview",
+      "required": true,
+      "paths": [
+        "manifests",
+        "dist"
+      ]
+    }
+  ],
+  "separate_sensitive_material": {
+    "certificates": {
+      "required": true,
+      "storage": "external_to_workspace",
+      "note": "TLS certificates and private keys must be exported and restored separately from the workspace."
+    },
+    "secrets": {
+      "required": true,
+      "storage": "external_to_workspace",
+      "note": "SMTP credentials, future signing keys and API tokens must not be stored in committed workspace config."
+    }
+  },
+  "restore_validation": {
+    "public_routes": [
+      "/",
+      "/buy",
+      "/legal",
+      "/privacy",
+      "/terms",
+      "/refund",
+      "/contact"
+    ],
+    "protected_routes": [
+      "/operator",
+      "/downloads/private",
+      "/api/license"
+    ]
+  },
+  "migration_notes": [
+    "Hetzner snapshots can capture the machine image and local disk state but do not replace explicit file exports or separate secret and certificate handling.",
+    "Restore and migration remain approval_required when they touch real servers, DNS, TLS or protected delivery services."
+  ]
+}

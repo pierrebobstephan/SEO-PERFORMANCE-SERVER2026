@@ -1,0 +1,31 @@
+{
+  "status": "approval_required",
+  "visibility": "protected_preview_only",
+  "target_environment": "staging_wordpress_only",
+  "bound_test_host": "wp.electri-c-ity-studios-24-7.com",
+  "path_base": "/wordpress/",
+  "expected_home_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/",
+  "expected_scoped_page_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/beispiel-seite/",
+  "url_normalization_status": "blocked",
+  "url_normalization_blocker": "the example page dashboard hint still points to localhost and staging-only install remains blocked until url normalization is clean",
+  "package_preview": {
+    "state": "local_preview_ready",
+    "package_metadata_path": "manifests/previews/final-real-staging-pilot-package-metadata.json"
+  },
+  "license_domain_match_preview": {
+    "state": "local_preview_ready",
+    "domain_binding_path": "manifests/previews/final-real-staging-pilot-license-domain-match-preview.json",
+    "real_test_domain": "wp.electri-c-ity-studios-24-7.com"
+  },
+  "pilot_manifest_preview": {
+    "state": "local_preview_ready",
+    "manifest_path": "manifests/previews/final-real-staging-pilot-manifest-preview.json"
+  },
+  "installability_preview": {
+    "state": "local_preview_ready",
+    "release_artifact_path": "manifests/previews/final-real-staging-pilot-release-artifact-preview.json",
+    "default_mode": "safe_mode",
+    "fallback_mode": "observe_only",
+    "public_delivery": false
+  }
+}

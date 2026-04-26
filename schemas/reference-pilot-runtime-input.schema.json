@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reference Pilot Runtime Input",
+  "type": "object",
+  "description": "Normalized runtime evidence captured from the installed bridge for the reference pilot gate.",
+  "properties": {
+    "schema_version": {
+      "type": "integer"
+    },
+    "source": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "captured_at": {
+      "type": "string"
+    },
+    "bound_domain": {
+      "type": "string"
+    },
+    "current_domain": {
+      "type": "string"
+    },
+    "path_base": {
+      "type": "string"
+    },
+    "domain_match": {
+      "type": "boolean"
+    },
+    "url_normalization_clean": {
+      "type": "boolean"
+    },
+    "baseline_captured": {
+      "type": "boolean"
+    },
+    "blocking_conflicts": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "optimization_gate": {
+      "type": "string"
+    },
+    "operator_inputs_complete": {
+      "type": "boolean"
+    },
+    "source_mapping_confirmed": {
+      "type": "boolean"
+    },
+    "open_blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_smallest_safe_step": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

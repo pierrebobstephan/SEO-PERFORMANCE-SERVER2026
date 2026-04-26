@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "default_policy": "deny_by_default",
+  "contracts": [
+    {
+      "contract_id": "ac-rank-math-meta-description-update-v1",
+      "action_type": "rank_math_meta_description_update",
+      "version": "1.0",
+      "enabled": true,
+      "risk_class": "R1",
+      "scope": "exact_domain_rank_math_post_meta_only",
+      "allowed_execution_lane": "admin_confirmed_assisted_resolution_only",
+      "allowed_runtime_gates": [
+        "recommend_only"
+      ],
+      "allowed_target_fields": [
+        "rank_math_description"
+      ],
+      "allowed_seo_owners": [
+        "seo-by-rank-math/rank-math.php"
+      ],
+      "requires_admin_confirmation": true,
+      "requires_before_state_capture": true,
+      "requires_rollback": true,
+      "preconditions": [
+        "domain_match_green",
+        "operator_inputs_complete",
+        "source_mapping_confirmed",
+        "rank_math_controlled_coexistence",
+        "report_candidate_exact_domain_bound"
+      ],
+      "validation_checks": [
+        "target page resolves to a WordPress page on the licensed domain",
+        "stored Rank Math description equals proposed value after apply",
+        "previous value is captured before write",
+        "no bridge-owned live output path is enabled by this action"
+      ],
+      "rollback_plan": [
+        "restore previous rank_math_description value when present",
+        "delete temporary rank_math_description value when no previous value existed",
+        "mark local action journal as rolled_back after validation"
+      ],
+      "abort_criteria": [
+        "target page cannot be resolved",
+        "runtime gate is not recommend_only",
+        "domain binding is not green",
+        "Rank Math is not the active SEO owner",
+        "post-write validation does not match proposed value"
+      ],
+      "protected_holds": [
+        "no Rank Math deactivation",
+        "no bridge-owned live meta output",
+        "no global head rewrite",
+        "no canonical override",
+        "no public route exposure"
+      ]
+    }
+  ]
+}

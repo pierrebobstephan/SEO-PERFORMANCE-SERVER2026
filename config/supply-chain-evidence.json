@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "doctrine_version": "8.0",
+  "entries": [
+    {
+      "system_id": "suite_runtime_core",
+      "dependency_verification_state": "workspace_python_dependencies_validated_by_tests",
+      "build_provenance_state": "local_builds_reproducible_in_workspace",
+      "signing_state": "not_required_for_local_runtime",
+      "secret_handling_state": "no_cleartext_repo_secrets",
+      "delivery_state": "not_public",
+      "review_state": "documented_and_tested"
+    },
+    {
+      "system_id": "wordpress_bridge_plugin",
+      "dependency_verification_state": "packaged_php_and_json_bundle_reviewed",
+      "build_provenance_state": "installable_zip_rebuilt_from_workspace",
+      "signing_state": "operator_signing_required",
+      "secret_handling_state": "no_cleartext_repo_secrets",
+      "delivery_state": "protected_staging_bundle_only",
+      "review_state": "documented_and_tested"
+    },
+    {
+      "system_id": "public_portal_surface",
+      "dependency_verification_state": "local_http_surface_reviewed",
+      "build_provenance_state": "workspace_templates_and_configs_only",
+      "signing_state": "not_required_for_local_public_surface",
+      "secret_handling_state": "no_customer_secret_material",
+      "delivery_state": "public_read_only_information_only",
+      "review_state": "documented_and_tested"
+    },
+    {
+      "system_id": "protected_paypal_webhook_receiver",
+      "dependency_verification_state": "paypal_runtime_logic_reviewed_and_unit_tested",
+      "build_provenance_state": "protected_handler_present_in_workspace_runtime",
+      "signing_state": "webhook_signature_verification_runtime_present",
+      "secret_handling_state": "env_ref_only_for_paypal_credentials_and_webhook_id",
+      "delivery_state": "protected_runtime_only",
+      "review_state": "documented_and_tested"
+    },
+    {
+      "system_id": "protected_fulfillment_chain",
+      "dependency_verification_state": "manifest_and_release_chain_reviewed",
+      "build_provenance_state": "preview_artifacts_trace_back_to_workspace_builders",
+      "signing_state": "local_server_signing_key_prep_only",
+      "secret_handling_state": "env_ref_and_operator_input_only",
+      "delivery_state": "protected_signed_download_on_hetzner_after_approval",
+      "review_state": "documented_and_tested"
+    }
+  ]
+}

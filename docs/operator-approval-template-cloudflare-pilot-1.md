@@ -25,6 +25,7 @@
 - [pilot-candidate-1.md](/opt/electri-city-ops/docs/pilot-candidate-1.md)
 - [AGENTS.md](/opt/electri-city-ops/AGENTS.md)
 - [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md)
+- [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt)
 
 ## Operator-Freigabe
 
@@ -57,4 +58,5 @@
 - keine globale Edge-Regel
 - keine Wirkung auf Login-, Session- oder personalisierte Responses
 - `apply -> validate -> rollback` wird spaeter eingehalten
+- `fail closed` bei unklaren Cookies, Sessions oder Scope-Kollisionen
 - bei fehlenden Inputs bleibt der Status `approval_required`

@@ -1,0 +1,11 @@
+{
+  "plugin_slug": "hetzner-seo-ops",
+  "plugin_version": "0.1.0-pilot1-preview",
+  "release_channel": "pilot",
+  "package_basename": "hetzner-seo-ops-0.1.0-pilot1-preview",
+  "package_filename": "hetzner-seo-ops-0.1.0-pilot1-preview.zip",
+  "package_sha256": "ebae1f2da59505c8884e0b0f93182e004836c944d051afb0a920f2ff61c43c3e",
+  "file_count": 9,
+  "build_mode": "local_preview_only",
+  "built_at": "2026-03-30T00:00:00Z"
+}

@@ -30,6 +30,7 @@ Dieses Dokument beschreibt die harten Freigabegrenzen vor jeder spaeteren realen
 - Phase 9 darf lokale Vertragslogik modellieren, aber keine reale Control-Plane-Verbindung, Policy-Ausgabe oder Kundenanbindung herstellen
 - Phase 10 darf lokale Registries, Manifest-Preconditions und Backend-Zustaende modellieren, aber keine reale Lizenz-, Policy-, Manifest- oder Rollback-Ausgabe erzeugen
 - Phase 11 darf lokale Packaging-, Release-, Dry-Run- und Operator-Artefakte vorbereiten, aber keinen echten Download, Upload, Kunden-Rollout oder Release aktivieren
+- die Public-Portal-Phase darf eine oeffentliche Produktflaeche lokal und serverbereit vorbereiten, aber keine DNS-, Nginx-, TLS- oder Internet-Freigabe ausserhalb des Workspace aktivieren
 
 ## Status
 

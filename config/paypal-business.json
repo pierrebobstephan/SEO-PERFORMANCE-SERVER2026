@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "payment_method": "paypal_business",
+  "environment": "production",
+  "api_base": "https://api-m.paypal.com",
+  "oauth_token_url": "https://api-m.paypal.com/v1/oauth2/token",
+  "orders_capture_url_template": "https://api-m.paypal.com/v2/checkout/orders/{order_id}/capture",
+  "invoice_create_url": "https://api-m.paypal.com/v2/invoicing/invoices",
+  "invoice_send_url_template": "https://api-m.paypal.com/v2/invoicing/invoices/{invoice_id}/send",
+  "webhook_verify_url": "https://api-m.paypal.com/v1/notifications/verify-webhook-signature",
+  "webhook_listener_candidate_url": "https://site-optimizer.electri-c-ity-studios-24-7.com/protected/paypal/webhook",
+  "webhook_listener_candidate_state": "modeled_protected_candidate",
+  "webhook_delivery_scope": "paypal_billing_events_only",
+  "webhook_verification_model": "server_side_signature_verification_with_env_ref_webhook_id",
+  "webhook_replay_protection_expectation": "transmission_id_time_window_and_nonce_registry",
+  "webhook_activation_state": "approval_required",
+  "env_load_point": "deploy/systemd/paypal-business.env",
+  "env_load_mode": "systemd_environment_file",
+  "client_id_env": "PAYPAL_BUSINESS_CLIENT_ID",
+  "client_secret_env": "PAYPAL_BUSINESS_CLIENT_SECRET",
+  "webhook_id_env": "PAYPAL_BUSINESS_WEBHOOK_ID",
+  "cleartext_secrets_present": false,
+  "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+  "invoice_currency": "EUR",
+  "invoice_note": "Invoices are issued for completed orders.",
+  "subscription_plans": [
+    {
+      "plan_id": "P-7Y554482SB478120XNHHYBXY",
+      "plan_name": "Sovereign Critical Monthly",
+      "product_label": "Site Optimizer – Sovereign Critical",
+      "status": "activated"
+    },
+    {
+      "plan_id": "P-1MD107449E571235VNHHL76I",
+      "plan_name": "Sovereign Enterprise Monthly",
+      "product_label": "Site Optimizer – Sovereign Enterprise",
+      "status": "activated"
+    },
+    {
+      "plan_id": "P-4M609520MS037724DNHHL5TI",
+      "plan_name": "Guardian Core Monthly",
+      "product_label": "Site Optimizer – Guardian Core",
+      "status": "activated"
+    }
+  ],
+  "server_validation_owner": "server_managed_bridge",
+  "server_rollback_owner": "server_managed_bridge",
+  "public_checkout_exposed": false,
+  "public_invoice_portal_exposed": false,
+  "public_webhook_route_exposed": false
+}

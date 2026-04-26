@@ -1,0 +1,3 @@
+# Example only. Do not install without explicit approval.
+# Run daily at 08:00 server time:
+# 0 8 * * * cd /opt/electri-city-ops && . /opt/electri-city-ops/deploy/systemd/private-site-report.env && PYTHONPATH=src /usr/bin/python3 tools/build_private_site_recommend_only_report.py --config config/private-site-recommend-only-report.json --settings config/settings.toml --send-email >> var/logs/private-site-report.log 2>&1

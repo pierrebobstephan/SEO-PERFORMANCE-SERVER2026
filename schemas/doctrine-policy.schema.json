@@ -10,6 +10,8 @@
     "workspace",
     "external_effects",
     "gates",
+    "ai_management",
+    "lifecycle",
     "scopes",
     "blast_radius",
     "simulation"
@@ -90,6 +92,56 @@
       ],
       "properties": {
         "allowed_states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ai_management": {
+      "type": "object",
+      "required": [
+        "system_register_required",
+        "impact_assessment_required",
+        "provenance_required",
+        "supply_chain_verification_required",
+        "human_oversight_required_for_external_effects",
+        "risk_classes"
+      ],
+      "properties": {
+        "system_register_required": {
+          "type": "boolean"
+        },
+        "impact_assessment_required": {
+          "type": "boolean"
+        },
+        "provenance_required": {
+          "type": "boolean"
+        },
+        "supply_chain_verification_required": {
+          "type": "boolean"
+        },
+        "human_oversight_required_for_external_effects": {
+          "type": "boolean"
+        },
+        "risk_classes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "required": [
+        "required_stages"
+      ],
+      "properties": {
+        "required_stages": {
           "type": "array",
           "minItems": 1,
           "items": {

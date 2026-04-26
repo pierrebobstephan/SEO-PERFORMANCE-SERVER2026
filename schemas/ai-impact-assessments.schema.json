@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI Impact Assessments",
+  "type": "object",
+  "required": ["schema_version", "doctrine_version", "assessments"],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "doctrine_version": { "type": "string" },
+    "assessments": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

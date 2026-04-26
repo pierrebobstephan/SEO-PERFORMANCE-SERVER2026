@@ -27,6 +27,11 @@ Dieses Dokument beschreibt die minimalen Gates vor spaeterer realer Produktisier
 - `validation_defined`
 - `rollback_defined`
 - `source_mapping_confirmed`
+- `public_dns_confirmed`
+- `tls_ready`
+- `public_route_separation_validated`
+- `operator_console_not_public`
+- `download_gate_enforced`
 
 ## Lokale Artefakte
 

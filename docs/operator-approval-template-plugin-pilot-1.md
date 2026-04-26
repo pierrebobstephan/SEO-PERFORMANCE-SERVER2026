@@ -26,6 +26,7 @@
 
 - [AGENTS.md](/opt/electri-city-ops/AGENTS.md)
 - [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md)
+- [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt)
 - [plugin-pilot-candidate-1.md](/opt/electri-city-ops/docs/plugin-pilot-candidate-1.md)
 - [plugin-minimal-input-list.md](/opt/electri-city-ops/docs/plugin-minimal-input-list.md)
 - [wordpress-plugin-execution-strategy.md](/opt/electri-city-ops/docs/wordpress-plugin-execution-strategy.md)
@@ -66,8 +67,8 @@
 ## Verantwortlichkeiten
 
 - Pilot-Verantwortung: `operator input required`
-- Validierungsverantwortung: `operator input required`
-- Rollback-Verantwortung: `operator input required`
+- Validierungsverantwortung: `server_managed_bridge`
+- Rollback-Verantwortung: `server_managed_bridge`
 
 ## Validierungslogik
 
@@ -77,6 +78,8 @@
 - Validierungsfenster:
   `Sofortcheck`, `1d`, `7d`
 - Vorher-Nachher-Vergleich erforderlich: `ja`
+- Explainability-Pflicht:
+  `Warum nur diese Mikroaenderung und keine aggressivere Uebernahme?`
 
 ## Rollback-Logik
 
@@ -85,6 +88,7 @@
 - Sofortcheck nach Rueckweg:
   `eindeutige Meta-Ausgabe`, `stabile Homepage-Signale`
 - abrupte Rank-Math-Entfernung vor validierter Ersatzlogik: `nein`
+- serverseitige Durchfuehrung laut Bridge-Doktrin: `ja`
 
 ## Betreiberfreigaben
 

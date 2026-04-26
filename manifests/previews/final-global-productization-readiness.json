@@ -1,0 +1,121 @@
+{
+  "built_at": "2026-04-01T00:00:00Z",
+  "global_productization_readiness": {
+    "status": "commercial_chain_not_closed",
+    "doctrine_state": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "path_base": "/wordpress/",
+    "layers": {
+      "ai_governance": {
+        "status": "blueprint_ready",
+        "proof_points": [
+          "AI system register entries are present for suite, plugin, portal, webhook and fulfillment",
+          "impact assessments are present for all required systems",
+          "provenance evidence is recorded for all required systems",
+          "supply chain evidence is recorded for all required systems",
+          "secret hygiene gate is green for workspace env files and ignore rules"
+        ],
+        "blockers": [],
+        "required_inputs": [],
+        "risk_distribution": {
+          "R0": 1,
+          "R1": 2,
+          "R2": 2
+        }
+      },
+      "reference_pilot": {
+        "status": "ready_for_reference_pilot",
+        "proof_points": [
+          "runtime domain binding is green",
+          "runtime URL normalization is green",
+          "runtime baseline is captured",
+          "runtime conflict picture is green",
+          "runtime starts in safe_mode"
+        ],
+        "blockers": [],
+        "required_inputs": [],
+        "authoritative_source": "runtime_input"
+      },
+      "commercial_chain": {
+        "status": "operator_input_required",
+        "local_readiness_state": "locally_verified_waiting_external_inputs",
+        "proof_points": [
+          "PayPal Business config is modeled with env-ref-only secrets",
+          "PayPal subscription plan catalog is modeled with the real monthly plan IDs",
+          "invoice automation prep exists and stays server-governed",
+          "webhook verification prep exists without opening a public route",
+          "protected webhook handler exists in the local protected runtime",
+          "PayPal webhook signature verification runtime is implemented",
+          "PayPal webhook replay protection runtime is implemented",
+          "protected webhook receiver candidate is separated from public portal pages",
+          "protected webhook runtime is locally self-verified through signature and replay checks",
+          "license issuance prep is bound to the real staging domain",
+          "signed delivery prep keeps public delivery, login and license API disabled",
+          "signed delivery target is pinned to protected_signed_download_on_hetzner",
+          "checkout to issuance orchestration exists end-to-end in protected local form"
+        ],
+        "blockers": [],
+        "required_inputs": [
+          "PAYPAL_BUSINESS_CLIENT_ID",
+          "PAYPAL_BUSINESS_CLIENT_SECRET",
+          "PAYPAL_BUSINESS_WEBHOOK_ID",
+          "protected PayPal webhook receiver verification and activation"
+        ],
+        "current_gate": "operator_review_before_real_paypal_confirmation_invoice_confirmation_and_customer_release_decision"
+      },
+      "operations": {
+        "status": "blueprint_ready",
+        "proof_points": [
+          "rollback ownership is server-managed through the bridge",
+          "validation ownership is server-managed through the bridge",
+          "invoice validation path is modeled as server-managed",
+          "invoice rollback path is modeled as server-managed",
+          "renewal and failed-payment recovery remain non-destructive and operator-gated"
+        ],
+        "blockers": [],
+        "required_inputs": []
+      },
+      "product": {
+        "status": "blueprint_ready",
+        "proof_points": [
+          "buyer-visible support email is set to pierre.stephan1@electri-c-ity-studios.com",
+          "buyer-visible license / domain / scope panel is populated",
+          "installed plugin exposes buyer-readable health, delivery and cutover state",
+          "support handover is modeled as active email support",
+          "repository-level license position is documented",
+          "global usage rights and valuation model is documented"
+        ],
+        "blockers": [],
+        "required_inputs": []
+      }
+    },
+    "hard_blockers": [],
+    "required_external_inputs": [
+      "PAYPAL_BUSINESS_CLIENT_ID",
+      "PAYPAL_BUSINESS_CLIENT_SECRET",
+      "PAYPAL_BUSINESS_WEBHOOK_ID",
+      "protected PayPal webhook receiver verification and activation"
+    ],
+    "neutral_rating": {
+      "target_score": "10/10",
+      "current_score": "8/10_local_blueprint",
+      "production_claim_allowed": false,
+      "reason": "10/10 requires external, runtime, legal and operational evidence that cannot be created by local repository edits alone",
+      "open_10_10_gates": [
+        "PAYPAL_BUSINESS_CLIENT_ID",
+        "PAYPAL_BUSINESS_CLIENT_SECRET",
+        "PAYPAL_BUSINESS_WEBHOOK_ID",
+        "protected PayPal webhook receiver verification and activation",
+        "PHP CLI syntax validation for the WordPress bridge is not available in this environment",
+        "rotate any credentials that were previously present in workspace env files",
+        "complete a real protected PayPal webhook activation test",
+        "complete a signed protected delivery test",
+        "complete and approve the reference pilot closeout",
+        "execute and document a production rollback drill",
+        "sign a global usage rights agreement before granting global commercial rights"
+      ]
+    },
+    "next_smallest_safe_step": "inject PayPal env refs and verify the protected webhook receiver in the real server context",
+    "ready_for_global_go_live": false
+  }
+}

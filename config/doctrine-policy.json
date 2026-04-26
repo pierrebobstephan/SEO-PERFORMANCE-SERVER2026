@@ -1,8 +1,9 @@
 {
-  "policy_version": "1.0",
+  "policy_version": "8.0",
   "canonical_docs": [
     "AGENTS.md",
     "docs/system-doctrine.md",
+    "Doktrin04.04.2026-Version-8.0.txt",
     "docs/doctrine-alignment-report.md"
   ],
   "defaults": {
@@ -27,12 +28,57 @@
   "gates": {
     "allowed_states": [
       "observe_only",
+      "safe_mode",
+      "controlled_apply",
+      "containment_mode",
+      "rollback_mode",
+      "self_healing_active",
+      "emergency_freeze",
+      "adaptive_resonance_mode",
+      "centaur_mode",
       "data_insufficient",
       "blueprint_ready",
       "approval_required",
       "pilot_ready",
+      "active_pilot",
+      "stable_applied",
+      "degraded_safe",
       "blocked",
       "rollback_required"
+    ]
+  },
+  "ai_management": {
+    "system_register_required": true,
+    "impact_assessment_required": true,
+    "provenance_required": true,
+    "supply_chain_verification_required": true,
+    "human_oversight_required_for_external_effects": true,
+    "risk_classes": [
+      "R0",
+      "R1",
+      "R2",
+      "R3",
+      "R4"
+    ]
+  },
+  "lifecycle": {
+    "required_stages": [
+      "govern",
+      "register",
+      "classify",
+      "assess",
+      "design",
+      "source_verify",
+      "build",
+      "simulate",
+      "validate",
+      "approve",
+      "deploy",
+      "monitor",
+      "re_evaluate",
+      "learn",
+      "decommission",
+      "archive_delete"
     ]
   },
   "scopes": {
@@ -75,7 +121,11 @@
       "abort_conditions",
       "rollback_trigger",
       "adapt_options",
-      "final_pre_apply_gate"
+      "final_pre_apply_gate",
+      "risk_class",
+      "impact_assessment_ref",
+      "evidence_plan",
+      "aftercare_window"
     ]
   }
 }

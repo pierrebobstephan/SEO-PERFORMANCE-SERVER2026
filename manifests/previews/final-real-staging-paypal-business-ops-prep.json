@@ -1,0 +1,123 @@
+{
+  "config_valid": true,
+  "config_issues": [],
+  "valid": true,
+  "issues": [],
+  "paypal_business_ops_prep": {
+    "prep_id": "paypal-business-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "payment_method": "paypal_business",
+    "environment": "production",
+    "oauth_token_url": "https://api-m.paypal.com/v1/oauth2/token",
+    "orders_capture_url_template": "https://api-m.paypal.com/v2/checkout/orders/{order_id}/capture",
+    "invoice_create_url": "https://api-m.paypal.com/v2/invoicing/invoices",
+    "invoice_send_url_template": "https://api-m.paypal.com/v2/invoicing/invoices/{invoice_id}/send",
+    "webhook_verify_url": "https://api-m.paypal.com/v1/notifications/verify-webhook-signature",
+    "webhook_listener_candidate": {
+      "url": "https://site-optimizer.electri-c-ity-studios-24-7.com/protected/paypal/webhook",
+      "state": "protected_receiver_candidate_modeled",
+      "reason": "the candidate URL is separated from public portal pages and modeled as a protected server-side webhook receiver, but it is not yet verified in a real server context",
+      "delivery_scope": "paypal_billing_events_only",
+      "verification_model": "server_side_signature_verification_with_env_ref_webhook_id",
+      "replay_protection_expectation": "transmission_id_time_window_and_nonce_registry",
+      "public_page_separated": true
+    },
+    "client_id_env": "PAYPAL_BUSINESS_CLIENT_ID",
+    "client_secret_env": "PAYPAL_BUSINESS_CLIENT_SECRET",
+    "webhook_id_env": "PAYPAL_BUSINESS_WEBHOOK_ID",
+    "cleartext_secrets_present": false,
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "subscription_plans": [
+      {
+        "plan_id": "P-7Y554482SB478120XNHHYBXY",
+        "plan_name": "Sovereign Critical Monthly",
+        "product_label": "Site Optimizer \u2013 Sovereign Critical",
+        "status": "activated"
+      },
+      {
+        "plan_id": "P-1MD107449E571235VNHHL76I",
+        "plan_name": "Sovereign Enterprise Monthly",
+        "product_label": "Site Optimizer \u2013 Sovereign Enterprise",
+        "status": "activated"
+      },
+      {
+        "plan_id": "P-4M609520MS037724DNHHL5TI",
+        "plan_name": "Guardian Core Monthly",
+        "product_label": "Site Optimizer \u2013 Guardian Core",
+        "status": "activated"
+      }
+    ],
+    "secret_reference_state": {
+      "env_load_point": "deploy/systemd/paypal-business.env",
+      "env_load_mode": "systemd_environment_file",
+      "client_id_env": "PAYPAL_BUSINESS_CLIENT_ID",
+      "client_secret_env": "PAYPAL_BUSINESS_CLIENT_SECRET",
+      "webhook_id_env": "PAYPAL_BUSINESS_WEBHOOK_ID",
+      "client_id_present": false,
+      "client_secret_present": false,
+      "webhook_id_present": false,
+      "cleartext_secrets_present": false
+    },
+    "protected_webhook_runtime": {
+      "handler_path": "/protected/paypal/webhook",
+      "accepted_methods": [
+        "POST"
+      ],
+      "scope": "paypal_billing_events_only",
+      "handler_state": "implemented_local_protected_only",
+      "receiver_runtime_state": "implemented_but_unverified",
+      "verification_runtime_state": "implemented",
+      "replay_protection_runtime_state": "implemented",
+      "env_ref_readiness_state": "missing_env_refs",
+      "missing_env_refs": [
+        "PAYPAL_BUSINESS_CLIENT_ID",
+        "PAYPAL_BUSINESS_CLIENT_SECRET",
+        "PAYPAL_BUSINESS_WEBHOOK_ID"
+      ],
+      "activation_state": "approval_required",
+      "route_exposed_via_public_portal": false,
+      "event_routing_state": "protected_operator_server_governed_only",
+      "evidence_log_path": "/opt/electri-city-ops/var/state/json/paypal_webhook_evidence.jsonl",
+      "nonce_registry_path": "/opt/electri-city-ops/var/state/json/paypal_webhook_nonce_registry.json",
+      "verification_model": "server_side_signature_verification_with_env_ref_webhook_id",
+      "replay_protection_expectation": "transmission_id_time_window_and_nonce_registry"
+    },
+    "local_runtime_verification": {
+      "state": "passed",
+      "proof_mode": "local_synthetic_paypal_signature_and_replay_self_test",
+      "first_delivery": {
+        "status_code": 202,
+        "verification_state": "verified",
+        "replay_state": "clear",
+        "routing_state": "protected_operator_server_governed"
+      },
+      "second_delivery": {
+        "status_code": 409,
+        "verification_state": "verified",
+        "replay_state": "replay_suspected",
+        "routing_state": "rejected_replay_protection"
+      },
+      "evidence_log_written": true,
+      "nonce_registry_written": true,
+      "issues": [],
+      "remaining_external_requirements": [
+        "load real PayPal env refs on the protected server",
+        "verify the protected receiver in the real staging server context",
+        "approve webhook activation for real billing events"
+      ]
+    },
+    "server_validation_owner": "server_managed_bridge",
+    "server_rollback_owner": "server_managed_bridge",
+    "approval_required_reasons": [
+      "real PayPal token exchange, order capture and invoice creation stay protected and not customer-public",
+      "client id, client secret and webhook id must be injected as environment references outside the repository",
+      "real payment execution remains blocked until operator go-live gates and delivery infrastructure are approved"
+    ],
+    "built_at": "2026-04-01T00:00:00Z"
+  },
+  "input_refs": {
+    "paypal_config": "config/paypal-business.json",
+    "checkout_record": "manifests/previews/final-real-staging-checkout-record-prep.json",
+    "install_pack": "manifests/previews/final-real-staging-protected-customer-install-pack.json"
+  }
+}

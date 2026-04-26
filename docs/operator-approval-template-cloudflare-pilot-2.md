@@ -25,6 +25,7 @@
 - [pilot-candidate-2.md](/opt/electri-city-ops/docs/pilot-candidate-2.md)
 - [AGENTS.md](/opt/electri-city-ops/AGENTS.md)
 - [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md)
+- [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt)
 
 ## Operator-Freigabe
 
@@ -59,4 +60,5 @@
 - keine globale Cache-Regel
 - keine Wirkung auf personalisierte, eingeloggte oder Preview-Responses
 - `apply -> validate -> rollback` wird spaeter eingehalten
+- `semantic_collapse_check` und `generative_compatibility_check` bleiben fuer Content-Wirkung getrennt vom Cache-Pilot
 - bei fehlenden Inputs bleibt der Status `approval_required`

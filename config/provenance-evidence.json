@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "doctrine_version": "8.0",
+  "entries": [
+    {
+      "system_id": "suite_runtime_core",
+      "source_provenance_class": "workspace_first_party",
+      "evidence_confidence": "high",
+      "freshness_status": "current_workspace",
+      "human_review_status": "maintainer_reviewed",
+      "synthetic_data_ratio": "mixed_code_and_documentation_authoring",
+      "rights_status": "workspace_controlled",
+      "operational_trust_class": "bounded_local"
+    },
+    {
+      "system_id": "wordpress_bridge_plugin",
+      "source_provenance_class": "workspace_first_party_packaged_plugin",
+      "evidence_confidence": "high",
+      "freshness_status": "rebuilt_staging_bundle",
+      "human_review_status": "maintainer_reviewed",
+      "synthetic_data_ratio": "code_and_policy_templates_mixed",
+      "rights_status": "workspace_controlled_and_domain_bound",
+      "operational_trust_class": "guarded_runtime"
+    },
+    {
+      "system_id": "public_portal_surface",
+      "source_provenance_class": "workspace_first_party_public_copy",
+      "evidence_confidence": "medium_high",
+      "freshness_status": "config_synced",
+      "human_review_status": "maintainer_reviewed",
+      "synthetic_data_ratio": "content_authoring_assisted",
+      "rights_status": "workspace_controlled_public_surface",
+      "operational_trust_class": "public_read_only"
+    },
+    {
+      "system_id": "protected_paypal_webhook_receiver",
+      "source_provenance_class": "workspace_first_party_protected_runtime",
+      "evidence_confidence": "high",
+      "freshness_status": "runtime_implemented_local_only",
+      "human_review_status": "maintainer_reviewed",
+      "synthetic_data_ratio": "code_authoring_assisted",
+      "rights_status": "workspace_controlled_with_env_ref_only_secrets",
+      "operational_trust_class": "protected_billing_receiver"
+    },
+    {
+      "system_id": "protected_fulfillment_chain",
+      "source_provenance_class": "workspace_first_party_release_previews",
+      "evidence_confidence": "medium_high",
+      "freshness_status": "preview_artifacts_current",
+      "human_review_status": "maintainer_reviewed",
+      "synthetic_data_ratio": "manifest_and_doc_generation_assisted",
+      "rights_status": "protected_delivery_only",
+      "operational_trust_class": "approval_gated_fulfillment"
+    }
+  ]
+}

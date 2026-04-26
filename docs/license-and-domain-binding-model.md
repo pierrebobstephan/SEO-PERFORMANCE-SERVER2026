@@ -23,16 +23,20 @@ Jede spaetere Lizenz sollte mindestens enthalten:
 
 - `license_id`
 - `customer_id`
-- `bound_domain`
-- `allowed_subdomain_policy`
-- `plugin_channel`
+- `product_id`
+- `domain_binding.bound_domain`
+- `domain_binding.allowed_subdomains`
+- `domain_binding.release_channel`
 - `policy_channel`
 - `allowed_scopes`
 - `allowed_features`
 - `status`
 - `issued_at`
 - `expires_at` oder `non_expiring`
-- `rollback_profile`
+- `rollback_profile_id`
+- `integrity.signature`
+- `integrity.signature_state`
+- `integrity.signing_key_reference`
 
 ## Domain-Binding
 
@@ -41,6 +45,12 @@ Eine Lizenz wird an genau eine produktive Hauptdomain gebunden.
 Optionale Erweiterung:
 
 - klar benannte Zusatz-Subdomain(s), falls ausdruecklich freigegeben
+
+Zusatzregeln:
+
+- jede erlaubte Subdomain muss eine explizite Unterdomain der Hauptdomain sein
+- die Hauptdomain darf nicht in `allowed_subdomains` wiederholt werden
+- Duplikate in `allowed_subdomains` sind unzulaessig
 
 Nicht erlaubt ohne Sonderfreigabe:
 
@@ -90,5 +100,5 @@ Keine Lizenz darf automatisch globale Theme-, Builder- oder SEO-Eingriffe freisc
 
 ## Status
 
-- Lizenzmodell: `blueprint_ready`
+- Lizenzmodell: `implemented_locally`
 - produktive Lizenzbindung: `approval_required`

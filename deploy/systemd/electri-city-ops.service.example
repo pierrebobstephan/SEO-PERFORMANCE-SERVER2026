@@ -1,0 +1,16 @@
+[Unit]
+Description=Electri City Ops Observe-Only Cycle Runner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rocket
+WorkingDirectory=/opt/electri-city-ops
+Environment=PYTHONPATH=/opt/electri-city-ops/src
+ExecStart=/usr/bin/python3 -m electri_city_ops run-loop --config /opt/electri-city-ops/config/settings.toml
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

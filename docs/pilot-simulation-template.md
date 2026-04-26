@@ -8,6 +8,7 @@ Bindende Referenzen:
 
 - [AGENTS.md](/opt/electri-city-ops/AGENTS.md)
 - [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md)
+- [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt)
 - [doctrine-alignment-report.md](/opt/electri-city-ops/docs/doctrine-alignment-report.md)
 - [approval-gate-spec.md](/opt/electri-city-ops/docs/approval-gate-spec.md)
 - [validation-engine-spec.md](/opt/electri-city-ops/docs/validation-engine-spec.md)
@@ -69,6 +70,22 @@ Jeder spaetere Pilot soll vor echter Anwendung mindestens diese Felder definiere
 - wann `blocked` gesetzt werden muss
 - wann spaeter `pilot_ready` vertretbar waere
 
+### 6. Pattern, Kontext und Praediktion
+
+- relevante Drift-, Fehler-, Missbrauchs- oder SEO-/GEO-Muster pruefen
+- technischen, betrieblichen, regulatorischen und marktbezogenen Kontext einbeziehen
+- Kurz-, Mittel- und Langfristszenarien fuer Risiko und Wirkung abschaetzen
+
+### 7. Semantische und generative Zusatzpruefung
+
+- bei internationalem Content: semantische Redundanz oder Kannibalisierung pruefen
+- bei generativ relevanten Inhalten: Zitierfaehigkeit, strukturierte Klarheit und Provenance pruefen
+
+### 8. Erklaerbarkeit vorbereiten
+
+- begruenden, warum die kleinste sichere Massnahme gewaehlt wurde
+- begruenden, warum staerkere Eingriffe verworfen wurden
+
 ## Connector-spezifische Hinweise
 
 ### Cloudflare
@@ -96,6 +113,9 @@ Jeder spaetere Pilot soll Simulation und Adaptionsentscheidung gemeinsam protoko
 - Ziel
 - Scope
 - Hypothese
+- Pattern-Match
+- Kontextualisierung
+- Antizipationsannahmen
 - Primaermetriken
 - Nachbarsignalen
 - Abort-Kriterien

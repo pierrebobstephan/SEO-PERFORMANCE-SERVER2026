@@ -2,7 +2,7 @@
 
 ## Zweck
 
-Dieses Dokument beschreibt die lokale Laufzeitdurchsetzung der Doktrin.
+Dieses Dokument beschreibt die lokale Laufzeitdurchsetzung der 8.0-Masterdoktrin.
 
 ## Prueffragen
 
@@ -44,12 +44,16 @@ Dieses Dokument beschreibt die lokale Laufzeitdurchsetzung der Doktrin.
 - Approval-Readiness
 - Rollback-Readiness
 - Simulations-Readiness
+- Zero-Trust-Readiness
+- Explainability-Minimum fuer relevante Entscheidungen
+- bei SEO-, GEO- oder Content-Wirkung: semantische und generative Kompatibilitaetspruefung
 
 ## Statuslogik
 
 ### `observe_only`
 
 - lokale oder interne Schritte ohne externe Wirkung und ohne Anwendungspfad
+- sicherer Default bei Unsicherheit, fehlenden Inputs, fehlenden Secrets, unklarer Ownership oder unklarem Blast Radius
 
 ### `blueprint_ready`
 
@@ -73,3 +77,14 @@ Der Cycle fuehrt jetzt zusaetzliche lokale Validierungen:
 - `doctrine_workspace_root_valid`
 
 Fehlschlaegt eine dieser Pruefungen, wird der Cycle lokal degradiert, ohne externe Wirkung zu entfalten.
+
+## V5-Leitkonsequenz
+
+Die Runtime-Guardrails dienen nicht nur der technischen Sperre, sondern der Durchsetzung dieser Reihenfolge:
+
+1. beobachten
+2. einordnen und analysieren
+3. nur die kleinste sichere Massnahme waehlen
+4. simulieren und erklaeren
+5. nur innerhalb freigegebener Grenzen anwenden
+6. validieren, Resilienz pruefen und dokumentieren

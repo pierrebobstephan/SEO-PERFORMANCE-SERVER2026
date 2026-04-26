@@ -1,0 +1,31 @@
+{
+  "license_id": "lic-final-real-staging-pilot-001",
+  "customer_id": "cust-real-staging-preview-001",
+  "product_id": "hso-plugin",
+  "status": "approval_required",
+  "domain_binding": {
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "allowed_subdomains": [],
+    "allowed_scopes": [
+      "homepage_only",
+      "feature:meta_description",
+      "feature:head_diagnostics",
+      "feature:structure_visibility_diagnostics"
+    ],
+    "release_channel": "pilot",
+    "policy_channel": "pilot",
+    "rollback_profile_id": "rb-final-real-staging-pilot-001"
+  },
+  "allowed_features": [
+    "meta_description",
+    "head_diagnostics",
+    "structure_visibility"
+  ],
+  "issued_at": "2026-04-19T21:00:00Z",
+  "non_expiring": true,
+  "integrity": {
+    "signature": "source not yet confirmed",
+    "signature_state": "operator_signing_required",
+    "signing_key_reference": "local_server_signing_key"
+  }
+}

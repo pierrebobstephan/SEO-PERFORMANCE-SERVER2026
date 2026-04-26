@@ -1,0 +1,3 @@
+# Example only. Do not install without explicit approval.
+# Run every 30 minutes:
+# */30 * * * * cd /opt/electri-city-ops && PYTHONPATH=src /usr/bin/python3 -m electri_city_ops run-cycle --config config/settings.toml >> var/logs/cron.log 2>&1

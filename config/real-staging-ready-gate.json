@@ -1,0 +1,32 @@
+{
+  "status": "blocked",
+  "ready_for_real_install_and_controlled_test": false,
+  "bound_test_host": "wp.electri-c-ity-studios-24-7.com",
+  "path_base": "/wordpress/",
+  "expected_home_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/",
+  "expected_scoped_page_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/beispiel-seite/",
+  "current_blockers": [
+    "example page dashboard hint still points to localhost",
+    "wordpress url normalization is not yet clean"
+  ],
+  "remaining_inputs": [
+    "wordpress_version",
+    "active_theme",
+    "active_builder",
+    "active_seo_plugin",
+    "plugin_inventory",
+    "backup_confirmation",
+    "restore_confirmation",
+    "rollback_owner",
+    "validation_owner"
+  ],
+  "installable_package_artifact": "dist/staging-only/site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+  "package_metadata_path": "manifests/previews/final-real-staging-pilot-package-metadata.json",
+  "manifest_path": "manifests/previews/final-real-staging-pilot-manifest-preview.json",
+  "entitlement_path": "manifests/previews/final-real-staging-pilot-entitlement-preview.json",
+  "validation_checklist_path": "manifests/previews/final-real-staging-pilot-validation-checklist-preview.json",
+  "rollback_profile_path": "manifests/previews/final-real-staging-pilot-rollback-profile-preview.json",
+  "safe_boot_sequence_ready": true,
+  "baseline_guardrail_sequence_ready": true,
+  "first_controlled_optimization_stage": "prepared_but_not_released"
+}

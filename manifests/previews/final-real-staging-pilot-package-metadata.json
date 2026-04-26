@@ -1,0 +1,16 @@
+{
+  "valid": true,
+  "issues": [],
+  "archive_path": "dist/staging-only/site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+  "metadata": {
+    "plugin_slug": "hetzner-seo-ops",
+    "plugin_version": "0.1.0-real-staging1",
+    "release_channel": "pilot",
+    "package_basename": "site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com",
+    "package_filename": "site-optimizer-bridge-0.1.0-real-staging1-wp-electri-c-ity-studios-24-7-com.zip",
+    "package_sha256": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
+    "file_count": 14,
+    "build_mode": "local_preview_only",
+    "built_at": "2026-04-19T21:00:00Z"
+  }
+}

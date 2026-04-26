@@ -1,0 +1,95 @@
+{
+  "valid": true,
+  "issues": [],
+  "checkout_to_issuance_orchestration": {
+    "orchestration_id": "orchestr-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "payment_method": "paypal_business",
+    "checkout_record_path": "manifests/previews/final-real-staging-checkout-record-prep.json",
+    "payment_confirmation_path": "manifests/previews/final-real-staging-payment-confirmation-prep.json",
+    "invoice_confirmation_path": "manifests/previews/final-real-staging-invoice-confirmation-prep.json",
+    "license_issuance_prep_path": "manifests/previews/final-real-staging-license-issuance-prep.json",
+    "signed_delivery_prep_path": "manifests/previews/final-real-staging-signed-delivery-prep.json",
+    "install_pack_path": "manifests/previews/final-real-staging-protected-customer-install-pack.json",
+    "customer_release_authorization_path": "manifests/previews/final-real-staging-customer-release-authorization.json",
+    "protected_customer_release_decision_path": "manifests/previews/final-real-staging-protected-customer-release-decision.json",
+    "steps": [
+      {
+        "name": "public_plan_selected",
+        "status": "local_preview_ready",
+        "blocking": false
+      },
+      {
+        "name": "checkout_record_prepared",
+        "status": "local_preview_ready",
+        "blocking": false
+      },
+      {
+        "name": "payment_confirmation_prepared",
+        "status": "local_preview_ready",
+        "blocking": false
+      },
+      {
+        "name": "invoice_confirmation_prepared",
+        "status": "local_preview_ready",
+        "blocking": false
+      },
+      {
+        "name": "customer_contact_verified",
+        "status": "operator_input_required",
+        "blocking": true
+      },
+      {
+        "name": "invoice_and_payment_confirmed",
+        "status": "approval_required",
+        "blocking": true
+      },
+      {
+        "name": "license_issuance_prepared",
+        "status": "approval_required",
+        "blocking": true
+      },
+      {
+        "name": "signed_delivery_prepared",
+        "status": "approval_required",
+        "blocking": true
+      },
+      {
+        "name": "protected_install_pack_ready",
+        "status": "approval_required",
+        "blocking": true
+      },
+      {
+        "name": "customer_release_authorization_prepared",
+        "status": "local_preview_ready",
+        "blocking": false
+      },
+      {
+        "name": "protected_customer_release_decision_prepared",
+        "status": "local_preview_ready",
+        "blocking": false
+      },
+      {
+        "name": "customer_release_authorized",
+        "status": "approval_required",
+        "blocking": true
+      }
+    ],
+    "current_gate": "operator_review_before_real_paypal_confirmation_invoice_confirmation_and_customer_release_decision",
+    "approval_required_reasons": [
+      "checkout, invoice, PayPal Business confirmation and customer verification remain outside the local preview path",
+      "signed delivery and protected release remain operator-gated",
+      "global customer release requires real support, legal, delivery and rollback operations"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  },
+  "input_refs": {
+    "public_legal_config": "config/public-portal-legal.json",
+    "install_pack": "manifests/previews/final-real-staging-protected-customer-install-pack.json",
+    "license_issuance_prep": "manifests/previews/final-real-staging-license-issuance-prep.json",
+    "signed_delivery_prep": "manifests/previews/final-real-staging-signed-delivery-prep.json",
+    "payment_method": "paypal_business"
+  }
+}

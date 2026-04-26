@@ -1,0 +1,26 @@
+{
+  "host": "127.0.0.1",
+  "port": 8765,
+  "title": "Electri City Ops Local Console",
+  "local_only_notice": "Local only / no external effect",
+  "max_text_bytes": 65536,
+  "max_action_output_bytes": 20000,
+  "allowed_actions": [
+    "run_python_tests",
+    "run_validate_config",
+    "run_schema_checks",
+    "run_dry_run_onboarding",
+    "build_manifest_preview",
+    "build_package_metadata",
+    "build_release_artifact_preview",
+    "build_protected_customer_install_pack",
+    "build_signed_delivery_prep",
+    "build_checkout_to_issuance_orchestration",
+    "build_payment_confirmation_and_customer_release",
+    "build_invoice_confirmation_and_release_decision",
+    "build_subscription_lifecycle_prep",
+    "build_paypal_business_and_invoice_prep",
+    "build_global_productization_readiness",
+    "build_external_cutover_package"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "valid": true,
+  "issues": [],
+  "license_issuance_prep": {
+    "issuance_id": "issuance-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "license_id": "lic-final-real-staging-pilot-001",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "license_object_path": "manifests/previews/final-real-staging-pilot-license-object-preview.json",
+    "signature_state": "operator_signing_required",
+    "signing_key_reference": "local_server_signing_key",
+    "signing_target": "local_server_signing_key",
+    "delivery_grant_id": "grant-final-real-staging-pilot-001",
+    "install_pack_path": "manifests/previews/final-real-staging-protected-customer-install-pack.json",
+    "approval_required_reasons": [
+      "real signing keys remain outside the workspace",
+      "license issuance stays operator-gated until signing, replay protection, and support ownership are complete"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  },
+  "install_pack_valid": true
+}

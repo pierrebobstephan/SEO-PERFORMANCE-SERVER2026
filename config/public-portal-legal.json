@@ -1,0 +1,261 @@
+{
+  "identity": {
+    "operator_name": "Pierre (Bob) Stephan",
+    "trading_as": "trading as Electri_C_ity - Studios",
+    "street": "Altensteiner Strasse 131",
+    "postal_city": "36448 Bad Liebenstein",
+    "country": "Germany",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "vat_id": "DE363614431",
+    "invoices_note": "Invoices are issued for completed orders.",
+    "response_time": "1-3 business days (Europe/Berlin)"
+  },
+  "footer_nav": [
+    {
+      "href": "/legal",
+      "label": "Impressum / Legal Notice"
+    },
+    {
+      "href": "/privacy",
+      "label": "Privacy Policy"
+    },
+    {
+      "href": "/terms",
+      "label": "Terms / License Terms"
+    },
+    {
+      "href": "/refund",
+      "label": "Refund Policy"
+    },
+    {
+      "href": "/contact",
+      "label": "Contact / Support"
+    }
+  ],
+  "pages": {
+    "legal": {
+      "route": "/legal",
+      "title": "Impressum / Legal Notice",
+      "description": "Legal operator and contact details for Site Optimizer Core.",
+      "hero": "Impressum / Legal Notice",
+      "lede": "Legal operator and contact details for Site Optimizer Core.",
+      "sections": [
+        {
+          "heading": "Operator",
+          "paragraphs": [
+            "Pierre (Bob) Stephan",
+            "trading as Electri_C_ity - Studios",
+            "Altensteiner Strasse 131",
+            "36448 Bad Liebenstein",
+            "Germany"
+          ]
+        },
+        {
+          "heading": "Contact",
+          "paragraphs": [
+            "Email: pierre.stephan1@electri-c-ity-studios.com",
+            "VAT ID: DE363614431",
+            "Responsible for content: Pierre (Bob) Stephan"
+          ]
+        },
+        {
+          "heading": "Support",
+          "paragraphs": [
+            "Support for licensing, activation, download, billing, and technical issues is available via email.",
+            "Typical response time: 1-3 business days (Europe/Berlin)."
+          ]
+        },
+        {
+          "heading": "Invoicing",
+          "paragraphs": [
+            "Invoices are issued for completed orders. VAT details are available on request and in commercial correspondence where applicable."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "route": "/privacy",
+      "title": "Privacy Policy",
+      "description": "This policy explains the main categories of personal data processed on the Site Optimizer Core public website, checkout flow, delivery path, and support path.",
+      "hero": "Privacy Policy",
+      "lede": "This policy explains the main categories of personal data processed on the Site Optimizer Core public website, checkout flow, delivery path, and support path.",
+      "sections": [
+        {
+          "heading": "Controller",
+          "paragraphs": [
+            "Pierre (Bob) Stephan",
+            "trading as Electri_C_ity - Studios",
+            "Altensteiner Strasse 131",
+            "36448 Bad Liebenstein",
+            "Germany",
+            "Email: pierre.stephan1@electri-c-ity-studios.com"
+          ]
+        },
+        {
+          "heading": "Contact",
+          "paragraphs": [
+            "For privacy requests, support, licensing, billing, or technical questions, contact pierre.stephan1@electri-c-ity-studios.com."
+          ]
+        },
+        {
+          "heading": "Data we process",
+          "paragraphs": [
+            "Website access data: server and security logs created when the public website is visited.",
+            "Checkout data: email address, licensed domain, order references, and related checkout records.",
+            "Portal and delivery data: license key, licensed domain, access checks, and support information provided by the customer."
+          ]
+        },
+        {
+          "heading": "Service partners and tools",
+          "paragraphs": [
+            "Payment processing: payment approval and order capture are handled through PayPal.",
+            "Analytics and measurement: public pages load Google tag / measurement scripts.",
+            "Email communication: delivery and support communication may include order and license identifiers."
+          ]
+        },
+        {
+          "heading": "Why we process data",
+          "paragraphs": [
+            "Data is processed to operate the website, create and complete checkouts, validate licensed access, deliver the current release, respond to support requests, and maintain service security and reporting."
+          ]
+        },
+        {
+          "heading": "Your rights",
+          "paragraphs": [
+            "Depending on applicable law, you may have rights of access, rectification, erasure, restriction, objection, and complaint. To exercise these rights, contact pierre.stephan1@electri-c-ity-studios.com."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "route": "/terms",
+      "title": "Terms of Service / License Terms",
+      "description": "These public terms describe the visible Guardian Core Monthly, Sovereign Enterprise Monthly and Sovereign Critical Monthly license plans and their exact licensed scope boundaries.",
+      "hero": "Terms of Service / License Terms",
+      "lede": "These public terms describe the visible Guardian Core Monthly, Sovereign Enterprise Monthly and Sovereign Critical Monthly license plans and their exact licensed scope boundaries.",
+      "sections": [
+        {
+          "heading": "Guardian Core Monthly",
+          "paragraphs": [
+            "EUR 2,500.00 / month",
+            "Monthly optimization scope for one exact licensed domain.",
+            "Includes documentation, validation posture and protected access expectations.",
+            "Guardian Core Monthly is the clear entry point for one exact licensed domain. It is built for controlled SEO and performance optimization with validation and rollback."
+          ]
+        },
+        {
+          "heading": "Sovereign Enterprise Monthly",
+          "paragraphs": [
+            "EUR 9,500.00 / month",
+            "Monthly multi-domain optimization for an exact licensed domain set confirmed during commercial review.",
+            "Includes documentation, validation posture and protected access expectations.",
+            "Sovereign Enterprise Monthly is designed for larger environments that need multi-domain optimization, audit evidence, validation and controlled activation."
+          ]
+        },
+        {
+          "heading": "Sovereign Critical Monthly",
+          "paragraphs": [
+            "EUR 25,000.00 / month",
+            "Monthly high-compliance scope for an individually approved exact licensed domain set.",
+            "Includes documentation, validation posture and protected access expectations.",
+            "Sovereign Critical Monthly is the high-compliance model for especially sensitive or business-critical environments that require individual approval, strict validation and controlled activation."
+          ]
+        },
+        {
+          "heading": "Shared public offer boundaries",
+          "paragraphs": [
+            "Not included under the public offer: open multi-domain rights beyond the exact licensed scope, custom implementation, migration, development services, or any rights beyond the public license scope unless separately agreed in writing.",
+            "Licensed download access remains protected and scope-bound. Public pages describe the offer, but they do not open private delivery, login, activation, or customer execution flows.",
+            "Access: current active release access while the license remains active",
+            "Support: email support for licensing, activation, download, billing, and technical issues"
+          ]
+        },
+        {
+          "heading": "License and access",
+          "paragraphs": [
+            "The exact licensed domain or the exact licensed domain set covered by the selected public plan is defined during checkout and later commercial review where required. Access and validation depend on an active license and correct domain validation."
+          ]
+        },
+        {
+          "heading": "Support, billing, and refunds",
+          "paragraphs": [
+            "Support is available by email at pierre.stephan1@electri-c-ity-studios.com. Invoices are issued for completed orders. Refunds / withdrawal are handled according to applicable consumer law and the refund policy."
+          ]
+        }
+      ]
+    },
+    "refund": {
+      "route": "/refund",
+      "title": "Refund Policy",
+      "description": "This page summarizes the refund and withdrawal position for the public Site Optimizer Core offer.",
+      "hero": "Refund Policy",
+      "lede": "This page summarizes the refund and withdrawal position for the public Site Optimizer Core offer.",
+      "sections": [
+        {
+          "heading": "EU consumer withdrawal right",
+          "paragraphs": [
+            "Consumers in the EU have a 14-day right of withdrawal for eligible distance purchases."
+          ]
+        },
+        {
+          "heading": "Digital products and license delivery",
+          "paragraphs": [
+            "For digital products and license deliveries, this right may expire once immediate performance begins if the customer expressly agrees and acknowledges it."
+          ]
+        },
+        {
+          "heading": "When refunds remain available",
+          "paragraphs": [
+            "Refunds remain available where required by applicable consumer law."
+          ]
+        },
+        {
+          "heading": "Contact for refund requests",
+          "paragraphs": [
+            "Contact: pierre.stephan1@electri-c-ity-studios.com"
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "route": "/contact",
+      "title": "Contact / Support",
+      "description": "Support for licensing, activation, download, billing, and technical issues is available by email.",
+      "hero": "Contact / Support",
+      "lede": "Support for licensing, activation, download, billing, and technical issues is available by email.",
+      "sections": [
+        {
+          "heading": "Support contact",
+          "paragraphs": [
+            "Email: pierre.stephan1@electri-c-ity-studios.com",
+            "Typical response time: 1-3 business days (Europe/Berlin)"
+          ]
+        },
+        {
+          "heading": "What support covers",
+          "paragraphs": [
+            "Licensing, activation, download, billing, and technical issues connected to the public Site Optimizer Core offer."
+          ]
+        },
+        {
+          "heading": "What to include in your message",
+          "paragraphs": [
+            "Order details / checkout reference where available",
+            "License key and licensed domain for access issues",
+            "Short issue summary and what was already checked"
+          ]
+        },
+        {
+          "heading": "Billing and operator details",
+          "paragraphs": [
+            "Pierre (Bob) Stephan, trading as Electri_C_ity - Studios",
+            "Altensteiner Strasse 131",
+            "36448 Bad Liebenstein",
+            "Germany",
+            "VAT ID: DE363614431"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "External Cutover Checklist",
+  "type": "object",
+  "description": "Operator-facing checklist for the real external cutover steps that remain outside the workspace.",
+  "properties": {
+    "schema_version": {
+      "type": "integer"
+    },
+    "cutover_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "bound_domain": {
+      "type": "string"
+    },
+    "public_base_url": {
+      "type": "string"
+    },
+    "protected_webhook_url": {
+      "type": "string"
+    },
+    "go_live_decision_state": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "abort_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_ready_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_smallest_safe_step": {
+      "type": "string"
+    }
+  }
+}

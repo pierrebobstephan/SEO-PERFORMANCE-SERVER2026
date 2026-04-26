@@ -16,6 +16,7 @@ Bindende Referenzen:
 
 - [AGENTS.md](/opt/electri-city-ops/AGENTS.md)
 - [system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md)
+- [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt)
 - [doctrine-alignment-report.md](/opt/electri-city-ops/docs/doctrine-alignment-report.md)
 - [approval-gate-spec.md](/opt/electri-city-ops/docs/approval-gate-spec.md)
 - [validation-engine-spec.md](/opt/electri-city-ops/docs/validation-engine-spec.md)
@@ -27,6 +28,7 @@ Doktrinische Bewertung:
 - `observe_only` bleibt bis zur Vollstaendigkeit aller Freigaben und Inputs aktiv
 - `apply -> validate -> rollback` ist zwingend
 - Betriebssystemschutz, Rocket-Cloud-Schutz und Workspace-Grenzen sind nicht beruehrbar
+- `fail closed`, Zero Trust und kleinster sicherer Scope bleiben bindend
 
 Gate-Status heute:
 
@@ -91,6 +93,7 @@ HTML-Kompression ist am Edge oder auf der Origin-Response-Strecke nicht aktiv od
 ## Simulationspfad vor spaeterer Anwendung
 
 - Header- und Response-Baseline fuer wiederholte Homepage-Requests fixieren
+- Pattern-, Drift- und Kontextlage vorab dokumentieren
 - pruefen, welche Response-Typen strikt ausgeschlossen bleiben muessen
 - Primaermetriken und Nachbarsignale fuer Nicht-Zielpfade gegenpruefen
 - erst nach dokumentiertem Simulationsergebnis von `approval_required` in Richtung `pilot_ready` bewerten

@@ -2,267 +2,168 @@
 
 ## Status
 
-Dieses Dokument ist die kanonische Langfassung der Systemdoktrin. [AGENTS.md](/opt/electri-city-ops/AGENTS.md) ist die knappe, verbindliche Repo-Steuerdatei und verweist auf diese Langfassung.
+Dieses Dokument ist die kanonische Langfassung der Systemdoktrin fuer das gesamte Suite- und Plugin-Projekt. Es ersetzt die bisherige v5-Leitbasis und leitet sich ab sofort aus [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt) ab.
 
-## Kanonische Kerndoktrin
+[AGENTS.md](/opt/electri-city-ops/AGENTS.md) bleibt die knappe, verbindliche Repo-Steuerdatei. Wenn zwischen Dokumenten Spannung entsteht, gilt immer die strengere Regel. Fuer dieses Repo haben Workspace-Grenzen, Betriebssystemschutz, Rocket-Cloud-Sperre, Approval-Pflicht, Validation und Rollback immer Vorrang.
+
+## Dokumenttyp
+
+Governance / Operations / Safety / Resilience / Ethics / AI Management / Agentic Security / SEO-GEO-Performance Doctrine
+
+## Kanonische Quellenkette
+
+- [AGENTS.md](/opt/electri-city-ops/AGENTS.md)
+- [docs/system-doctrine.md](/opt/electri-city-ops/docs/system-doctrine.md)
+- [Doktrin04.04.2026-Version-8.0.txt](/opt/electri-city-ops/Doktrin04.04.2026-Version-8.0.txt)
+- [docs/doctrine-alignment-report.md](/opt/electri-city-ops/docs/doctrine-alignment-report.md)
+
+Die TXT-Datei ist die normative 8.0-Quellfassung. Dieses Markdown-Dokument ueberfuehrt sie in repo-spezifische, technisch anschlussfaehige Leitregeln.
+
+## Repo-Kerndoktrin
 
 "Das Programm soll vollstaendig autonom, robust und defensiv-schuetzend arbeiten, dauerhaft aus seinen Daten lernen und sich selbst optimieren. Es verbessert Performance, Struktur und Ressourcennutzung kontinuierlich, erkennt Fehler automatisch und korrigiert sie eigenstaendig. Alle internen Module arbeiten harmonisch zusammen und tauschen Wissen aus. Selbstverbesserungen am Code erfolgen ausschliesslich sicher, validiert und ohne Risiko fuer das Betriebssystem. Ziel ist ein stabiles, lernfaehiges und selbstheilendes System, das sich langfristig weiterentwickelt."
 
-## Zielbild des autonomen, lernfaehigen, selbstheilenden Systems
-
-Das System ist als langfristig betriebener SEO-, Performance- und Stabilitaets-Operations-Stack gedacht. Es soll:
-
-- dauerhaft Zustand, Trends, Fehlerbilder und Ressourcensignale beobachten
-- Erkenntnisse aus Historie und Validierung in bessere Priorisierung und Planung uebersetzen
-- spaeter kontrollierte Optimierungen vorbereiten und nur innerhalb klarer Sicherheitsgrenzen anwenden
-- Fehlschlaege erkennen, Folgen begrenzen und ueber Rollback sowie Lernen in robustere Folgeentscheidungen uebersetzen
-
-Autonomie bedeutet in dieser Doktrin nicht grenzenlose Selbsttaetigkeit, sondern selbststaendige Arbeit innerhalb harter Schutzlogik.
-
-## Defensive Schutzlogik
-
-Defensive Schutzlogik hat Vorrang vor Optimierungsgeschwindigkeit.
-
-- Im Zweifel gilt Beobachtung vor Eingriff.
-- Bei Unsicherheit, Datenluecken, fehlenden Zugangsdaten oder fehlenden Freigaben bleibt das System in `observe_only`.
-- Kein Modul darf seine Wirkungskette an Guardrails, Gate-Logik, Validierung oder Rollback vorbei fuehren.
-- Kein Optimierungsziel darf Risiken fuer Betriebssystem, Rocket Cloud, nicht freigegebene Fremdsysteme oder unklare produktive Seiteneffekte rechtfertigen.
-
-Diese Doktrin ist mit der vorhandenen approval-, validation- und rollback-Logik gekoppelt und darf von spaeteren Connectoren nicht abgeschwaecht werden.
-
-## Leitprinzip und bindender Kernzyklus
-
-Das System folgt dem Leitprinzip:
-
-`so autonom wie moeglich, so defensiv wie noetig, so sicher wie zwingend`
-
-Jede systemische Verbesserung folgt dem Kernzyklus:
-
-`observe -> analyze -> decide -> simulate -> apply -> validate -> learn -> adapt -> document`
-
-Zwingende Folgerungen:
-
-- ohne Beobachtung keine Entscheidung
-- ohne Simulation keine Anwendung
-- ohne Validierung kein Erfolg
-- ohne Rueckweg keine Freigabe
-
-## Schutzhierarchie
-
-Bei Zielkonflikten gilt diese Prioritaet:
-
-1. Sicherheit des Betriebssystems
-2. Stabilitaet und Erreichbarkeit des Gesamtsystems
-3. Integritaet von Daten, Konfiguration und Zustandsmodellen
-4. Korrektheit und Validitaet der Funktion
-5. defensive Fehlerminimierung
-6. Performance und Ressourceneffizienz
-7. Komfort, Tempo und Erweiterung
-
-Performance-Gewinne duerfen niemals Stabilitaet, Sicherheit oder Integritaet opfern.
-
-## Modulkooperation und Wissensaustausch
-
-Alle internen Module muessen harmonisch zusammenarbeiten und Wissen austauschen. Kein Modul ist als isolierter Optimierer gedacht.
-
-Mindestens folgende Wissensfluesse sind dauerhaft vorgesehen:
-
-- Observe-only Audits liefern Rohsignale an trend_engine, learning_engine und reporting_engine.
-- trend_engine liefert Drift-, Stabilitaets- und Vertrauenssignale an change_planner und approval_gate.
-- learning_engine liefert Wiederholungsmuster, Risikoerfahrungen und Erfolgswahrscheinlichkeiten an Priorisierung, Validierung und Rollback-Bewertung.
-- validation_engine und rollback-Logik liefern Rueckmeldungen ueber Erfolg, Misserfolg und Nebenwirkungen an learning_engine.
-- reporting_engine macht Rohdaten, Entscheidungen, Gates und Begruendungen fuer Operatoren nachvollziehbar.
-
-Harmonie bedeutet dabei:
-
-- gemeinsame Datenmodelle statt isolierter Sonderlogiken
-- erklaerbare Uebergaenge zwischen Beobachtung, Planung, Freigabe, Anwendung, Validierung und Lernen
-- keine stillen Seiteneffekte einzelner Module
-
-## Kontinuierliches Lernen aus Historie, Trends, Fehlern, Erfolgen und Rollbacks
-
-Lernen ist nicht optional, sondern Bestandteil der Systemidentitaet.
-
-Das System soll dauerhaft lernen aus:
-
-- historischen Messwerten
-- Trendfenstern wie 1d, 7d, 30d und 365d
-- wiederkehrenden Fehlerbildern
-- erfolgreichen Optimierungen
-- fehlgeschlagenen Massnahmen
-- Rollback-Ausloesern und Rollback-Ergebnissen
-
-Lernen darf jedoch nicht unkontrolliert sein.
-
-- Kleine oder verrauschte Datenmengen duerfen nicht zu aggressiven Schlussfolgerungen fuehren.
-- Wiederholung erhoeht Gewicht, ersetzt aber keine kausale Plausibilitaet.
-- Eine Heuristik, die wiederholt zu schlechten Entscheidungen fuehrt, muss spaeter durch die learning_engine herabgestuft oder blockiert werden.
-
-## Sichere Selbstoptimierung
-
-Selbstverbesserung des eigenen Codes ist erlaubt, aber nur unter denselben oder strengeren Schutzregeln wie spaetere externe Optimierung.
-
-Verbindliche Bedingungen:
-
-- nur innerhalb `/opt/electri-city-ops`
-- keine Wirkung auf Betriebssystem, Rocket Cloud oder nicht freigegebene Fremdsysteme
-- dokumentierte Begruendung
-- lokale Tests
-- Validierung des erwarteten Ergebnisses
-- klarer Rollback-Pfad
-- keine unvalidierte Selbstmodifikation
-
-Selbstoptimierung darf niemals die Guardrails, die Observability oder die Ruecknehmbarkeit des Systems schwaechen.
-
-## Zulaessige Autonomie, Selbstheilung und Code-Selbstverbesserung
-
-Das System darf selbststaendig:
-
-- Messdaten erfassen und korrelieren
-- Muster, Anomalien und Engpaesse erkennen
-- Hypothesen bilden und bewerten
-- bekannte sichere Korrekturen lokal anwenden
-- Validierungen automatisiert wiederholen
-- Optimierungen priorisieren
-- Rollbacks automatisch ausloesen
-- interne Regeln verbessern, wenn diese Verbesserung selbst validiert wurde
-
-Das System darf nicht selbststaendig:
-
-- Rechte ausweiten
-- unfreigegebene Connectoren aktivieren
-- globale oder mehrdeutige Regeln produktiv schalten
-- OS-kritische Bereiche veraendern
-- Fremdsysteme ohne Freigabe und minimalen Scope veraendern
-- unvalidierte Selbstverbesserungen live schalten
-- unklare Ursachen mit aggressiven Massnahmen erraten
-
-Automatische Selbstheilung ist nur zulaessig, wenn:
-
-- die Ursache mit hoher Plausibilitaet bekannt ist
-- die Massnahme lokal begrenzt ist
-- sie dokumentiert und reversibel ist
-- weder OS-Schutz noch unfreigegebene Fremdsysteme beruehrt werden
-- der Blast Radius klein und bekannt ist
-- Erfolg und Fehlschlag kurzfristig validierbar sind
-
-## Harte Grenzen gegen Risiken fuer Betriebssystem und Fremdsysteme
-
-Folgende Grenzen sind nicht verhandelbar:
-
-- keine Aenderungen ausserhalb `/opt/electri-city-ops`
-- keine Aenderungen an Rocket Cloud
-- keine externen Schreibzugriffe ohne ausdrueckliche Freigabe
-- keine Aktivierung von systemd, cron, Benachrichtigungen oder Connectoren ohne Freigabe
-- keine Cloudflare- oder WordPress-Aenderungen ohne freigegebenen Connector, Gate-Status, Validierung und Rollback
-- keine OS-, Kernel-, Paket-, Firewall- oder Service-Manipulationen
-
-Betriebssystemschutz hat immer Vorrang. Wenn Autonomie und Systemsicherheit in Konflikt stehen, gewinnt die Sicherheit.
-
-## Connector- und Secret-Doktrin
-
-Kein externer Eingriff ohne:
-
-- klaren Connector
-- minimalen Scope
-- bindende Freigabe
-- minimal notwendige Rechte
-- dokumentierten Zielbereich
-
-Es gilt:
-
-- keine impliziten Workarounds
-- keine breit gefassten Tokens
-- keine Nutzung ungepruefter Secrets
-- keine reale Wirkung ohne freigegebenen Zielraum
-
-Fehlende Secrets oder Freigaben werden niemals durch Annahmen kompensiert. In solchen Faellen bleibt das System in `observe_only`, `blueprint_ready` oder `approval_required`.
-
-## Scope-Disziplin und Blast-Radius-Prinzip
-
-Jede Massnahme braucht einen exakt definierten Zielbereich.
-
-Ein gueltiger Scope ist:
-
-- klein
-- eindeutig
-- fachlich begruendet
-- technisch abgrenzbar
-- messbar
-- rueckrollbar
-
-Ungueltig sind Massnahmen mit:
-
-- globaler oder diffuser Wirkung
-- unklaren Regelketten
-- nicht dokumentierten Ausnahmen
-- nicht abschaetzbaren Seiteneffekten
-- unbestimmtem Zielsystem
-
-Vor realer Anwendung muss beantwortet sein:
-
-- was genau wird beruehrt
-- was darf unter keinen Umstaenden beruehrt werden
-- wie weit ein Fehler wirken kann
-- wie schnell er erkannt wird
-- wie schnell rueckgerollt werden kann
-
-## Trennung von Beobachtung, Planung, Freigabe, Anwendung, Validierung und Lernen
-
-Die Phasen duerfen logisch nicht ineinander fallen.
-
-### Beobachtung
-
-- nur lesen
-- nur messen
-- nur historisieren
-
-### Planung
-
-- Ursachenannahmen formulieren
-- Risiken, Scope und Ziel-Connector festlegen
-- Erfolgskriterien und Rollback vordenken
-
-### Freigabe
-
-- prueft, ob die Massnahme ueberhaupt ausserhalb des Workspace wirken darf
-- ordnet die Massnahme einem Gate-Status zu
-
-### Anwendung
-
-- darf spaeter nur ueber freigegebene Connectoren und nur mit kleinem, klar begrenztem Scope erfolgen
-
-### Validierung
-
-- vergleicht Vorher und Nachher
-- bewertet Primaermetriken und Nachbarsignale
-- kann bei Bedarf `rollback_required` ausloesen
-
-### Lernen
-
-- speichert Ergebnisse, Fehlmuster, Erfolgswahrscheinlichkeiten und Rollback-Erfahrungen
-- passt Priorisierung und Vorsicht langfristig an
-
-## Observe-only als sicherer Default-Fallback
-
-`observe_only` ist nicht nur ein Betriebsmodus, sondern der sicherste Rueckzugszustand des Systems.
-
-Er gilt insbesondere bei:
-
-- fehlenden Ziel-Inputs
-- fehlenden Zugangsdaten
-- fehlender Connector-Freigabe
-- unklarer Kausalitaet
-- instabiler Datenlage
-- hohem Blast Radius
-
-Observe-only ist damit nicht ein "reduzierter Modus", sondern die fundamentale Sicherheitsbasis des Gesamtsystems.
-
-## Erweiterte Betriebs- und Gate-Zustaende
-
-Neben `observe_only` sind langfristig folgende Zustandsklassen doktrinisch sinnvoll:
-
-- `local_safe_self_heal`
+## Integrierte 8.0-Kernpunkte
+
+### Oberste Leitformel
+
+- So autonom wie sicher moeglich.
+- So defensiv wie betrieblich noetig.
+- So begrenzt wie das Risiko es verlangt.
+- So beobachtbar wie Vertrauen es fordert.
+- So reversibel wie die Realitaet es erfordert.
+- So erklaerbar wie Menschen, Auditoren und Regulatoren es benoetigen.
+- So resilient wie Stoerungen, Angriffe und Marktveraenderungen es verlangen.
+- So ethisch wie Menschenwuerde, Grundrechte und Gesellschaft es erwarten.
+- So daten- und evidenzgebunden wie Wahrheit, Nachvollziehbarkeit und Provenance es verlangen.
+- So agentisch wie Kontrolle, Tool-Grenzen und Audit-Ketten es erlauben.
+- So generativ wie Belegbarkeit, Herkunft und Nicht-Taeuschung es zulassen.
+- So semantisch differenzierend wie globale Such-, Antwort- und Generatorsysteme es erfordern.
+
+### Absolute Prioritaetenordnung
+
+1. Menschenwuerde, Grundrechte und koerperliche Unversehrtheit
+2. Sicherheit, Missbrauchsvermeidung und Schutz vor realem Schaden
+3. Wahrhaftigkeit, Nicht-Taeuschung und Integritaet von Aussagen, Daten und Beweisen
+4. Systemintegritaet, Vertrauensgrenzen und sichere Zustandskontrolle
+5. Containment, Blast-Radius-Begrenzung und sichere Degradation
+6. Menschliche Steuerung, Freigabehoheit und Uebersteuerbarkeit
+7. Validierung, Verifikation und Reproduzierbarkeit
+8. Wiederherstellbarkeit, Rollback und Recovery-Faehigkeit
+9. Beobachtbarkeit, Auditierbarkeit und Erklaerbarkeit
+10. Datenschutz, Datensouveraenitaet und Zweckbindung
+11. Fairness, Nicht-Diskriminierung und gesellschaftliche Verhaeltnismaessigkeit
+12. Nachhaltigkeit, Ressourcenverantwortung und Kostenkontrolle
+13. Semantische Klarheit, Wissensraum-Kompatibilitaet und Zitierfaehigkeit
+14. Adaptive Optimierung und lernfaehige Verbesserung
+15. Performance, Sichtbarkeit und Wachstum
+16. Geschwindigkeit
+17. Bequemlichkeit
+
+### Nicht verhandelbare Axiome
+
+- Sicherheit vor Tempo
+- Begrenzung vor Ambition
+- Beobachten vor Handeln
+- Kein Nachweis, keine Aenderung
+- Fail closed, niemals fail open
+- Minimal-Power-Prinzip
+- Reversibilitaet ist Pflicht
+- Menschliche Freigabe bleibt oberste Instanz, wo Risiko oder externe Wirkung relevant sind
+- Lernen ist der Validierung untergeordnet
+- Grenzen sind real: Rollen-, Tenant-, Netzwerk-, Secret-, Daten-, Tool- und Rechtsgrenzen
+- Zero Trust ist Grundhaltung
+- Explainable by default
+- Ethik ist Hard Constraint
+- Praediktion dient Praevention, nicht Aggression
+- Autonomie ohne Budget, Guardrails und Not-Aus ist verboten
+- Provenance ist Pflicht, ersetzt aber nie Wahrheit
+- Kundensysteme und Livesysteme sind keine Experimentierflaechen
+- Supply Chain ist Teil der Sicherheitsgrenze
+
+## Formale 8.0-Pflichten
+
+### AI-Management-System
+
+Die Suite unterliegt ab jetzt explizit einer AI-Management-System-Schicht. Verantwortlichkeiten, Freigabekompetenzen, Risikoappetit, Kontrollziele, Review-Zyklen und Korrekturmassnahmen muessen dokumentiert und auditierbar bleiben.
+
+### Pflichtinventar
+
+Kein AI-System, Agent, Tool-Runner oder externer Write-Pfad darf produktiv oder kundennah betrieben werden, ohne im AI-Systemregister gefuehrt zu sein. Mindestens zu fuehren sind:
+
+- Systemname, Version, Owner, Validator, Operator, Auditor
+- Zweck, Scope, Rechtsraum, betroffene Personen oder Gruppen
+- Risikoklasse und Kritikalitaet
+- Datenklassen, Quellen, Loeschbarkeit und Rechtsgrundlage
+- Modell-, Prompt-, Policy-, Memory- und Tool-Layer
+- Write-Faehigkeiten, Connectoren, Monitoring, Kill-Switch, Fallback und Rollback
+
+### Risikoklassen
+
+- `R0`: Observe / Assist
+- `R1`: Bounded Automation
+- `R2`: Controlled Externality
+- `R3`: High Trust Required
+- `R4`: Critical / Sovereign
+
+Je hoeher die Klasse, desto strenger muessen Freigabe, Explainability, Logging, Human Oversight, Red-Teaming, Recovery und Deployment-Grenzen sein.
+
+### Verbindlicher Lebenszyklus
+
+Jedes System folgt:
+
+`govern -> register -> classify -> assess -> design -> source_verify -> build -> simulate -> validate -> approve -> deploy -> monitor -> re_evaluate -> learn -> decommission -> archive_delete`
+
+Abkuerzungen an Register, Risikoklassifizierung, Impact-Assessment, Baseline, Rollback, Validierung, Monitoring oder Dokumentation sind nicht zulaessig.
+
+### Pflicht-Impact-Assessment
+
+Vor erstmaliger Nutzung und vor jeder wesentlichen Aenderung ist ein Impact-Assessment zu erstellen. Es muss Auswirkungen auf Individuen, Gruppen, Missbrauch, Datenschutz, Fehlanreize, Drift, Halluzination, Tool-Missbrauch, Skalierungsrisiken und Recovery-Pfade betrachten.
+
+### Daten-, Retrieval- und Provenance-Governance
+
+- Daten muessen klassifiziert werden
+- Herkunft, Lizenzstatus, Aktualitaet, Zweckbindung, Bias- und Toxizitaetsrisiken muessen dokumentiert sein
+- Retrieval-Quellen brauchen Trust-Klassen, Provenance, Scope-Isolation und Poisoning-Kontrollen
+- Herkunft, Evidenz und Unsicherheit sind getrennt auszuweisen
+
+### Modell-, Prompt-, Policy-, Memory- und Agenten-Governance
+
+Doktrin 8.0 verlangt getrennte Steuerung fuer:
+
+- Model Layer
+- Policy Layer
+- Prompt Layer
+- Memory Layer
+- Tool Layer
+- Agent Layer
+
+Kein Agent darf ausserhalb explizit freigegebener Aktionsraeume handeln.
+
+## Repo-spezifische harte Grenzen
+
+- Keine Aenderungen ausserhalb `/opt/electri-city-ops`
+- Keine Aenderungen an Rocket Cloud
+- Keine externen Schreibzugriffe ohne Approval
+- Keine globale oder ungebundene Aktivierung
+- Default bei Unsicherheit ist `observe_only`
+- Reale externe Wirkung bleibt mindestens `approval_required`, haeufig `observe_only`
+- `apply -> validate -> rollback` ist Pflicht
+- Generierter Code bleibt untrusted, bis Tests, Policy-Checks, Validierung und Rollback-Pfad vorliegen
+
+## Explizite Zustaende
+
+Die Doktrin 8.0 fuehrt und bestaetigt mindestens diese Zustaende:
+
+- `observe_only`
+- `safe_mode`
+- `controlled_apply`
+- `containment_mode`
+- `rollback_mode`
+- `self_healing_active`
+- `emergency_freeze`
+- `adaptive_resonance_mode`
+- `centaur_mode`
 - `blueprint_ready`
 - `approval_required`
 - `pilot_ready`
@@ -272,76 +173,49 @@ Neben `observe_only` sind langfristig folgende Zustandsklassen doktrinisch sinnv
 - `blocked`
 - `rollback_required`
 
-Diese Zustaende duerfen jedoch nur ueber Gate-, Validation- und Rollback-Logik erreicht werden, niemals durch implizite Modulentscheidungen.
+## Verbindlicher Betriebszyklus im Repo
 
-## Unsicherheitsdoktrin
+Fuer dieses Repo bleibt die knappe Betriebsform:
 
-Unsicherheit ist ein Signal fuer Vorsicht.
+`observe -> analyze -> decide -> simulate -> apply -> validate -> learn -> document`
 
-Bei hoher Unsicherheit muss das System:
+Die 8.0-Langform ist zusaetzlich verbindlich, wo Daten-, Agenten-, Provenance-, Lieferketten-, Modell-, Retrieval- oder Post-Deployment-Governance betroffen sind.
 
-- im Beobachtungsmodus bleiben
-- weitere Evidenz sammeln
-- den Scope verkleinern
-- den Vertrauensgrad kennzeichnen
-- auf klarere Daten oder Freigaben warten
+## Akzeptanzstandard fuer Aenderungen
 
-Unklarheit darf niemals durch aggressive Aenderungen kompensiert werden.
+Keine relevante Aenderung gilt als erfolgreich ohne:
 
-## Dokumentationspflicht
+- dokumentierten Before-State
+- expliziten Zweck
+- definierten Scope
+- Risikoklasse
+- Impact-Assessment, wenn relevant
+- messbare Zielmetriken
+- definierte Abort-Kriterien
+- glaubwuerdigen Rollback- oder Containment-Pfad
+- definierte Validierung
+- Post-Change-Evidenz
+- nachvollziehbare Dokumentationsspur
+- Erklaerbarkeits- und Provenance-Nachweis, wenn relevant
 
-Jede relevante Beobachtung, Entscheidung, Aenderung, Validierung, Rueckrollung und gelernte Regel muss nachvollziehbar dokumentiert werden.
+## Umsetzungsstatus im Repo
 
-Mindestens zu erfassen sind:
+Die Suite ist jetzt auf 8.0 als Fundament umgestellt. Technisch durchgesetzt werden bereits:
 
-- Kontext
-- Ziel
-- Scope
-- Ausgangszustand
-- Hypothese
-- Eingriff
-- Ergebnis
-- Nebeneffekte
-- Rollback-Pfad
-- Lerneffekt
-- finaler Status
+- neue kanonische Quellenkette
+- 8.0-Policy-Version
+- AI-Management- und Lifecycle-Felder in der Doctrine-Policy
+- Risikoklassen `R0` bis `R4`
+- erweiterte Simulation mit Impact- und Evidence-Feldern
+- Gate-Checks fuer Register-, Impact-, Provenance-, Supply-Chain- und Human-Oversight-Bereitschaft
 
-Ein nicht dokumentierter Eingriff gilt doktrinisch als unvollstaendig.
+Die restliche operative Angleichung wird in [docs/doctrine-alignment-report.md](/opt/electri-city-ops/docs/doctrine-alignment-report.md) nachgehalten.
 
-## Erfolgskriterien
+Seit dem 8.0-Umbau liegen zusaetzlich konkrete Governance-Artefakte vor:
 
-Das System erfuellt diese Doktrin nur dann, wenn es nachweisbar:
+- [config/ai-system-register.json](/opt/electri-city-ops/config/ai-system-register.json)
+- [config/ai-impact-assessments.json](/opt/electri-city-ops/config/ai-impact-assessments.json)
+- [config/provenance-evidence.json](/opt/electri-city-ops/config/provenance-evidence.json)
+- [config/supply-chain-evidence.json](/opt/electri-city-ops/config/supply-chain-evidence.json)
 
-- stabil bleibt
-- defensiv handelt
-- aus Daten lernt
-- bekannte Fehler sicher selbst behebt
-- Optimierungen valide und kontrolliert umsetzt
-- seine Module koordiniert zusammenarbeiten laesst
-- sich nur innerhalb sicherer Grenzen selbst verbessert
-- kritische oder fremde Bereiche nicht unbeabsichtigt beruehrt
-
-## Verbindlichkeit fuer spaetere Connectoren und Module
-
-Besonders streng an diese Doktrin gebunden sind spaeter:
-
-- approval_gate
-- validation_engine
-- rollback-Mechanik
-- learning_engine
-- change_planner
-- alle Cloudflare- und WordPress-Connectoren
-
-Diese Komponenten duerfen nie zugunsten von Bequemlichkeit, Geschwindigkeit oder impliziter Annahmen abgeschwaecht werden.
-
-## Doktrinische Schlussfolgerung
-
-Das System darf langfristig autonomer, lernfaehiger und aktiver werden, aber nur wenn diese Autonomie:
-
-- innerhalb harter Guardrails bleibt
-- durch Historie und Trenddaten gedeckt ist
-- durch Freigabe kontrolliert ist
-- durch Validierung beweisbar ist
-- durch Rollback sofort begrenzbar bleibt
-
-Damit ist die oberste Systemdoktrin erfuellt: ein stabiles, lernfaehiges, selbstheilendes und langfristig evolvierendes System, das seine Schutzgrenzen nie verletzt.
+Diese Artefakte werden ueber die lokale Suite-Validation, die Local Console und die globale Productization-Readiness mitgeprueft.

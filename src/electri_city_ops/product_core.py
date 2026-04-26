@@ -186,13 +186,31 @@ def validate_domain_binding(binding: dict[str, Any], channels: dict[str, dict[st
     bound_domain = str(binding.get("bound_domain", "")).strip()
     issues.extend(validate_domain_name(bound_domain))
 
+    normalized_bound_domain = normalize_domain(bound_domain)
+
     allowed_subdomains = binding.get("allowed_subdomains", [])
     if not isinstance(allowed_subdomains, list):
         issues.append("allowed_subdomains must be a list")
     else:
+        normalized_subdomains: list[str] = []
         for item in allowed_subdomains:
-            if validate_domain_name(str(item)):
+            normalized_item = normalize_domain(str(item))
+            subdomain_issues = validate_domain_name(normalized_item)
+            if subdomain_issues:
                 issues.append(f"allowed_subdomain '{item}' is invalid")
+                continue
+            if normalized_item == normalized_bound_domain:
+                issues.append("allowed_subdomains must not repeat bound_domain")
+                continue
+            if normalized_bound_domain and not normalized_item.endswith(f".{normalized_bound_domain}"):
+                issues.append(
+                    f"allowed_subdomain '{item}' must be an explicit descendant of bound_domain '{bound_domain}'"
+                )
+                continue
+            normalized_subdomains.append(normalized_item)
+
+        if len(normalized_subdomains) != len(set(normalized_subdomains)):
+            issues.append("allowed_subdomains must not contain duplicates")
 
     allowed_scopes = binding.get("allowed_scopes", [])
     if not isinstance(allowed_scopes, list) or not allowed_scopes:
@@ -241,11 +259,20 @@ def validate_license_object(license_object: dict[str, Any], channels: dict[str, 
         issues.extend(validate_domain_binding(domain_binding, channels))
 
     allowed_features = license_object.get("allowed_features", [])
-    if not isinstance(allowed_features, list):
-        issues.append("allowed_features must be a list")
+    if not isinstance(allowed_features, list) or not allowed_features:
+        issues.append("allowed_features must be a non-empty list")
 
     if not bool(license_object.get("non_expiring", False)) and not str(license_object.get("expires_at", "")).strip():
         issues.append("expires_at must be set when non_expiring is false")
+
+    integrity = license_object.get("integrity")
+    signature = str(license_object.get("signature", "")).strip()
+    if isinstance(integrity, dict):
+        for key in ("signature", "signature_state", "signing_key_reference"):
+            if not str(integrity.get(key, "")).strip():
+                issues.append(f"license integrity missing '{key}'")
+    elif signature == "":
+        issues.append("license object requires integrity or signature")
 
     return issues
 
@@ -315,6 +342,14 @@ def domain_matches(current_domain: str, bound_domain: str, allowed_subdomains: l
     return current in normalized_subdomains
 
 
+def license_signature_is_trusted(license_object: dict[str, Any]) -> bool:
+    integrity = license_object.get("integrity", {})
+    if not isinstance(integrity, dict):
+        return False
+    signature_state = str(integrity.get("signature_state", "")).strip().lower()
+    return signature_state in {"trusted", "verified", "green", "active"}
+
+
 def evaluate_local_plugin_mode(
     license_object: dict[str, Any],
     current_domain: str,
@@ -324,6 +359,15 @@ def evaluate_local_plugin_mode(
     source_mapping_confirmed: bool,
     scope_confirmed: bool,
 ) -> PluginModeDecision:
+    validation_issues = validate_license_object(license_object, channels)
+    if validation_issues:
+        if any(
+            issue == "rollback_profile_id must be set" or "policy_channel" in issue
+            for issue in validation_issues
+        ):
+            return PluginModeDecision("approval_required", tuple(validation_issues))
+        return PluginModeDecision("safe_mode", tuple(validation_issues))
+
     profile, issues = build_domain_runtime_profile(license_object, channels)
     if issues:
         return PluginModeDecision("safe_mode", issues)
@@ -340,10 +384,25 @@ def evaluate_local_plugin_mode(
             "observe_only",
             (f"license status '{profile.status}' does not allow active mode",),
         )
+    if not license_signature_is_trusted(license_object):
+        return PluginModeDecision(
+            "safe_mode",
+            ("license integrity is not trusted enough for active mode",),
+        )
     if not channel_allows_active_scoped(profile.release_channel, channels):
         return PluginModeDecision(
             "observe_only",
             (f"release_channel '{profile.release_channel}' does not allow active_scoped",),
+        )
+    if not channel_allows_active_scoped(profile.policy_channel, channels):
+        return PluginModeDecision(
+            "approval_required",
+            (f"policy_channel '{profile.policy_channel}' does not allow active_scoped",),
+        )
+    if not profile.rollback_profile_id:
+        return PluginModeDecision(
+            "approval_required",
+            ("rollback_profile_id is missing",),
         )
     if profile.status in {"observe_only", "approval_required", "pilot_ready", "rollback_required"}:
         return PluginModeDecision(

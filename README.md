@@ -53,6 +53,12 @@ PYTHONPATH=src python3 -m electri_city_ops validate-config --config config/setti
 PYTHONPATH=src python3 -m electri_city_ops run-cycle --config config/settings.toml
 ```
 
+Tests aus dem Repo-Root:
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
+
 ## Wichtige Dateien
 
 - `config/settings.toml`: Betriebsmodus und Freigaben
@@ -70,4 +76,3 @@ Vor aktivem Betrieb und vor jeder echten externen Optimierung fehlen derzeit min
 - SMTP-/Benachrichtigungsdaten
 - API-Zugaenge
 - gewuenschte Report-Empfaenger
-

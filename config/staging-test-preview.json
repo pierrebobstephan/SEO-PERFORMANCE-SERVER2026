@@ -1,0 +1,32 @@
+{
+  "status": "approval_required",
+  "target_environment": "staging_wordpress_only",
+  "public_wordpress_base_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/",
+  "scoped_test_page_url": "https://wp.electri-c-ity-studios-24-7.com/wordpress/beispiel-seite/",
+  "bound_test_host": "wp.electri-c-ity-studios-24-7.com",
+  "path_base": "/wordpress/",
+  "test_scope": [
+    "homepage_only",
+    "feature:meta_description",
+    "feature:head_diagnostics",
+    "feature:structure_visibility_diagnostics"
+  ],
+  "default_mode": "safe_mode",
+  "fallback_mode": "observe_only",
+  "required_inputs": [
+    "wordpress_version",
+    "active_theme",
+    "active_builder",
+    "active_seo_plugin",
+    "plugin_inventory",
+    "backup_confirmation",
+    "restore_confirmation",
+    "rollback_owner",
+    "validation_owner"
+  ],
+  "url_normalization_status": "blocked",
+  "url_normalization_blocker": "before real pilot: the example page dashboard hint and every remaining home/siteurl/canonical/internal path reference must stop pointing to localhost",
+  "current_url_residual": "the default WordPress example page still exposes a dashboard-related localhost link",
+  "public_delivery": false,
+  "real_test_domain": "wp.electri-c-ity-studios-24-7.com"
+}

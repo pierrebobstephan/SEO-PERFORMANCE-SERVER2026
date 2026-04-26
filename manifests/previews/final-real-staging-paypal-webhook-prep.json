@@ -1,0 +1,66 @@
+{
+  "config_valid": true,
+  "config_issues": [],
+  "valid": true,
+  "issues": [],
+  "paypal_webhook_prep": {
+    "webhook_prep_id": "paypal-webhook-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "payment_method": "paypal_business",
+    "webhook_verify_url": "https://api-m.paypal.com/v1/notifications/verify-webhook-signature",
+    "webhook_id_env": "PAYPAL_BUSINESS_WEBHOOK_ID",
+    "listener_candidate_url": "https://site-optimizer.electri-c-ity-studios-24-7.com/protected/paypal/webhook",
+    "listener_candidate_state": "protected_receiver_candidate_modeled",
+    "listener_candidate_reason": "the candidate URL is separated from public portal pages and modeled as a protected server-side webhook receiver, but it is not yet verified in a real server context",
+    "listener_candidate_delivery_scope": "paypal_billing_events_only",
+    "listener_candidate_verification_model": "server_side_signature_verification_with_env_ref_webhook_id",
+    "listener_candidate_replay_protection_expectation": "transmission_id_time_window_and_nonce_registry",
+    "handler_path": "/protected/paypal/webhook",
+    "handler_state": "implemented_local_protected_only",
+    "receiver_runtime_state": "implemented_but_unverified",
+    "verification_runtime_state": "implemented",
+    "replay_protection_runtime_state": "implemented",
+    "env_ref_readiness_state": "missing_env_refs",
+    "activation_state": "approval_required",
+    "evidence_log_path": "/opt/electri-city-ops/var/state/json/paypal_webhook_evidence.jsonl",
+    "nonce_registry_path": "/opt/electri-city-ops/var/state/json/paypal_webhook_nonce_registry.json",
+    "local_runtime_verification": {
+      "state": "passed",
+      "proof_mode": "local_synthetic_paypal_signature_and_replay_self_test",
+      "first_delivery": {
+        "status_code": 202,
+        "verification_state": "verified",
+        "replay_state": "clear",
+        "routing_state": "protected_operator_server_governed"
+      },
+      "second_delivery": {
+        "status_code": 409,
+        "verification_state": "verified",
+        "replay_state": "replay_suspected",
+        "routing_state": "rejected_replay_protection"
+      },
+      "evidence_log_written": true,
+      "nonce_registry_written": true,
+      "issues": [],
+      "remaining_external_requirements": [
+        "load real PayPal env refs on the protected server",
+        "verify the protected receiver in the real staging server context",
+        "approve webhook activation for real billing events"
+      ]
+    },
+    "verification_state": "implemented_runtime_ready_when_env_refs_present",
+    "event_routing_state": "protected_operator_console_only",
+    "public_route_exposed": false,
+    "server_validation_state": "server_managed_bridge",
+    "server_rollback_state": "server_managed_bridge",
+    "approval_required_reasons": [
+      "webhook verification remains protected and must not expose a public customer route",
+      "event routing stays local or operator-gated until real billing cutover is approved",
+      "server-managed validation and rollback must remain intact before webhook-backed automation can go live"
+    ],
+    "built_at": "2026-04-01T00:00:00Z"
+  },
+  "input_refs": {
+    "paypal_config": "config/paypal-business.json"
+  }
+}

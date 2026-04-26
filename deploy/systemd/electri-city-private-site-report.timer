@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily private recommend-only site report email
+
+[Timer]
+OnCalendar=*-*-* 08:00:00
+Persistent=true
+Unit=electri-city-private-site-report.service
+
+[Install]
+WantedBy=timers.target

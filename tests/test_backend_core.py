@@ -31,6 +31,11 @@ def _license_object() -> dict[str, object]:
         "allowed_features": ["meta_description"],
         "issued_at": "2026-03-29T00:00:00Z",
         "non_expiring": True,
+        "integrity": {
+            "signature": "signed",
+            "signature_state": "trusted",
+            "signing_key_reference": "test-key",
+        },
     }
 
 

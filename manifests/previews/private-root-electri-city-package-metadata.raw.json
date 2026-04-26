@@ -1,0 +1,11 @@
+{
+  "plugin_slug": "hetzner-seo-ops",
+  "plugin_version": "0.1.0-real-staging1",
+  "release_channel": "pilot",
+  "package_basename": "site-optimizer-bridge-0.1.0-real-staging1-electri-c-ity-studios-24-7-com-root-private",
+  "package_filename": "site-optimizer-bridge-0.1.0-real-staging1-electri-c-ity-studios-24-7-com-root-private.zip",
+  "package_sha256": "cf2264dea45eb4fb14721ce57d6c5715d82763d0b0aac0c54a97532daab39004",
+  "file_count": 15,
+  "build_mode": "local_preview_only",
+  "built_at": "2026-04-19T21:00:00Z"
+}

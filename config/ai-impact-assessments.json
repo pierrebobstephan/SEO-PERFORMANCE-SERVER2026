@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "doctrine_version": "8.0",
+  "assessments": [
+    {
+      "assessment_id": "ia-suite-runtime-core-v1",
+      "system_id": "suite_runtime_core",
+      "risk_class": "R0",
+      "status": "completed",
+      "summary": "Workspace-only orchestration with no approved external write paths.",
+      "human_oversight_state": "operator_required_for_any_externality",
+      "primary_harms": [
+        "incorrect local status derivation",
+        "unsafe build recommendation if validation is skipped"
+      ],
+      "mitigation_controls": [
+        "observe_only default",
+        "workspace guard",
+        "tests and schema validation",
+        "rollback-first local artifact discipline"
+      ],
+      "rollback_reference": "local artifact rebuild and revert path",
+      "monitoring_reference": "python validation, schema checks and unit tests",
+      "review_cycle": "2026-H2"
+    },
+    {
+      "assessment_id": "ia-wordpress-bridge-plugin-v1",
+      "system_id": "wordpress_bridge_plugin",
+      "risk_class": "R1",
+      "status": "completed",
+      "summary": "Domain-bound plugin stays in observe_only, safe_mode or approval_required until exact license, source mapping and rollback conditions are green.",
+      "human_oversight_state": "server_and_operator_governed",
+      "primary_harms": [
+        "wrong domain activation",
+        "meta or head ownership confusion",
+        "unbounded runtime write"
+      ],
+      "mitigation_controls": [
+        "hard domain binding",
+        "source mapping confirmation",
+        "safe_mode fallback",
+        "server-managed rollback and validation"
+      ],
+      "rollback_reference": "rollback profile per bound domain",
+      "monitoring_reference": "baseline snapshot, conflict picture, optimization gate",
+      "review_cycle": "2026-H2"
+    },
+    {
+      "assessment_id": "ia-public-portal-surface-v1",
+      "system_id": "public_portal_surface",
+      "risk_class": "R1",
+      "status": "completed",
+      "summary": "Public portal remains informational, legal and guarded without public delivery, login or billing execution.",
+      "human_oversight_state": "operator_review_for_content_and_offer_changes",
+      "primary_harms": [
+        "misleading buyer messaging",
+        "accidental exposure of protected routes",
+        "policy drift between legal and commercial copy"
+      ],
+      "mitigation_controls": [
+        "localhost-only local console",
+        "blocked protected routes",
+        "config-driven legal sync",
+        "public route tests"
+      ],
+      "rollback_reference": "revert portal templates and route map",
+      "monitoring_reference": "public route tests, support and legal page assertions",
+      "review_cycle": "2026-H2"
+    },
+    {
+      "assessment_id": "ia-protected-paypal-webhook-receiver-v1",
+      "system_id": "protected_paypal_webhook_receiver",
+      "risk_class": "R2",
+      "status": "completed",
+      "summary": "Protected billing-event receiver is limited to PayPal billing events and fails closed on invalid signature, replay suspicion, malformed payload or missing env refs.",
+      "human_oversight_state": "activation_and_external_effects_require_approval",
+      "primary_harms": [
+        "forged billing events",
+        "replay of valid events",
+        "scope confusion between marketing and billing routes"
+      ],
+      "mitigation_controls": [
+        "protected route separation",
+        "signature verification",
+        "replay protection",
+        "operator-governed routing"
+      ],
+      "rollback_reference": "disable webhook activation and hold release decisions",
+      "monitoring_reference": "verification evidence, replay registry and routing state",
+      "review_cycle": "2026-H2"
+    },
+    {
+      "assessment_id": "ia-protected-fulfillment-chain-v1",
+      "system_id": "protected_fulfillment_chain",
+      "risk_class": "R2",
+      "status": "completed",
+      "summary": "Protected fulfillment stays domain-bound, signed-delivery-prepared and approval-gated until payment, license, signature and operator release decision are all green.",
+      "human_oversight_state": "operator_approval_required_before_customer_release",
+      "primary_harms": [
+        "delivery to the wrong domain",
+        "release without payment confirmation",
+        "unsigned or unverifiable artifact delivery"
+      ],
+      "mitigation_controls": [
+        "domain-bound licenses",
+        "delivery grant rule",
+        "signature prep and replay protection",
+        "protected customer release decision"
+      ],
+      "rollback_reference": "revoke release decision and keep protected delivery closed",
+      "monitoring_reference": "payment, invoice, delivery and renewal state previews",
+      "review_cycle": "2026-H2"
+    }
+  ]
+}

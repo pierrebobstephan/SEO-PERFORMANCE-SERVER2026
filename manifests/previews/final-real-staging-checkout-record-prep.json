@@ -1,0 +1,30 @@
+{
+  "valid": true,
+  "issues": [],
+  "checkout_record_prep": {
+    "order_id": "order-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "selected_plan": "Guardian Core Monthly",
+    "price_line": "EUR 2,500.00 / month",
+    "scope_line": "Monthly optimization scope for one exact licensed domain.",
+    "included_line": "Includes documentation, validation posture and protected access expectations.",
+    "short_public_copy": "Guardian Core Monthly is the clear entry point for one exact licensed domain. It is built for controlled SEO and performance optimization with validation and rollback.",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "licensed_domain_count": 1,
+    "documentation_access": "included_local_docs",
+    "licensed_download_access": "protected_local_bundle_only",
+    "invoice_state": "approval_required",
+    "customer_contact_state": "email_support_active",
+    "support_state": "email_support_active",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "activation_state": "approval_required",
+    "payment_method": "paypal_business",
+    "payment_processor_label": "PayPal Business",
+    "approval_required_reasons": [
+      "no real checkout processor is connected in the workspace",
+      "real invoice issuance and payment confirmation remain outside the local preview path",
+      "customer contact and fulfillment confirmation still require operator review"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

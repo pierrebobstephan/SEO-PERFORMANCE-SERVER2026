@@ -1,0 +1,28 @@
+{
+  "valid": true,
+  "issues": [],
+  "customer_release_authorization": {
+    "authorization_id": "customer-release-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "order_id": "order-final-real-staging-pilot-001",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "payment_confirmation_path": "manifests/previews/final-real-staging-payment-confirmation-prep.json",
+    "license_issuance_prep_path": "manifests/previews/final-real-staging-license-issuance-prep.json",
+    "signed_delivery_prep_path": "manifests/previews/final-real-staging-signed-delivery-prep.json",
+    "install_pack_path": "manifests/previews/final-real-staging-protected-customer-install-pack.json",
+    "support_handover_state": "email_support_active",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "release_state": "approval_required",
+    "customer_release_channel": "protected_operator_delivery_only",
+    "public_delivery": false,
+    "customer_login": false,
+    "license_api_exposed": false,
+    "approval_required_reasons": [
+      "customer release stays protected until payment, invoice and support ownership are confirmed",
+      "no public delivery, customer login or open license API is enabled in the workspace",
+      "operator release authorization must remain separate from local preview preparation"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

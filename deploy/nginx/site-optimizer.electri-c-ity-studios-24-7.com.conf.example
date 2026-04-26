@@ -1,0 +1,49 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name site-optimizer.electri-c-ity-studios-24-7.com;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /var/www/letsencrypt;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name site-optimizer.electri-c-ity-studios-24-7.com;
+
+    ssl_certificate /etc/letsencrypt/live/site-optimizer.electri-c-ity-studios-24-7.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/site-optimizer.electri-c-ity-studios-24-7.com/privkey.pem;
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:site_optimizer_tls:10m;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers off;
+
+    add_header X-Frame-Options "DENY" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header X-Robots-Tag "all" always;
+
+    include /opt/electri-city-ops/deploy/nginx/snippets/site-optimizer-protected-routes.conf.example;
+
+    location = /healthz {
+        proxy_pass http://127.0.0.1:8781/healthz;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8781;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Host $host;
+    }
+}

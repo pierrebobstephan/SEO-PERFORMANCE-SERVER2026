@@ -1,0 +1,47 @@
+{
+  "valid": true,
+  "issues": [],
+  "signed_delivery_prep": {
+    "prep_id": "signed-delivery-prep-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "release_channel": "pilot",
+    "signing": {
+      "signature_mode": "detached_signature_prep_only",
+      "signature_state": "operator_signing_required",
+      "signing_key_reference": "local_server_signing_key",
+      "signing_target": "local_server_signing_key",
+      "signature_algorithm": "source not yet confirmed",
+      "cleartext_secret_present": false
+    },
+    "replay_protection": {
+      "state": "local_policy_defined",
+      "nonce_strategy": "domain_bound_issued_at_expires_at_window",
+      "issued_at_binding": true,
+      "expires_at_required": true
+    },
+    "delivery_grant": {
+      "grant_id": "grant-final-real-staging-pilot-001",
+      "state": "approval_required",
+      "public_delivery": false,
+      "customer_login": false,
+      "license_api_exposed": false,
+      "delivery_target": "protected_signed_download_on_hetzner",
+      "delivery_grant_rule": "payment_confirmed_and_exact_domain_bound_and_license_issued_and_signed_and_operator_approved"
+    },
+    "digests": {
+      "package_sha256": "e01ec96e6cc8568b37d6190143d0e8fd2c1c1d3816ba455c2258f173260e60ac",
+      "manifest_sha256": "22274c946adcfa7e69ed0395ad6b93e91cda547337408b94cb64c48a5b0ab3b7",
+      "license_object_sha256": "d7d20371623952ec0ead39ab3702815d9b9382e880bed2ad7e783110aeef307d",
+      "entitlement_sha256": "d3225834c476ab33dae901e0e38ff93ea3d7502af7c117b57b8f8028bfa212fc",
+      "install_pack_sha256": "10fa9a626011de85ddb0aad41aa4a6d45084e110e6554afe2e4e847d5547b2e0"
+    },
+    "approval_required_reasons": [
+      "real signing keys and signing service remain outside the workspace",
+      "replay protection policy is not yet fully configured",
+      "delivery grant remains protected and not customer-public"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  },
+  "install_pack_valid": true
+}

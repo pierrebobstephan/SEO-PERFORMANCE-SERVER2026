@@ -1,0 +1,13 @@
+{
+  "support_contact": "operator input required",
+  "support_email": "operator input required",
+  "commercial_inquiry_label": "Commercial inquiry path",
+  "commercial_inquiry_state": "operator input required",
+  "pricing_model_state": "configured public tiers",
+  "package_tiers_state": "configured public tiers",
+  "access_request_state": "approval_required",
+  "support_readiness_state": "operator input required",
+  "commercial_readiness_state": "operator input required",
+  "legal_readiness_state": "configured",
+  "download_readiness_state": "approval_required"
+}

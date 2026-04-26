@@ -20,13 +20,20 @@ Dieses Dokument beschreibt das lokale Lizenzstatusmodell innerhalb des WordPress
 ## Lokale Kernfelder
 
 - `license_id`
+- `customer_id`
+- `product_id`
 - `status`
 - `bound_domain`
 - `allowed_subdomains`
 - `allowed_scopes`
+- `allowed_features`
 - `release_channel`
 - `policy_channel`
 - `rollback_profile_id`
+- `issued_at`
+- `expires_at` oder `non_expiring`
+- `integrity.signature_state`
+- `integrity.signing_key_reference`
 - `operator_inputs_complete`
 - `domain_match`
 
@@ -36,9 +43,9 @@ Dieses Dokument beschreibt das lokale Lizenzstatusmodell innerhalb des WordPress
 - `inactive` oder `revoked`: `observe_only`
 - unvollstaendige Freigaben oder unklare Source-Mapping-Lage: `approval_required`
 - mehrdeutige Konflikte: `safe_mode`
-- `active_scoped` nur bei bestaetigter Lizenz-, Domain-, Scope-, Policy-, Validation- und Rollback-Lage
+- `active_scoped` nur bei bestaetigter Lizenz-, Domain-, Scope-, Policy-, Validation-, Rollback- und Integritaetslage
 
 ## Status
 
-- Lizenzstatusmodell: `blueprint_ready`
+- Lizenzstatusmodell: `implemented_locally`
 - echte Lizenzantworten: `approval_required`

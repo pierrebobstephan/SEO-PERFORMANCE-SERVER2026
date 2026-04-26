@@ -1,0 +1,9 @@
+location ^~ /operator { return 404; }
+location ^~ /admin { return 404; }
+location ^~ /control-plane { return 404; }
+location ^~ /console { return 404; }
+location ^~ /customer { return 404; }
+location ^~ /api/operator { return 404; }
+location ^~ /api/license { return 404; }
+location ^~ /api/customer { return 404; }
+location ^~ /downloads/private { return 404; }

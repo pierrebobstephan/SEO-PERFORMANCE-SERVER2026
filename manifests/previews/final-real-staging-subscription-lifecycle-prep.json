@@ -1,0 +1,22 @@
+{
+  "valid": true,
+  "issues": [],
+  "subscription_lifecycle_prep": {
+    "lifecycle_id": "sub-life-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "subscription_status": "staging_only_pilot",
+    "payment_method": "paypal_business",
+    "renewal_state": "operator_review_required",
+    "renewal_window_state": "not_open",
+    "failed_payment_recovery_state": "not_needed",
+    "next_operator_gate": "real_renewal_billing_and_failed_payment_ops_path",
+    "approval_required_reasons": [
+      "renewal and failed-payment lifecycle remain operator-gated and outside the workspace",
+      "no real billing retry, grace policy or entitlement rotation is executed locally",
+      "subscription lifecycle state stays preparatory until real payment and support systems are connected"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

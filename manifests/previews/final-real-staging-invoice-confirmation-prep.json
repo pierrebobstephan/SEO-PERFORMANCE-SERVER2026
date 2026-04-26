@@ -1,0 +1,24 @@
+{
+  "valid": true,
+  "issues": [],
+  "invoice_confirmation_prep": {
+    "invoice_confirmation_id": "invoice-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "order_id": "order-final-real-staging-pilot-001",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "payment_confirmation_path": "manifests/previews/final-real-staging-payment-confirmation-prep.json",
+    "invoice_state": "approval_required",
+    "invoice_reference": "operator_input_required",
+    "invoice_confirmation_state": "approval_required",
+    "invoice_policy_note": "Invoices are issued for completed orders.",
+    "operator_review_owner": "server_managed_bridge",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "approval_required_reasons": [
+      "real invoice confirmation remains outside the workspace",
+      "invoice reference and completed-order evidence still require operator review",
+      "invoice confirmation must precede any protected customer release decision"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

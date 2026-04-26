@@ -1,6 +1,7 @@
 # local working dirs
 backups/
 incoming/
+var/
 
 # python
 __pycache__/
@@ -11,6 +12,9 @@ __pycache__/
 .venv/
 venv/
 *.log
+deploy/systemd/*.env
+deploy/systemd/*.env.save
+!deploy/systemd/*.env.example
 
 # mac / editors
 .DS_Store

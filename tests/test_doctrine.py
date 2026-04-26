@@ -7,6 +7,7 @@ from electri_city_ops.doctrine import (
     enforce_runtime_guardrails,
     evaluate_pilot_gate,
     load_doctrine_policy,
+    validate_ai_governance_spec,
     validate_policy_schema,
     validate_scope,
     validate_simulation_object,
@@ -29,6 +30,10 @@ def _complete_simulation_object() -> dict[str, object]:
         "rollback_trigger": "status_regression",
         "adapt_options": ["approval_required", "blocked"],
         "final_pre_apply_gate": "approval_required",
+        "risk_class": "R2",
+        "impact_assessment_ref": "cf-cache-impact-assessment-v1",
+        "evidence_plan": "baseline comparison plus rollback evidence",
+        "aftercare_window": "24h",
     }
 
 
@@ -51,6 +56,27 @@ class DoctrineTests(unittest.TestCase):
             issues = validate_simulation_object({"pilot_id": "partial"}, policy)
             self.assertTrue(any("missing 'connector_type'" in item for item in issues))
 
+    def test_ai_governance_spec_requires_register_and_assessment(self) -> None:
+        with TemporaryDirectory() as tmp:
+            policy = load_doctrine_policy(Path(tmp)).policy
+            issues = validate_ai_governance_spec(
+                {
+                    "external_effect": True,
+                    "risk_class": "R2",
+                    "system_registered": False,
+                    "impact_assessment_complete": False,
+                    "provenance_ready": False,
+                    "supply_chain_verified": False,
+                    "human_oversight_defined": False,
+                },
+                policy,
+            )
+            self.assertIn("AI system register entry is missing", issues)
+            self.assertIn("AI impact assessment is incomplete", issues)
+            self.assertIn("provenance readiness is incomplete", issues)
+            self.assertIn("supply chain verification is incomplete", issues)
+            self.assertIn("human oversight is not defined for external effect", issues)
+
     def test_pilot_gate_requires_approval_for_external_step_without_inputs(self) -> None:
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -71,6 +97,12 @@ class DoctrineTests(unittest.TestCase):
                     "simulation_object": _complete_simulation_object(),
                     "blast_radius": "narrow",
                     "doctrine_conformant": True,
+                    "risk_class": "R2",
+                    "system_registered": True,
+                    "impact_assessment_complete": True,
+                    "provenance_ready": True,
+                    "supply_chain_verified": True,
+                    "human_oversight_defined": True,
                 },
                 policy,
                 root,
@@ -98,6 +130,12 @@ class DoctrineTests(unittest.TestCase):
                     "simulation_object": _complete_simulation_object(),
                     "blast_radius": "high",
                     "doctrine_conformant": True,
+                    "risk_class": "R2",
+                    "system_registered": True,
+                    "impact_assessment_complete": True,
+                    "provenance_ready": True,
+                    "supply_chain_verified": True,
+                    "human_oversight_defined": True,
                 },
                 policy,
                 root,

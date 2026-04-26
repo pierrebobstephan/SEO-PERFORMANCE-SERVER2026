@@ -1,0 +1,25 @@
+{
+  "product_id": "hso-plugin",
+  "plugin_version": "0.1.0-pilot1-preview",
+  "release_channel": "pilot",
+  "license_id": "lic-real-staging-preview-001",
+  "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+  "package_url": "local://hetzner-seo-ops-0.1.0-pilot1-preview",
+  "package_checksum": "source not yet confirmed",
+  "policy_version": "2026-03-30-real-staging-preview",
+  "rollback_version": "rb-real-staging-preview-001",
+  "allowed_scopes": [
+    "homepage_only",
+    "feature:meta_description",
+    "feature:head_diagnostics",
+    "feature:structure_visibility_diagnostics"
+  ],
+  "required_features": [
+    "meta_description",
+    "head_diagnostics",
+    "structure_visibility"
+  ],
+  "conflict_blocklist_version": "pilot-preview-1",
+  "min_plugin_version": "0.1.0-pilot1-preview",
+  "issued_at": "2026-03-30T00:00:00Z"
+}

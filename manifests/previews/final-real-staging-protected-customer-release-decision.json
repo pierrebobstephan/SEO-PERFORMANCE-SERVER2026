@@ -1,0 +1,30 @@
+{
+  "valid": true,
+  "issues": [],
+  "protected_customer_release_decision": {
+    "decision_id": "release-decision-final-real-staging-pilot-001",
+    "status": "approval_required",
+    "order_id": "order-final-real-staging-pilot-001",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "selected_plan": "Guardian Core Monthly",
+    "payment_confirmation_path": "manifests/previews/final-real-staging-payment-confirmation-prep.json",
+    "invoice_confirmation_path": "manifests/previews/final-real-staging-invoice-confirmation-prep.json",
+    "customer_release_authorization_path": "manifests/previews/final-real-staging-customer-release-authorization.json",
+    "release_decision_state": "approval_required",
+    "go_no_go_state": "operator_review_required",
+    "decision_channel": "protected_operator_go_no_go_only",
+    "public_delivery": false,
+    "customer_login": false,
+    "license_api_exposed": false,
+    "support_handover_state": "email_support_active",
+    "support_email": "pierre.stephan1@electri-c-ity-studios.com",
+    "rollback_readiness_state": "server_managed_bridge",
+    "validation_readiness_state": "server_managed_bridge",
+    "approval_required_reasons": [
+      "protected customer release decision stays operator-gated until payment and invoice are confirmed",
+      "support handover and rollback ownership still require explicit operator confirmation",
+      "no public delivery, customer login or open license API is enabled in the workspace"
+    ],
+    "built_at": "2026-03-31T00:00:00Z"
+  }
+}

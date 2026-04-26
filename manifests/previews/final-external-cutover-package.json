@@ -1,0 +1,149 @@
+{
+  "built_at": "2026-04-22T00:00:00Z",
+  "external_cutover_package": {
+    "schema_version": 1,
+    "cutover_id": "external-cutover-final-real-staging-001",
+    "status": "ready_for_external_execution",
+    "go_live_decision_state": "approval_required",
+    "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+    "public_base_url": "https://site-optimizer.electri-c-ity-studios-24-7.com",
+    "protected_webhook_url": "https://site-optimizer.electri-c-ity-studios-24-7.com/protected/paypal/webhook",
+    "local_preconditions": {
+      "global_productization_status": "commercial_chain_not_closed",
+      "commercial_chain_local_readiness_state": "locally_verified_waiting_external_inputs",
+      "hard_blockers": [],
+      "local_webhook_runtime_verification_state": "passed"
+    },
+    "checklist_issues": [],
+    "required_external_inputs": [
+      "PAYPAL_BUSINESS_CLIENT_ID",
+      "PAYPAL_BUSINESS_CLIENT_SECRET",
+      "PAYPAL_BUSINESS_WEBHOOK_ID",
+      "protected PayPal webhook receiver verification and activation"
+    ],
+    "blocking_pending_item_ids": [
+      "paypal_business_client_id_env_ref",
+      "paypal_business_client_secret_env_ref",
+      "paypal_business_webhook_id_env_ref",
+      "protected_webhook_target_delivery_verification",
+      "protected_webhook_activation_approval",
+      "signing_key_reference_bound",
+      "protected_delivery_target_verified",
+      "support_escalation_confirmed",
+      "billing_invoice_owner_confirmed",
+      "customer_release_authority_confirmed",
+      "rollback_window_confirmed"
+    ],
+    "state_counts": {
+      "external_input_required": 4,
+      "local_proof_complete": 1,
+      "external_verification_required": 2,
+      "approval_required": 5
+    },
+    "phase_summaries": [
+      {
+        "phase": "paypal_env_refs",
+        "item_count": 3,
+        "blocking_pending_item_ids": [
+          "paypal_business_client_id_env_ref",
+          "paypal_business_client_secret_env_ref",
+          "paypal_business_webhook_id_env_ref"
+        ]
+      },
+      {
+        "phase": "protected_webhook_runtime",
+        "item_count": 3,
+        "blocking_pending_item_ids": [
+          "protected_webhook_target_delivery_verification",
+          "protected_webhook_activation_approval"
+        ]
+      },
+      {
+        "phase": "signing_and_delivery",
+        "item_count": 2,
+        "blocking_pending_item_ids": [
+          "signing_key_reference_bound",
+          "protected_delivery_target_verified"
+        ]
+      },
+      {
+        "phase": "human_ownership",
+        "item_count": 2,
+        "blocking_pending_item_ids": [
+          "support_escalation_confirmed",
+          "billing_invoice_owner_confirmed"
+        ]
+      },
+      {
+        "phase": "final_go_no_go",
+        "item_count": 2,
+        "blocking_pending_item_ids": [
+          "customer_release_authority_confirmed",
+          "rollback_window_confirmed"
+        ]
+      }
+    ],
+    "ordered_execution_steps": [
+      {
+        "phase": "paypal_env_refs",
+        "objective": "execute the external cutover items for this phase in the target environment",
+        "blocking_pending_item_ids": [
+          "paypal_business_client_id_env_ref",
+          "paypal_business_client_secret_env_ref",
+          "paypal_business_webhook_id_env_ref"
+        ]
+      },
+      {
+        "phase": "protected_webhook_runtime",
+        "objective": "execute the external cutover items for this phase in the target environment",
+        "blocking_pending_item_ids": [
+          "protected_webhook_target_delivery_verification",
+          "protected_webhook_activation_approval"
+        ]
+      },
+      {
+        "phase": "signing_and_delivery",
+        "objective": "execute the external cutover items for this phase in the target environment",
+        "blocking_pending_item_ids": [
+          "signing_key_reference_bound",
+          "protected_delivery_target_verified"
+        ]
+      },
+      {
+        "phase": "human_ownership",
+        "objective": "execute the external cutover items for this phase in the target environment",
+        "blocking_pending_item_ids": [
+          "support_escalation_confirmed",
+          "billing_invoice_owner_confirmed"
+        ]
+      },
+      {
+        "phase": "final_go_no_go",
+        "objective": "execute the external cutover items for this phase in the target environment",
+        "blocking_pending_item_ids": [
+          "customer_release_authority_confirmed",
+          "rollback_window_confirmed"
+        ]
+      }
+    ],
+    "abort_criteria": [
+      "any required PayPal env ref remains missing after the protected server deployment step",
+      "real staging signature verification fails against the protected receiver",
+      "replay protection does not block duplicate delivery on the protected server",
+      "signing or protected delivery ownership remains unconfirmed",
+      "support, billing or release authority remains unconfirmed"
+    ],
+    "rollback_ready_signals": [
+      "protected delivery remains disabled until explicit release approval is recorded",
+      "webhook activation can be reverted without exposing any public route",
+      "previous package or policy remains callable through the rollback channel",
+      "support receives the cutover record and escalation target before release"
+    ],
+    "next_smallest_safe_step": "inject PayPal env refs and verify the protected webhook receiver in the real staging server context",
+    "evidence_refs": {
+      "external_cutover_checklist": "config/external-cutover-checklist.json",
+      "global_productization_readiness": "manifests/previews/final-global-productization-readiness.json",
+      "paypal_webhook_prep": "manifests/previews/final-real-staging-paypal-webhook-prep.json"
+    }
+  }
+}

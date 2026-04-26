@@ -1,0 +1,13 @@
+{
+  "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+  "allowed_subdomains": [],
+  "allowed_scopes": [
+    "homepage_only",
+    "feature:meta_description",
+    "feature:head_diagnostics",
+    "feature:structure_visibility_diagnostics"
+  ],
+  "release_channel": "pilot",
+  "policy_channel": "pilot",
+  "rollback_profile_id": "rb-final-real-staging-pilot-001"
+}

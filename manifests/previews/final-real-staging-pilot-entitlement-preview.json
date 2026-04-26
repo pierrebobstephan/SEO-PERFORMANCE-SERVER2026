@@ -1,0 +1,15 @@
+{
+  "entitlement_id": "ent-final-real-staging-pilot-001",
+  "license_id": "lic-final-real-staging-pilot-001",
+  "bound_domain": "wp.electri-c-ity-studios-24-7.com",
+  "release_channel": "pilot",
+  "allowed_package_version": "0.1.0-real-staging1",
+  "allowed_scopes": [
+    "homepage_only",
+    "feature:meta_description",
+    "feature:head_diagnostics",
+    "feature:structure_visibility_diagnostics"
+  ],
+  "approval_state": "approval_required",
+  "issued_at": "2026-04-19T21:00:00Z"
+}
